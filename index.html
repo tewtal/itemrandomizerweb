@@ -21,6 +21,14 @@
         <input type="text" id="seed" name="seed" value="0" /><br/><br />
         <input type="submit" value="Randomize!"/>
     </form>
+    {% if model.Error == true %}
+    <div style="color:red">
+    <h3>Error</h3>
+    <p>
+        {{ model.Info }}
+    </p>
+    </div>
+    {% endif %}
     <br />
     <h2>Changes from the vanilla game and other notes</h2>
     <ul>
