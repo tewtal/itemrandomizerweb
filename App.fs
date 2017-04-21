@@ -30,7 +30,7 @@ let randomizer_post (r:HttpRequest) =
                 let newFileName = sprintf "Item Randomizer X%d.sfc" seed
                 File.Delete(file.tempFilePath) 
                 Writers.setMimeType("application/octet-stream")
-                >=> Writers.setHeader "Content-Disposition" (sprintf "attachment; filename=%s" newFileName) 
+                >=> Writers.setHeader "Content-Disposition" (sprintf "attachment; filename=\"%s\"" newFileName) 
                 >=> (Successful.ok <| binaryData)
             with
                 | _ -> DotLiquid.page "index.html" { Error = true; Info = "Couldn't patch the ROM, did you upload the correct file?"; Mode = "POST" }
