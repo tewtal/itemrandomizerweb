@@ -18,17 +18,18 @@ type Context =
 let index =
     DotLiquid.page "index.html" ()
 
-let randomizer_post (r:HttpRequest) =
+let randomizerPost (r:HttpRequest) =
     match r.files.Length with
         | 0 -> DotLiquid.page "index.html" { Error = true; Info = "No file uploaded"; Mode = "POST" }
         | _ -> 
             let file = r.files.Head
-            let binaryReader = new BinaryReader(File.Open(file.tempFilePath, FileMode.Open))
-            let bytes = binaryReader.ReadBytes(int binaryReader.BaseStream.Length)
+            let bytes = 
+                use binaryReader = new BinaryReader(File.Open(file.tempFilePath, FileMode.Open))
+                binaryReader.ReadBytes(int binaryReader.BaseStream.Length)
             try
                 let (seed, binaryData) = Randomizer.Randomize 0 1 false "" bytes
-                let newFileName = sprintf "Item Randomizer X%d.sfc" seed
-                File.Delete(file.tempFilePath) 
+                let newFileName = sprintf "Item Randomizer X%d.sfc" seed                
+                if File.Exists(file.tempFilePath) then File.Delete(file.tempFilePath) else ()
                 Writers.setMimeType("application/octet-stream")
                 >=> Writers.setHeader "Content-Disposition" (sprintf "attachment; filename=\"%s\"" newFileName) 
                 >=> (Successful.ok <| binaryData)
@@ -40,6 +41,6 @@ let Router =
         path "/" >=> index
         path "/randomizer" >=> choose
             [
-                POST >=> request (fun r -> randomizer_post r)
+                POST >=> request (fun r -> randomizerPost r)
             ]
     ]
