@@ -117,7 +117,7 @@ module Locations =
                 Name = "Power Bomb (Crateria surface)";
                 Class = Minor;
                 Address = 0x781CC;
-                Visibility = Chozo;
+                Visibility = Visible;
                 Available = fun items ->
                     canUsePowerBombs items &&
                     (haveItem items SpeedBooster || canFly items);
@@ -308,7 +308,7 @@ module Locations =
                 Name = "Power Bomb (pink Brinstar)";
                 Class = Minor;
                 Address = 0x7865C;
-                Visibility = Chozo;
+                Visibility = Visible;
                 Available = fun items -> canUsePowerBombs items && haveItem items Super;
             };
             {
