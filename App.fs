@@ -45,4 +45,5 @@ let Router =
                 POST >=> request randomizerPost
             ]
         GET >=> path "/favicon.ico" >=> Files.browseFile __SOURCE_DIRECTORY__ "favicon.ico"
+        RequestErrors.NOT_FOUND "Page not found"
     ]
