@@ -44,4 +44,5 @@ let Router =
             [
                 POST >=> request randomizerPost
             ]
+        GET >=> Files.browseFile __SOURCE_DIRECTORY__ "favicon.ico"
     ]
