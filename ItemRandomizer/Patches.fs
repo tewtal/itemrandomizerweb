@@ -114,12 +114,12 @@ module Patches =
     let applyIpsRle address offset (romData:byte []) (ipsPatch:byte []) =
         let length = ((int ipsPatch.[offset]) <<< 8) + (int ipsPatch.[offset+1])
         let data = Array.create<int> length (int ipsPatch.[offset+2])
-        let _ = patchByte romData address (Array.toList data)
+        patchByte romData address (Array.toList data) |> ignore
         offset + 3
 
     let applyIpsData address length offset (romData:byte []) (ipsPatch:byte []) =
         let data = Array.map (fun b -> (int b)) ipsPatch.[offset..(offset + (length - 1))]
-        let _ = patchByte romData address (Array.toList data)
+        patchByte romData address (Array.toList data) |> ignore
         offset + length
 
     let rec applyIpsRecord offset (romData:byte []) (ipsPatch:byte []) =
@@ -136,13 +136,13 @@ module Patches =
         applyIpsRecord 5 romData ipsPatch
 
     let applyIpsPatches (ipsPatches:byte [] list) (romData:byte []) =
-        let _ = List.map (fun ipsPatch -> applyIpsPatch ipsPatch romData) ipsPatches
+        List.map (fun ipsPatch -> applyIpsPatch ipsPatch romData) ipsPatches |> ignore
         romData
 
     let rec applyPatches (patches:Patch list) (romData:byte []) =
         match patches with
         | head :: tail -> 
-            let _ = List.map (fun patchData -> (patchByte romData patchData.Address patchData.Data)) head.Patches
+            List.map (fun patchData -> (patchByte romData patchData.Address patchData.Data)) head.Patches |> ignore
             applyPatches tail romData
         | [] -> romData
 

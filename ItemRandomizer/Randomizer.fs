@@ -65,14 +65,14 @@ module Randomizer =
             generateItems rnd (itemLocation.Item :: items) (itemLocation :: itemLocations) (removeItem itemLocation.Item.Type itemPool)
 
     let writeSpoiler seed spoiler fileName itemLocations = 
-        if spoiler = true then
+        if spoiler then
             let writer = File.CreateText(fileName + ".spoiler.txt")
-            let _ = List.map (fun itemLocation -> writer.WriteLine(String.Format("{0} -> {1}", itemLocation.Location.Name, itemLocation.Item.Name))) (List.sortBy (fun itemLocation -> itemLocation.Location.Address) itemLocations)
-            ()
+            List.map (fun itemLocation -> writer.WriteLine(String.Format("{0} -> {1}", itemLocation.Location.Name, itemLocation.Item.Name))) (List.sortBy (fun itemLocation -> itemLocation.Location.Address) itemLocations) |> ignore
+        
         itemLocations
 
     let randomizeItems (data:byte []) seed spoiler fileName =
-        let rnd = new Random(seed)
+        let rnd = Random(seed)
         writeLocations data (writeSpoiler seed spoiler fileName (generateItems rnd [] [] (Items.getItemPool rnd)))
 
     let Randomize inputSeed difficulty spoiler fileName baseRom =
