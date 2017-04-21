@@ -1,0 +1,42 @@
+﻿<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Item Randomizer</title>
+</head>
+<body>
+    <h1>item randomizer - very beta</h1>
+    <p>
+        This is a beta version used for testing new patches and item logic, have fun but expect that things can be broken at times.<br />
+        <b>Huge shoutout and thanks to Dessyreqt for his work on the randomizer, without that this would not be a thing at all. <br />
+        You can find his randomizer here: <a href="http://dessyreqt.github.io/smrandomizer/">Super Metroid Randomizer</a><br />
+        </b>
+    </p>
+    <br />
+    <form method="post" action="/randomizer" enctype="multipart/form-data">        
+        Pick a vanilla (unheadered) SM ROM to upload and patch:<br /> 
+        <input type="file" name="filename" /><br /><br />
+        Enter a seed here or leave it at 0 to create a new random seed:<br />
+        <input type="text" name="seed" value="0" /><br/><br />
+        <input type="submit" value="Randomize!"/>
+    </form>
+    <br />
+    <h2>Changes from the vanilla game and other notes</h2>
+    <ul>
+        <li>Items are randomized in two pools: Major items/Reserves/E-tanks in one, and the ammo packs in another.</li>
+        <li>There is on exception: The e-tank at Hi-Jump is no longer a major item location, it has been moved to the right super missile pack location in Wrecked Ship</li>
+        <li>The door into the construction zone (blue brinstar ceiling e-tank room) is now a Blue door and will have zebes activated when you enter it so you can check the items there right away.</li>
+        <li>Gravity suit will no longer give you protection from heat, so you will have to find Varia suit as well.</li>
+        <li>Some cutscenes have been removed or shortened.</li>
+        <li>Ceres station is no longer in the game.</li>
+    </ul>
+    <h2>
+        Change Log:
+    </h2>
+    <h3>v2 - 2017-04-20</h3>
+    <ul>
+        <li>First version uploaded - contains initial changes listed above</li>
+    </ul>
+</body>
+</html>
