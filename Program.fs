@@ -6,7 +6,7 @@ open App
 
 let hostName = System.Net.IPAddress.Parse "0.0.0.0"
 
-DotLiquid.setTemplatesDir (__SOURCE_DIRECTORY__)
+DotLiquid.setTemplatesDir (sprintf "%s/templates/" __SOURCE_DIRECTORY__)
 
 [<EntryPoint>]
 let main argv =

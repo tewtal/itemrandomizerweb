@@ -18,9 +18,18 @@ type Context =
 let index =
     DotLiquid.page "index.html" ()
 
+let information = 
+    DotLiquid.page "information.html" ()
+
+let contact = 
+    DotLiquid.page "contact.html" ()
+
+let randomizeGet =
+    DotLiquid.page "randomize.html" ()
+
 let randomizerPost (r:HttpRequest) =
     match r.files.Length with
-        | 0 -> DotLiquid.page "index.html" { Error = true; Info = "No file uploaded"; Mode = "POST" }
+        | 0 -> DotLiquid.page "randomize.html" { Error = true; Info = "No file uploaded"; Mode = "POST" }
         | _ -> 
             let file = r.files.Head
             let (_,  inputSeed) = r.multiPartFields.Head
@@ -35,15 +44,19 @@ let randomizerPost (r:HttpRequest) =
                 >=> Writers.setHeader "Content-Disposition" (sprintf "attachment; filename=\"%s\"" newFileName) 
                 >=> (Successful.ok <| binaryData)
             with
-                | _ -> DotLiquid.page "index.html" { Error = true; Info = "Couldn't patch the ROM, did you upload the correct file?"; Mode = "POST" }
+                | _ -> DotLiquid.page "randomize.html" { Error = true; Info = "Couldn't patch the ROM, did you upload the correct file?"; Mode = "POST" }
                 
 let Router = 
     choose [
         path "/" >=> index
-        path "/randomizer" >=> choose
+        path "/randomize" >=> choose
             [
                 POST >=> request randomizerPost
+                GET >=> randomizeGet
             ]
+        path "/information" >=> information
+        path "/contact" >=> contact
         GET >=> path "/favicon.ico" >=> Files.browseFile __SOURCE_DIRECTORY__ "favicon.ico"
+        GET >=> Files.browse (Path.GetFullPath "./static")
         RequestErrors.NOT_FOUND "Page not found"
     ]
