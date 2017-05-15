@@ -14,6 +14,7 @@
     <Compile Include="Resources.fs" />
     <Compile Include="Items.fs" />
     <Compile Include="Patches.fs" />
+    <Compile Include="Randomizers.fs" />
     <Compile Include="Randomizer.fs" />
     <Content Include="packages.config" />
   </ItemGroup>
