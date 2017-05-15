@@ -47,6 +47,11 @@ module Types =
         | Norfair
         | LowerNorfair
 
+    type Difficulty =
+        | Casual = 0
+        | Normal = 1
+        | Hard = 2
+        | Any = 3
 
     type Item =
         {
@@ -83,5 +88,15 @@ module Types =
         {
             Name: string;
             Patches: PatchData list
+            Difficulty: Difficulty;
+            Default: bool;
+        }
+
+    type IpsPatch =
+        {
+            Name: string;
+            FileName: string;
+            Difficulty: Difficulty;
+            Default: bool;
         }
             

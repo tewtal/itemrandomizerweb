@@ -75,15 +75,15 @@ module Randomizer =
         let rnd = Random(seed)
         writeLocations data (writeSpoiler seed spoiler fileName (generateItems rnd [] [] (Items.getItemPool rnd)))
 
-    let Randomize inputSeed difficulty spoiler fileName baseRom =
+    let Randomize inputSeed difficulty spoiler fileName baseRom ipsPatches patches =
         let seed = match inputSeed with
                    | 0 -> Random().Next(1000000, 9999999)
                    | _ -> inputSeed
         
         match difficulty with
-            | 0 -> SelectedLocations <- CasualLocations.AllLocations
-            | 1 -> SelectedLocations <- Locations.AllLocations
+            | Difficulty.Casual -> SelectedLocations <- CasualLocations.AllLocations
+            | Difficulty.Normal -> SelectedLocations <- Locations.AllLocations
             | _ -> SelectedLocations <- Locations.AllLocations
         
-        (seed, (Patches.ApplyPatches (randomizeItems baseRom seed spoiler fileName)))
-        
+        (seed, (Patches.ApplyPatches ipsPatches patches (randomizeItems baseRom seed spoiler fileName)))
+

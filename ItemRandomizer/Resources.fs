@@ -3,7 +3,7 @@ module Resources =
     open System
     open System.IO
 
-    let IpsPatches =
+    let ExternalIpsPatches =
         let externalPatches = 
             [ for file in Directory.GetFiles(System.AppContext.BaseDirectory, "*.ips") do
                 let bytes = 
@@ -11,7 +11,5 @@ module Resources =
                     binaryReader.ReadBytes(int binaryReader.BaseStream.Length)
                 yield bytes
             ]
-        externalPatches 
-            
-
-
+        externalPatches
+        

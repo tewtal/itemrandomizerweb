@@ -2,44 +2,71 @@
 
 module Patches = 
     open Types
+    open System.IO
+
+    let IpsPatches =
+        [
+            {
+                Name = "Intro/Ceres Skip and initial door flag setup";
+                Difficulty = Difficulty.Any;
+                Default = true;
+                FileName = "introskip_doorflags.ips";
+            };
+            {
+                Name = "Instantly open G4 passage when all bosses are killed";
+                Difficulty = Difficulty.Any;
+                Default = true;
+                FileName = "g4_skip.ips";
+            };
+            {
+                Name = "Wake up zebes when going right from morph";
+                Difficulty = Difficulty.Any;
+                Default = true;
+                FileName = "wake_zebes.ips";
+            };
+            {
+                Name = "Disable respawning blocks at dachora pit";
+                Difficulty = Difficulty.Casual;
+                Default = true;
+                FileName = "dachora.ips";
+            };
+            {
+                Name = "Make it possible to escape from below early super bridge without bombs";
+                Difficulty = Difficulty.Casual;
+                Default = true;
+                FileName = "early_super_bridge.ips";
+            };
+            {
+                Name = "Swap construction zone e-tank with missiles and open up path to missiles";
+                Difficulty = Difficulty.Casual;
+                Default = true;
+                FileName = "retro_brin_etank_missile_swap.ips";
+            };
+            {
+                Name = "Foosda's Colorblind patch";
+                Difficulty = Difficulty.Any;
+                Default = false;
+                FileName = "colorblind_v1.1.ips";
+            };
+        ];
 
     let RomPatches = 
         [             
             {
-                Name = "Intro/Ceres Skip (Also marks construction zone door as open and the yellow elevator door to crateria)";
-                Patches = 
-                [
-                    { Address = 0x016eda; Data = [0x1f] };
-                    { Address = 0x010067; Data = [0x22; 0x00; 0xff; 0x80] };
-                    { Address = 0x007f00; Data = [0xAF; 0xE2; 0xD7; 0x7E; 0xD0; 0x1D; 0xAF; 0xB6; 0xD8; 0x7E; 0x09; 0x04; 0x00; 0x8F; 0xB6; 0xD8; 0x7E; 0xAF; 0xB2; 0xD8; 0x7E; 0x09; 0x01; 0x00; 0x8F; 0xB2; 0xD8; 0x7E; 0xA9; 0x00; 0x00; 0x22; 0x00; 0x80; 0x81; 0x6B] }
-                ]
-            };
-            {
-                Name = "Door ASM pointer/code to open up G4 passage right away when all bosses are killed";
-                Patches = 
-                [
-                    { Address = 0x018c5c; Data = [0x00; 0xfe] }
-                    { Address = 0x07fe00; Data = [0xAF; 0x28; 0xD8; 0x7E; 0x89; 0x00; 0x01; 0xF0; 0x20; 0xAF; 0x2C; 0xD8; 0x7E; 0x89; 0x01; 0x00; 0xF0; 0x17; 0xAF; 0x2A; 0xD8; 0x7E; 0x29; 0x01; 0x01; 0xC9; 0x01; 0x01; 0xD0; 0x0B; 0xAF; 0x20; 0xD8; 0x7E; 0x09; 0x00; 0x04; 0x8F; 0x20; 0xD8; 0x7E; 0x60] }
-                ]
-            };
-            {
-                Name = "Door ASM pointer/code to set zebes awake when going towards construction zone";
-                Patches = 
-                [
-                    { Address = 0x018eb4; Data = [0x00; 0xff] }
-                    { Address = 0x07ff00; Data = [0xAF; 0x20; 0xD8; 0x7E; 0x09; 0x01; 0x00; 0x8F; 0x20; 0xD8; 0x7E; 0x60] }
-                ]
-            };
-            {
                 Name = "Removes Gravity Suit heat protection";
+                Difficulty = Difficulty.Any;
+                Default = true;
                 Patches = 
                 [
                     { Address = 0x06e37d; Data = [0x01]; }
                     { Address = 0x0869dd; Data = [0x01]; }
                 ]
+                
             };
             {
                 Name = "Mother Brain Cutscene Edits";
+                Difficulty = Difficulty.Any;
+                Default = true;
                 Patches = 
                 [
                     { Address = 0x148824; Data = [0x01; 0x00] };
@@ -76,26 +103,38 @@ module Patches =
             };
             {
                 Name = "Suit acquisition animation skip";
+                Difficulty = Difficulty.Any;
+                Default = true;
                 Patches = [ { Address = 0x020717; Data = [0xea; 0xea; 0xea; 0xea]; } ]
             };
             {
                 Name = "Fix Morph & Missiles Room State";
+                Difficulty = Difficulty.Any;
+                Default = true;
                 Patches = [ { Address = 0x07e655; Data = [0xea; 0xea; 0xea; 0xf0; 0x0c; 0x4c; 0x5f; 0xe6]; } ]
             };
             {
                 Name = "Fix heat damage speed echoes bug";
+                Difficulty = Difficulty.Any;
+                Default = true;
                 Patches = [ { Address = 0x08b629; Data = [0x01]; } ]
             };
             {
                 Name = "Disable GT Code";
+                Difficulty = Difficulty.Any;
+                Default = true;
                 Patches = [ { Address = 0x15491c; Data = [0x80]; } ]
             };
             {
                 Name = "Disable Space/Time select in menu";
+                Difficulty = Difficulty.Any;
+                Default = true;
                 Patches = [ { Address = 0x013175; Data = [0x01]; } ]
             };
             {
                 Name = "Fix Morph Ball Hidden/Chozo PLM's";
+                Difficulty = Difficulty.Any;
+                Default = true;
                 Patches = 
                 [
                     { Address = 0x0268ce; Data = [0x04]; };
@@ -139,6 +178,14 @@ module Patches =
         List.map (fun ipsPatch -> applyIpsPatch ipsPatch romData) ipsPatches |> ignore
         romData
 
+    let getIpsData (patches: IpsPatch list) =
+        [ for p in patches do
+            let bytes = 
+                use binaryReader = new BinaryReader(File.Open(__SOURCE_DIRECTORY__ + "/patches/" + p.FileName, FileMode.Open))
+                binaryReader.ReadBytes(int binaryReader.BaseStream.Length)
+            yield bytes
+        ]                
+
     let rec applyPatches (patches:Patch list) (romData:byte []) =
         match patches with
         | head :: tail -> 
@@ -146,10 +193,11 @@ module Patches =
             applyPatches tail romData
         | [] -> romData
 
-    let ApplyPatches (romData:byte []) =
+    let ApplyPatches (ipsPatches:IpsPatch list) (patches:Patch list) (romData:byte []) =
         romData
-        |> applyPatches RomPatches
-        |> applyIpsPatches Resources.IpsPatches
+        |> applyPatches patches
+        |> applyIpsPatches (getIpsData ipsPatches)
+        |> applyIpsPatches Resources.ExternalIpsPatches
             
 
         

@@ -33,12 +33,21 @@ let randomizerPost (r:HttpRequest) =
         | _ -> 
             let file = r.files.Head
             let (_,  inputSeed) = r.multiPartFields.Head
+            let (_,  inputDifficulty) = r.multiPartFields.Tail.Head;
             let bytes = 
                 use binaryReader = new BinaryReader(File.Open(file.tempFilePath, FileMode.Open))
                 binaryReader.ReadBytes(int binaryReader.BaseStream.Length)
             try
-                let (seed, binaryData) = Randomizer.Randomize (Int32.Parse inputSeed) 1 false "" bytes
-                let newFileName = sprintf "Item Randomizer X%d.sfc" seed                
+                let difficulty = enum<Types.Difficulty>(Int32.Parse inputDifficulty)
+                let ipsPatches = List.filter (fun (p:Types.IpsPatch) -> ((p.Difficulty = difficulty || p.Difficulty = Types.Difficulty.Any) && p.Default)) Patches.IpsPatches
+                let patches = List.filter (fun (p:Types.Patch) -> ((p.Difficulty = difficulty || p.Difficulty = Types.Difficulty.Any) && p.Default)) Patches.RomPatches
+                let (seed, binaryData) = Randomizer.Randomize (Int32.Parse inputSeed) difficulty false "" bytes ipsPatches patches
+                let newFileName = sprintf "Item Randomizer %s%d.sfc" (match difficulty with
+                                                                        | Types.Difficulty.Casual -> "CX"
+                                                                        | Types.Difficulty.Normal -> "X"
+                                                                        | Types.Difficulty.Hard -> "HX"
+                                                                        | _ -> "X") seed
+                                                                                        
                 if File.Exists(file.tempFilePath) then File.Delete(file.tempFilePath) else ()
                 Writers.setMimeType("application/octet-stream")
                 >=> Writers.setHeader "Content-Disposition" (sprintf "attachment; filename=\"%s\"" newFileName) 
