@@ -11,6 +11,7 @@
     <Compile Include="Types.fs" />
     <Compile Include="Locations.fs" />
     <Compile Include="CasualLocations.fs" />
+    <Compile Include="HardLocations.fs" />
     <Compile Include="Resources.fs" />
     <Compile Include="Items.fs" />
     <Compile Include="Patches.fs" />

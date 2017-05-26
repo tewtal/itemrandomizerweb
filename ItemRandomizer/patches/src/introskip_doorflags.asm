@@ -11,8 +11,16 @@ org $828067
 
 org $80ff00
 introskip_doorflags:
+    // Do some checks to see that we're actually starting a new game
+    
+    // Make sure game mode is 1f
+    lda $7e0998
+    cmp.w #$001f
+    bne .ret
+    
+    // Check if samus saved energy is 00, if it is, run startup code
     lda $7ed7e2
-    bne +
+    bne .ret
     
     // Set construction zone and red tower elevator doors to blue
     lda $7ed8b6
@@ -25,6 +33,7 @@ introskip_doorflags:
     // Call the save code to create a new file
     lda #$0000
     jsl $818000
-+   
-    lda #$0000   
+
+.ret:   
+    lda #$0000
     rtl

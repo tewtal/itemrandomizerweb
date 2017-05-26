@@ -64,7 +64,7 @@ module SparseRandomizer =
         location.Class = item.Class &&
         (match item.Type with
         | Gravity -> (not (location.Area = Crateria || location.Area = Brinstar)) || location.Name = "X-Ray Visor" || location.Name = "Energy Tank (pink Brinstar bottom)"
-        | Varia -> (not (location.Area = LowerNorfair || location.Area = Crateria))
+        | Varia -> (not (location.Area = Crateria))
         | _ -> true)
 
     let canPlaceItem (item:Item) itemLocations =
@@ -83,10 +83,15 @@ module SparseRandomizer =
     let getNewLocations item items (itemLocations:ItemLocation list) locationPool =
         let oldLocations = (currentLocations items itemLocations locationPool)
         let newLocations = (currentLocations (item :: items) itemLocations locationPool)
-        ((List.length newLocations) - (List.length oldLocations))
+        match item.Type with 
+        | Varia -> (((List.length newLocations) - (List.length oldLocations)) + 1) * 3
+        | Gravity -> (((List.length newLocations) - (List.length oldLocations)) + 1) * 4
+        | Super -> ((List.length newLocations) - (List.length oldLocations)) + 1
+        | PowerBomb -> ((List.length newLocations) - (List.length oldLocations)) + 2
+        | _ -> ((List.length newLocations) - (List.length oldLocations))
 
     let possibleItems items itemLocations itemPool locationPool =
-        List.filter (fun item -> checkItem item items itemLocations locationPool) itemPool
+        List.sortBy (fun item -> getNewLocations item items itemLocations locationPool) (List.filter (fun item -> checkItem item items itemLocations locationPool) itemPool)
 
     let possibleFillerItems items itemLocations itemPool locationPool =
         List.filter (fun item -> checkFillerItem item items itemLocations locationPool) itemPool
@@ -103,7 +108,7 @@ module SparseRandomizer =
         while List.isEmpty availableLocations do
             item <- (match List.length items with
                        | 0 -> List.item (rnd.Next (List.length itemPool)) itemPool
-                       | _ -> List.item (rnd.Next (List.length items)) items)
+                       | _ -> List.item (((rnd.Next (List.length items))+1)/2) items)
         
             availableLocations <- List.filter (fun location -> canPlaceAtLocation item location) locations
 

@@ -23,7 +23,7 @@ module Randomizer =
 
     let writeSpoiler seed spoiler fileName itemLocations = 
         if spoiler then
-            let writer = File.CreateText(fileName + ".spoiler.txt")
+            use writer = File.CreateText(__SOURCE_DIRECTORY__ + (sprintf "/logs/%d.spoiler.txt" seed))
             List.map (fun itemLocation -> writer.WriteLine(String.Format("{0} -> {1}", itemLocation.Location.Name, itemLocation.Item.Name))) (List.sortBy (fun itemLocation -> itemLocation.Location.Address) itemLocations) |> ignore
         
         itemLocations
@@ -39,9 +39,13 @@ module Randomizer =
         
         let locationPool = match difficulty with
                             | Difficulty.Casual -> CasualLocations.AllLocations
+                            | Difficulty.Normal -> Locations.AllLocations
+                            | Difficulty.Hard -> HardLocations.AllLocations
                             | _ -> Locations.AllLocations
 
-        let generateItems = DefaultRandomizer.generateItems
+        let generateItems = match difficulty with
+                             | Difficulty.Hard -> SparseRandomizer.generateItems
+                             | _ -> DefaultRandomizer.generateItems
         
         (seed, (Patches.ApplyPatches ipsPatches patches (randomizeItems generateItems baseRom seed spoiler fileName locationPool)))
 
