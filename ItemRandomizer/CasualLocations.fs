@@ -346,7 +346,7 @@ module CasualLocations =
             {
                 Area = Brinstar;
                 Name = "Energy Tank (blue Brinstar)";
-                Class = Major;
+                Class = Minor;
                 Address = 0x7879E;
                 Visibility = Hidden;
                 Available = fun items -> true;
@@ -378,10 +378,10 @@ module CasualLocations =
             {
                 Area = Brinstar;
                 Name = "Missile (blue Brinstar bottom)";
-                Class = Minor;
+                Class = Major;
                 Address = 0x78802;
                 Visibility = Chozo;
-                Available = fun items -> haveItem items Morph;
+                Available = fun items -> true;
             };
             {
                 Area = Brinstar;

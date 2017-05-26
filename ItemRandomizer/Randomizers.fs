@@ -102,15 +102,11 @@ module SparseRandomizer =
         | [] -> itemPool
 
     let placeItem (rnd:Random) (items:Item list) (itemPool:Item list) locations =
-        let mutable availableLocations = []
-        let mutable item:Item = Items.Items.Head
-
-        while List.isEmpty availableLocations do
-            item <- (match List.length items with
-                       | 0 -> List.item (rnd.Next (List.length itemPool)) itemPool
-                       | _ -> List.item (((rnd.Next (List.length items))+1)/2) items)
-        
-            availableLocations <- List.filter (fun location -> canPlaceAtLocation item location) locations
+        let item = (match List.length items with
+                    | 0 -> List.item (rnd.Next (List.length itemPool)) itemPool
+                    | _ -> List.item (((rnd.Next (List.length items))+1)/2) items)
+    
+        let availableLocations = List.filter (fun location -> canPlaceAtLocation item location) locations
 
         { Item = item; Location = (List.item (rnd.Next (List.length availableLocations)) availableLocations) }
 
