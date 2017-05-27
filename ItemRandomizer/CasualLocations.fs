@@ -333,9 +333,9 @@ module CasualLocations =
                 Area = Brinstar;
                 Name = "Missile (blue Brinstar middle)";
                 Address = 0x78798;
-                Class = Minor;
+                Class = Major;
                 Visibility = Visible;
-                Available = fun items -> haveItem items Morph;
+                Available = fun items -> true;
             };
             {
                 Area = Brinstar;
@@ -343,7 +343,7 @@ module CasualLocations =
                 Class = Minor;
                 Address = 0x7879E;
                 Visibility = Hidden;
-                Available = fun items -> true;
+                Available = fun items -> (canFly items || haveItem items Ice || haveItem items HiJump || haveItem items SpeedBooster);
             };
             {
                 Area = Brinstar;
@@ -372,10 +372,10 @@ module CasualLocations =
             {
                 Area = Brinstar;
                 Name = "Missile (blue Brinstar bottom)";
-                Class = Major;
+                Class = Minor;
                 Address = 0x78802;
                 Visibility = Chozo;
-                Available = fun items -> true;
+                Available = fun items -> haveItem items Morph;
             };
             {
                 Area = Brinstar;
