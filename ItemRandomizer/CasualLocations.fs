@@ -18,7 +18,6 @@ module CasualLocations =
 
     // Combined checks to see if we can perform an action needed to access locations
     let canHellRun items = 
-        energyReserveCount items >= 3 ||
         heatProof items
 
     let canFly items = (haveItem items Morph && haveItem items Bomb) || haveItem items SpaceJump
@@ -41,9 +40,10 @@ module CasualLocations =
         itemCount items PowerBomb >= 3
     
     let canEnterAndLeaveGauntlet items = 
-        canUseBombs items || 
-        (canUsePowerBombs items && itemCount items PowerBomb >= 2) || 
-        haveItem items ScrewAttack
+        (energyReserveCount items) >= 3 &&
+        (canUseBombs items || 
+         (canUsePowerBombs items && itemCount items PowerBomb >= 2) || 
+         haveItem items ScrewAttack)
     
     let canPassBombPassages items =
         canUseBombs items || 
@@ -68,18 +68,14 @@ module CasualLocations =
              (canHellRun items))
     
     let canAccessCrocomire items =
-        canAccessHeatedNorfair items ||
-            (canAccessKraid items &&
-             canUsePowerBombs items &&
-             haveItem items SpeedBooster &&
-             canHellRun items)
+        canAccessHeatedNorfair items &&
+        ((haveItem items SpeedBooster && canUsePowerBombs items) || haveItem items Wave)
     
     let canAccessLowerNorfair items = 
         canAccessHeatedNorfair items &&
         canUsePowerBombs items &&
         haveItem items Varia &&
-            (haveItem items HiJump ||
-             haveItem items Gravity)
+        haveItem items Gravity
     
     let canPassWorstRoom items =
         canAccessLowerNorfair items &&
@@ -90,24 +86,22 @@ module CasualLocations =
     let canAccessOuterMaridia items = 
         canAccessRedBrinstar items &&
         canUsePowerBombs items &&
-            (haveItem items Gravity ||
-             (haveItem items HiJump && haveItem items Ice))
+        haveItem items Gravity
     
     let canAccessInnerMaridia items = 
         canAccessRedBrinstar items &&
         canUsePowerBombs items &&
-            (haveItem items Gravity ||
-             (haveItem items HiJump && haveItem items Ice && haveItem items Grapple))
+        haveItem items Gravity &&
+        canFly items
     
     let canDefeatBotwoon items = 
         canAccessInnerMaridia items &&
-        (haveItem items Ice || haveItem items SpeedBooster)
+        (haveItem items SpeedBooster)
 
     let canDefeatDraygon items = 
         canDefeatBotwoon items &&
-            (haveItem items Gravity ||
-                ((haveItem items Grapple || canCrystalFlash items) &&
-                 (haveItem items SpringBall || haveItem items XRay)))
+        haveItem items Gravity &&
+        canFly items
 
     // Item Locations
     let AllLocations = 
@@ -250,7 +244,7 @@ module CasualLocations =
                 Class = Minor;
                 Address = 0x7851E;
                 Visibility = Visible;
-                Available = fun items -> (haveItem items SpeedBooster || canDestroyBombWalls items) && canOpenRedDoors items && (haveItem items Morph || haveItem items SpeedBooster);
+                Available = fun items -> canDestroyBombWalls items && canOpenRedDoors items && (haveItem items Morph || haveItem items SpeedBooster);
             };
             {
                 Area = Brinstar;
@@ -258,7 +252,7 @@ module CasualLocations =
                 Class = Major;
                 Address = 0x7852C;
                 Visibility = Chozo;
-                Available = fun items -> (haveItem items SpeedBooster || canDestroyBombWalls items) && canOpenRedDoors items && (haveItem items Morph || haveItem items SpeedBooster);
+                Available = fun items -> canDestroyBombWalls items && canOpenRedDoors items && (haveItem items Morph || haveItem items SpeedBooster);
             };
             {
                 Area = Brinstar;
@@ -418,9 +412,9 @@ module CasualLocations =
                                         canUsePowerBombs items &&
                                         (haveItem items Grapple ||
                                          haveItem items SpaceJump ||
-                                         (haveItem items Varia && energyReserveCount items >= 4) ||
-                                         (haveItem items Gravity && energyReserveCount items >= 3) ||
-                                         (energyReserveCount items >= 6))
+                                         (haveItem items Varia && energyReserveCount items >= 5) ||
+                                         (haveItem items Gravity && energyReserveCount items >= 5) ||
+                                         (energyReserveCount items >= 9))
                             
             };
             {
