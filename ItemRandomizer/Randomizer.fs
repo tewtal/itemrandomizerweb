@@ -41,6 +41,7 @@ module Randomizer =
                             | Difficulty.Casual -> CasualLocations.AllLocations
                             | Difficulty.Normal -> Locations.AllLocations
                             | Difficulty.Hard -> HardLocations.AllLocations
+                            | Difficulty.Tournament -> TournamentLocations.AllLocations
                             | _ -> Locations.AllLocations
 
         let generateItems = match difficulty with

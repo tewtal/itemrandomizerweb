@@ -51,7 +51,8 @@ module Types =
         | Casual = 0
         | Normal = 1
         | Hard = 2
-        | Any = 3
+        | Tournament = 3
+        | Any = 4
 
     type Item =
         {

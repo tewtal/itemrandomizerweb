@@ -6,6 +6,7 @@ module Patches =
 
     let IpsPatches =
         [
+            // Generic Patches
             {
                 Name = "Intro/Ceres Skip and initial door flag setup";
                 Difficulty = Difficulty.Any;
@@ -24,6 +25,16 @@ module Patches =
                 Default = true;
                 FileName = "wake_zebes.ips";
             };
+
+            // Optional Patches
+            {
+                Name = "Foosda's Colorblind patch";
+                Difficulty = Difficulty.Any;
+                Default = false;
+                FileName = "colorblind_v1.1.ips";
+            };
+
+            // Casual Patches
             {
                 Name = "Disable respawning blocks at dachora pit";
                 Difficulty = Difficulty.Casual;
@@ -43,12 +54,86 @@ module Patches =
                 FileName = "retro_brin_etank_missile_swap.ips";
             };
             {
-                Name = "Foosda's Colorblind patch";
-                Difficulty = Difficulty.Any;
-                Default = false;
-                FileName = "colorblind_v1.1.ips";
+                Name = "Replace bomb blocks with shot blocks before Hi-Jump";
+                Difficulty = Difficulty.Casual;
+                Default = true;
+                FileName = "high_jump.ips";
             };
-        ];
+            {
+                Name = "Replace bomb blocks with shot blocks at Moat";
+                Difficulty = Difficulty.Casual;
+                Default = true;
+                FileName = "moat.ips";
+            };
+            {
+                Name = "Raise platform in first heated norfair room to not require hi-jump";
+                Difficulty = Difficulty.Casual;
+                Default = true;
+                FileName = "nova_boost_platform.ips";
+            };
+            {
+                Name = "Raise platforms in red tower bottom to always be able to get back up";
+                Difficulty = Difficulty.Casual;
+                Default = true;
+                FileName = "red_tower.ips";
+            };
+            {
+                Name = "Replace bomb blocks with shot blocks before Spazer";
+                Difficulty = Difficulty.Casual;
+                Default = true;
+                FileName = "spazer.ips";
+            };
+
+            // Tournament Patches
+            {
+                Name = "Disable respawning blocks at dachora pit";
+                Difficulty = Difficulty.Tournament;
+                Default = true;
+                FileName = "dachora.ips";
+            };
+            {
+                Name = "Make it possible to escape from below early super bridge without bombs";
+                Difficulty = Difficulty.Tournament;
+                Default = true;
+                FileName = "early_super_bridge.ips";
+            };
+            {
+                Name = "Swap construction zone e-tank with missiles and open up path to missiles";
+                Difficulty = Difficulty.Tournament;
+                Default = true;
+                FileName = "retro_brin_etank_missile_swap.ips";
+            };
+            {
+                Name = "Replace bomb blocks with shot blocks before Hi-Jump";
+                Difficulty = Difficulty.Tournament;
+                Default = true;
+                FileName = "high_jump.ips";
+            };
+            {
+                Name = "Replace bomb blocks with shot blocks at Moat";
+                Difficulty = Difficulty.Tournament;
+                Default = true;
+                FileName = "moat.ips";
+            };
+            {
+                Name = "Raise platform in first heated norfair room to not require hi-jump";
+                Difficulty = Difficulty.Tournament;
+                Default = true;
+                FileName = "nova_boost_platform.ips";
+            };
+            {
+                Name = "Raise platforms in red tower bottom to always be able to get back up";
+                Difficulty = Difficulty.Tournament;
+                Default = true;
+                FileName = "red_tower.ips";
+            };
+            {
+                Name = "Replace bomb blocks with shot blocks before Spazer";
+                Difficulty = Difficulty.Tournament;
+                Default = true;
+                FileName = "spazer.ips";
+            }
+        ]
 
     let RomPatches = 
         [             
@@ -141,7 +226,7 @@ module Patches =
                     { Address = 0x026e02; Data = [0x04]; };
                 ]
             };
-        ];
+        ]
 
     let rec patchByte (romData:byte []) address data =
         match data with

@@ -14,7 +14,7 @@ module DefaultRandomizer =
         location.Class = item.Class &&
         (match item.Type with
         | Gravity -> (not (location.Area = Crateria || location.Area = Brinstar)) || location.Name = "X-Ray Visor" || location.Name = "Energy Tank (pink Brinstar bottom)"
-        | Varia -> (not (location.Area = LowerNorfair || location.Area = Crateria))
+        | Varia -> (not (location.Area = LowerNorfair || location.Area = Crateria || location.Name = "Morphing Ball" || location.Name = "Missile (blue Brinstar middle)" || location.Name = "Energy Tank (blue Brinstar)"))
         | _ -> true)
 
     let canPlaceItem (item:Item) itemLocations =

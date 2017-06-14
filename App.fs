@@ -46,6 +46,7 @@ let randomizerPost (r:HttpRequest) =
                                                                         | Types.Difficulty.Casual -> "CX"
                                                                         | Types.Difficulty.Normal -> "X"
                                                                         | Types.Difficulty.Hard -> "HX"
+                                                                        | Types.Difficulty.Tournament -> "TX"
                                                                         | _ -> "X") seed
                                                                                         
                 if File.Exists(file.tempFilePath) then File.Delete(file.tempFilePath) else ()

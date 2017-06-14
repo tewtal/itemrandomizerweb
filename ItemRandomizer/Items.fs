@@ -169,9 +169,9 @@ module Items =
     let rec addAmmo (rnd:System.Random) (itemPool:Item list) =
         match List.length itemPool with
         | 100 -> itemPool
-        | _ -> addAmmo rnd (addItem (match rnd.Next(6) with
+        | _ -> addAmmo rnd (addItem (match rnd.Next(7) with
                                      | 0 | 1 | 2 -> Missile
-                                     | 3 | 4 -> Super
+                                     | 3 | 4 | 5 -> Super
                                      | _ -> PowerBomb)
                                      itemPool)                       
 
