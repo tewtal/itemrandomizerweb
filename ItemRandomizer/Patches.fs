@@ -20,6 +20,12 @@ module Patches =
                 FileName = "g4_skip.ips";
             };
             {
+                Name = "BT Door ASM";
+                Difficulty = Difficulty.Any;
+                Default = true;
+                FileName = "bt_door.ips";
+            };
+            {
                 Name = "Wake up zebes when going right from morph";
                 Difficulty = Difficulty.Any;
                 Default = true;
