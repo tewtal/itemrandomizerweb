@@ -158,7 +158,7 @@ module Patches =
                     { Address = 0x148848; Data = [0x01; 0x00] };
                     { Address = 0x148867; Data = [0x01; 0x00] };
                     { Address = 0x14887f; Data = [0x01; 0x00] };
-                    { Address = 0x148bdb; Data = [0x12; 0x00] };
+                    { Address = 0x148bdb; Data = [0x04; 0x00] };
                     { Address = 0x14897d; Data = [0x10; 0x00] };
                     { Address = 0x1489af; Data = [0x10; 0x00] };
                     { Address = 0x1489e1; Data = [0x10; 0x00] };
@@ -173,7 +173,7 @@ module Patches =
                     { Address = 0x148d86; Data = [0x00; 0x00] };
                     { Address = 0x148daf; Data = [0x00; 0x01] };
                     { Address = 0x148e51; Data = [0x01; 0x00] };
-                    { Address = 0x14b93a; Data = [0x60; 0x00] };
+                    { Address = 0x14b93a; Data = [0x00; 0x01] };
                     { Address = 0x148eef; Data = [0x0a; 0x00] };
                     { Address = 0x148f0f; Data = [0x60; 0x00] };
                     { Address = 0x14af4e; Data = [0x0a; 0x00] };
