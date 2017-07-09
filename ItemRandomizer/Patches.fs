@@ -126,7 +126,7 @@ module Patches =
                 Difficulty = Difficulty.Tournament;
                 Default = true;
                 FileName = "spazer.ips";
-            }
+            };
             {
                 Name = "BT Door ASM";
                 Difficulty = Difficulty.Tournament;
