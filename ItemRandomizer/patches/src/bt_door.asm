@@ -2,6 +2,10 @@
 arch snes.cpu
 lorom
 
+// Set up pointer to door asm
+org $838BCC
+    db $eb, $8a
+
 org $8FEB8A
     LDA $7ED820 //loads event flags
     BIT #$4000  //checks for escape flag set

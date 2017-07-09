@@ -50,3 +50,16 @@ module Randomizer =
         
         (seed, (Patches.ApplyPatches ipsPatches patches (randomizeItems generateItems baseRom seed spoiler fileName locationPool)))
 
+    let TestRandomize =
+        let mutable itemLocations:(ItemLocation list) = []
+        for i in 1 .. 200 do
+            let seed = Random().Next(1000000, 9999999)
+            let rnd = Random(seed)
+            let newLocations = 
+                try 
+                    DefaultRandomizer.generateItems rnd [] [] (Items.getItemPool rnd) TournamentLocations.AllLocations
+                with
+                | _ -> []
+                
+            itemLocations <- List.append itemLocations (List.filter (fun (i:ItemLocation) -> i.Item.Class = Major) newLocations)
+        itemLocations

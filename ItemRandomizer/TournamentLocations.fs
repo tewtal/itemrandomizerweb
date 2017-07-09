@@ -40,11 +40,12 @@ module TournamentLocations =
         itemCount items Super >= 2 &&
         itemCount items PowerBomb >= 3
     
-    let canEnterAndLeaveGauntlet items = 
-        canUseBombs items || 
-        (canUsePowerBombs items && itemCount items PowerBomb >= 2) || 
-        haveItem items ScrewAttack ||
-        (haveItem items SpeedBooster && canUsePowerBombs items && (energyReserveCount items >= 2))
+    let canEnterAndLeaveGauntlet items =
+        (canFly items || haveItem items HiJump || haveItem items SpeedBooster) &&
+        (canUseBombs items || 
+         (canUsePowerBombs items && itemCount items PowerBomb >= 2) || 
+         haveItem items ScrewAttack ||
+         (haveItem items SpeedBooster && canUsePowerBombs items && (energyReserveCount items >= 2)))
     
     let canPassBombPassages items =
         canUseBombs items || 
@@ -338,17 +339,17 @@ module TournamentLocations =
                 Area = Brinstar;
                 Name = "Missile (blue Brinstar middle)";
                 Address = 0x78798;
-                Class = Major;
+                Class = Minor;
                 Visibility = Visible;
-                Available = fun items -> true;
+                Available = fun items -> haveItem items Morph;
             };
             {
                 Area = Brinstar;
                 Name = "Energy Tank (blue Brinstar)";
-                Class = Minor;
+                Class = Major;
                 Address = 0x7879E;
                 Visibility = Hidden;
-                Available = fun items -> (canFly items || haveItem items Ice || haveItem items HiJump || haveItem items SpeedBooster);
+                Available = fun items -> true;
             };
             {
                 Area = Brinstar;
@@ -389,7 +390,7 @@ module TournamentLocations =
                 Address = 0x78824;
                 Visibility = Visible;
                 Available = fun items -> canUsePowerBombs items &&
-                                         (haveItem items Wave || haveItem items Super);
+                                         (haveItem items Wave || (haveItem items Super && haveItem items HiJump));
             };
             {
                 Area = Brinstar;
@@ -397,7 +398,7 @@ module TournamentLocations =
                 Class = Minor;
                 Address = 0x78836;
                 Visibility = Visible;
-                Available = fun items -> canOpenRedDoors items && canUsePowerBombs items;
+                Available = fun items -> canUsePowerBombs items;
             };
             {
                 Area = Brinstar;
@@ -405,7 +406,7 @@ module TournamentLocations =
                 Class = Minor;
                 Address = 0x7883C;
                 Visibility = Hidden;
-                Available = fun items -> canOpenRedDoors items && canUsePowerBombs items;
+                Available = fun items -> canUsePowerBombs items;
             };
             {
                 Area = Brinstar;

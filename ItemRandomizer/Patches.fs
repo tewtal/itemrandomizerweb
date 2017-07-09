@@ -104,12 +104,6 @@ module Patches =
                 FileName = "early_super_bridge.ips";
             };
             {
-                Name = "Swap construction zone e-tank with missiles and open up path to missiles";
-                Difficulty = Difficulty.Tournament;
-                Default = true;
-                FileName = "retro_brin_etank_missile_swap.ips";
-            };
-            {
                 Name = "Replace bomb blocks with shot blocks before Hi-Jump";
                 Difficulty = Difficulty.Tournament;
                 Default = true;

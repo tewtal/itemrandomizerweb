@@ -15,6 +15,23 @@ type Context =
         Mode: string;
     }
 
+type TestLocation = 
+    {
+        Location: string;
+        Count: int;
+    }
+
+type TestItem = 
+    {
+        Item: string;
+        Locations: TestLocation list;
+    }
+
+type TestContext = 
+    {
+        TestItems: TestItem list;
+    }
+
 let index =
     DotLiquid.page "index.html" ()
 
@@ -23,6 +40,23 @@ let information =
 
 let contact = 
     DotLiquid.page "contact.html" ()
+
+let testGet =
+    DotLiquid.page "test.html" ()
+  
+let testPost (r:HttpRequest) = 
+    let itemLocations = Randomizer.TestRandomize
+    let mutable (testItems:TestItem list) = []
+    for i in List.filter (fun (j:Types.Item) -> j.Class = Types.ItemClass.Major) ItemRandomizer.Items.Items do
+        let mutable (testLocations:TestLocation list) = []
+        for l in List.filter (fun (k:Types.Location) -> k.Class = Types.ItemClass.Major) TournamentLocations.AllLocations do
+            let name = l.Name
+            let count = List.length (List.filter (fun (f:Types.ItemLocation) -> f.Item.Type = i.Type && f.Location.Address = l.Address) itemLocations)
+            let newLocation = { Location = name; Count = count }
+            testLocations <- (newLocation :: testLocations)
+        let newTestItem = { Item = i.Name; Locations = testLocations }
+        testItems <- newTestItem :: testItems
+    DotLiquid.page "test.html" { TestItems = testItems }
 
 let randomizeGet =
     DotLiquid.page "randomize.html" ()
@@ -66,6 +100,11 @@ let Router =
             ]
         path "/information" >=> information
         path "/contact" >=> contact
+        path "/test" >=> choose
+            [
+                POST >=> request testPost
+                GET >=> testGet
+            ]
         GET >=> path "/favicon.ico" >=> Files.browseFile __SOURCE_DIRECTORY__ "favicon.ico"
         GET >=> Files.browse (Path.GetFullPath "./static")
         RequestErrors.NOT_FOUND "Page not found"
