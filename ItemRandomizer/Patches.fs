@@ -127,12 +127,12 @@ module Patches =
                 Default = true;
                 FileName = "spazer.ips";
             };
-            {
-                Name = "BT Door ASM";
-                Difficulty = Difficulty.Tournament;
-                Default = true;
-                FileName = "bt_door.ips";
-            };
+ //           {
+ //               Name = "BT Door ASM";
+ //               Difficulty = Difficulty.Tournament;
+ //               Default = true;
+ //               FileName = "bt_door.ips";
+ //           };
         ]
 
     let RomPatches = 
