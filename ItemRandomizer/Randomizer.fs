@@ -52,7 +52,7 @@ module Randomizer =
 
     let TestRandomize =
         let mutable itemLocations:(ItemLocation list) = []
-        for i in 1 .. 200 do
+        for i in 1 .. 1000 do
             let seed = Random().Next(1000000, 9999999)
             let rnd = Random(seed)
             let newLocations = 
@@ -60,6 +60,6 @@ module Randomizer =
                     DefaultRandomizer.generateItems rnd [] [] (Items.getItemPool rnd) TournamentLocations.AllLocations
                 with
                 | _ -> []
-                
+
             itemLocations <- List.append itemLocations (List.filter (fun (i:ItemLocation) -> i.Item.Class = Major) newLocations)
         itemLocations

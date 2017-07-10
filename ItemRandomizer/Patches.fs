@@ -116,7 +116,7 @@ module Patches =
                 FileName = "nova_boost_platform.ips";
             };
             {
-                Name = "Raise platforms in red tower bottom to always be able to get back up";
+                Name = "Change platforms in red tower bottom to always be able to get back up";
                 Difficulty = Difficulty.Tournament;
                 Default = true;
                 FileName = "red_tower.ips";
