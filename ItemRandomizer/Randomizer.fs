@@ -16,7 +16,7 @@ module Randomizer =
         | itemLocation :: tail -> 
             let itemCode = Items.getItemTypeCode itemLocation.Item itemLocation.Location.Visibility
             data.[itemLocation.Location.Address] <- itemCode.[0]
-            data.[itemLocation.Location.Address + 1] <- itemCode.[1]
+            data.[itemLocation.Location.Address + 1] <- itemCode.[1]            
             writeLocations data tail
         | [] -> data
     
@@ -30,7 +30,20 @@ module Randomizer =
 
     let randomizeItems randomizer (data:byte []) seed spoiler fileName locationPool =
         let rnd = Random(seed)
+
+        let seedInfo = rnd.Next(0xFFFF)
+        let seedInfo2 = rnd.Next(0xFFFF)
+        let seedInfoArr = Items.toByteArray seedInfo
+        let seedInfoArr2 = Items.toByteArray seedInfo2
+        
+        data.[0x2FF000] <- seedInfoArr.[0]
+        data.[0x2FF001] <- seedInfoArr.[1]
+        data.[0x2FF002] <- seedInfoArr2.[0]
+        data.[0x2FF003] <- seedInfoArr2.[1]
+
+        let rnd = Random(seed)
         writeLocations data (writeSpoiler seed spoiler fileName (randomizer rnd [] [] (Items.getItemPool rnd) locationPool))
+        
 
     let Randomize inputSeed difficulty spoiler fileName baseRom ipsPatches patches =
         let seed = match inputSeed with

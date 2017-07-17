@@ -161,7 +161,8 @@ module Items =
             | Chozo -> 0x54
             | Hidden -> 0xA8
 
-        toByteArray (item.Code + modifier)
+        let itemCode = (item.Code + modifier)
+        toByteArray itemCode
     
     let addItem (itemType:ItemType) (itemPool:Item list) =
         (List.find (fun item -> item.Type = itemType) Items) :: itemPool

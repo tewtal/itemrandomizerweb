@@ -4,9 +4,9 @@ lorom
 
 // Set up pointer to door asm
 org $838BCC
-    db $eb, $8a
+    db $20, $ff
 
-org $8FEB8A
+org $8FFF20
     LDA $7ED820 //loads event flags
     BIT #$4000  //checks for escape flag set
     BEQ quit
