@@ -31,6 +31,12 @@ module Patches =
                 Default = true;
                 FileName = "seed_display.ips";
             };
+            {
+                Name = "Animals";
+                Difficulty = Difficulty.Any;
+                Default = true;
+                FileName = "animals.ips";
+            };
             // Optional Patches
             {
                 Name = "Foosda's Colorblind patch";
@@ -131,13 +137,7 @@ module Patches =
                 Difficulty = Difficulty.Tournament;
                 Default = true;
                 FileName = "spazer.ips";
-            }
-//            {
-//                Name = "BT Door ASM";
-//                Difficulty = Difficulty.Tournament;
-//                Default = true;
-//                FileName = "bt_door.ips";
-//            }
+            };
         ]
 
     let RomPatches = 
