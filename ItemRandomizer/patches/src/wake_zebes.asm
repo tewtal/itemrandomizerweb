@@ -8,6 +8,10 @@ org $838eb4
 // Door ASM to set Zebes awake
 org $8fff00
     lda $7ed820
+    cmp #$0000
+    beq exit
+    lda $7ed820
     ora.w #$0001
     sta $7ed820
+    exit:
     rts
