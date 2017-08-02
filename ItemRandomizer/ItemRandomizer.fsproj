@@ -13,6 +13,7 @@
     <Compile Include="CasualLocations.fs" />
     <Compile Include="HardLocations.fs" />
     <Compile Include="TournamentLocations.fs" />
+    <Compile Include="OpenLocations.fs" />
     <Compile Include="Resources.fs" />
     <Compile Include="Items.fs" />
     <Compile Include="Patches.fs" />

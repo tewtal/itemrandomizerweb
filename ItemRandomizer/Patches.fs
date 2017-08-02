@@ -37,6 +37,18 @@ module Patches =
                 Default = true;
                 FileName = "animals.ips";
             };
+            {
+                Name = "Custom credits with stats";
+                Difficulty = Difficulty.Any;
+                Default = true;
+                FileName = "credits.ips";
+            };
+            {
+                Name = "Max Ammo Display by personitis";
+                Difficulty = Difficulty.Any;
+                Default = true;
+                FileName = "max_ammo_display.ips";
+            };
             // Optional Patches
             {
                 Name = "Foosda's Colorblind patch";
@@ -94,7 +106,6 @@ module Patches =
                 Default = true;
                 FileName = "spazer.ips";
             };
-
             // Tournament Patches
             {
                 Name = "Disable respawning blocks at dachora pit";
@@ -137,6 +148,20 @@ module Patches =
                 Difficulty = Difficulty.Tournament;
                 Default = true;
                 FileName = "spazer.ips";
+            };
+
+            // Open Mode Patches
+            {
+                Name = "Open Mode Room Edits";
+                Difficulty = Difficulty.Open;
+                Default = true;
+                FileName = "open_mode.ips";
+            };
+            {
+                Name = "Open Mode Event ASM";
+                Difficulty = Difficulty.Open;
+                Default = true;
+                FileName = "introskip_doorflags_open.ips";
             };
         ]
 

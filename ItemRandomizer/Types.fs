@@ -34,6 +34,7 @@ module Types =
         | Suit
         | Boot
         | Ammo
+        | Progression
 
     type ItemClass =
         | Major
@@ -52,7 +53,8 @@ module Types =
         | Normal = 1
         | Hard = 2
         | Tournament = 3
-        | Any = 4
+        | Open = 4
+        | Any = 5
 
     type Item =
         {

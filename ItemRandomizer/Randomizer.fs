@@ -55,13 +55,15 @@ module Randomizer =
                             | Difficulty.Normal -> Locations.AllLocations
                             | Difficulty.Hard -> HardLocations.AllLocations
                             | Difficulty.Tournament -> TournamentLocations.AllLocations
+                            | Difficulty.Open -> OpenLocations.AllLocations
                             | _ -> Locations.AllLocations
 
         let generateItems = match difficulty with
                              | Difficulty.Hard -> SparseRandomizer.generateItems
+                             | Difficulty.Open -> OpenRandomizer.generateItems
                              | _ -> DefaultRandomizer.generateItems
         
-        (seed, (Patches.ApplyPatches ipsPatches patches (randomizeItems generateItems baseRom seed spoiler fileName locationPool)))
+        (seed, randomizeItems generateItems (Patches.ApplyPatches ipsPatches patches baseRom) seed spoiler fileName locationPool)
 
     let TestRandomize =
         let mutable itemLocations:(ItemLocation list) = []

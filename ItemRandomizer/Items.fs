@@ -33,7 +33,7 @@ module Items =
             };
             {
                 Type = Bomb;
-                Category = Misc;
+                Category = Progression;
                 Class = Major;
                 Code = 0xeee7;
                 Name = "Bomb";
@@ -47,21 +47,21 @@ module Items =
             };
             {
                 Type = Ice;
-                Category = Beam;
+                Category = Progression;
                 Class = Major;
                 Code = 0xeeef;
                 Name = "Ice Beam";
             };
             {
                 Type = HiJump;
-                Category = Boot;
+                Category = Progression;
                 Class = Major;
                 Code = 0xeef3;
                 Name = "Hi-Jump Boots";
             };
             {
                 Type = SpeedBooster;
-                Category = Boot;
+                Category = Progression;
                 Class = Major;
                 Code = 0xeef7;
                 Name = "Speed Booster";
@@ -82,14 +82,14 @@ module Items =
             };
             {
                 Type = SpringBall;
-                Category = Misc;
+                Category = Progression;
                 Class = Major;
                 Code = 0xef03;
                 Name = "Spring Ball";
             };
             {
                 Type = Varia;
-                Category = Suit;
+                Category = Progression;
                 Class = Major;
                 Code = 0xef07;
                 Name = "Varia Suit";
@@ -103,14 +103,14 @@ module Items =
             };
             {
                 Type = Grapple;
-                Category = Misc;
+                Category = Progression;
                 Class = Major;
                 Code = 0xef17;
                 Name = "Grappling Beam";
             };
             {
                 Type = Morph;
-                Category = Misc;
+                Category = Progression;
                 Class = Major;
                 Code = 0xef23;
                 Name = "Morph Ball";
@@ -124,7 +124,7 @@ module Items =
             };
             {
                 Type = Gravity;
-                Category = Suit;
+                Category = Progression;
                 Class = Major;
                 Code = 0xef0b;
                 Name = "Gravity Suit";
@@ -138,14 +138,14 @@ module Items =
             };
             {
                 Type = SpaceJump;
-                Category = Boot;
+                Category = Progression;
                 Class = Major;
                 Code = 0xef1b;
                 Name = "Space Jump";
             };
             {
                 Type = ScrewAttack;
-                Category = Misc;
+                Category = Progression;
                 Class = Major;
                 Code = 0xef1f;
                 Name = "Screw Attack";
