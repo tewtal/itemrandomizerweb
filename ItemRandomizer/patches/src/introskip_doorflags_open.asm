@@ -43,7 +43,7 @@ introskip_doorflags:
     sta $7ed820
     
     // Call the save code to create a new file
-    lda #$0000
+    lda $7e0952
     jsl $818000
 
 .ret:   

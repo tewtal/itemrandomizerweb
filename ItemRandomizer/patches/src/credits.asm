@@ -18,6 +18,10 @@ define orange "table tables/orange.tbl"
 define purple "table tables/purple.tbl"
 define big "table tables/big.tbl"
 
+// Hijack loading new game to reset stats
+org $828063
+    jsl clear_values
+
 // Hijack the original credits code to read the script from bank $DF
 org $8b999b
     jml patch1 
@@ -82,19 +86,37 @@ copy:
     inx
     inx
     jmp -
-+
-    lda #$000b
-    ldx #$0000
-    jsl store_stat
-
-    lda #$0e4d
-    ldx #$0001
-    jsl store_stat
-    
++  
     jsr write_stats
     plx
     pla
     jsl $8b95ce
+    rtl
+
+clear_values:
+    php
+    rep #$30
+    // Do some checks to see that we're actually starting a new game    
+    // Make sure game mode is 1f
+    lda $7e0998
+    cmp.w #$001f
+    bne .ret
+    
+    // Check if samus saved energy is 00, if it is, run startup code
+    lda $7ed7e2
+    bne .ret
+
+    ldx #$0000
+    lda #$0000
+-
+    jsl store_stat
+    inx
+    cpx #$0180
+    bne -
+
+.ret:
+    plp
+    jsl $809a79
     rtl
 
 // Draw time as xx:yy:zz
@@ -327,6 +349,7 @@ dec_stat:
 // Store Statistic (value in A, stat in X)
 org $dfd880
 store_stat:
+    phx
     pha
     txa
     asl
@@ -347,6 +370,7 @@ store_stat:
     sta $701a00, x
 
 .end:
+    plx
     rtl
 
 // Load Statistic (stat in A, returns value in A)
