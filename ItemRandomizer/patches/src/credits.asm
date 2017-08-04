@@ -163,14 +163,11 @@ draw_value:
     lda #$64
     sta $004206
     pha; pla; pha; pla; rep #$20
-    lda $004214 // Top three digits
+    lda $004216 // Last two digits
     sta $12
-    lda $004216
-    sta $14
-
-    lda $12
+    lda $004214 // Top three digits
     jsr draw_three
-    lda $14
+    lda $12
     jsr draw_two
     plb
     plx
@@ -648,12 +645,13 @@ credits:
     dw " TIME IN TOURIAN       00'00'00 " // 141
     dw " time in tourian                " // 142
     dw " TIME WASTED CHARGING  00'00^00 " // 143
-    dw " time wasted charging           " // 144
-    dw $0000 // End of credits tilemap
+    dw " time wasted charging           " // 144    
+    dw $0000                              // End of credits tilemap
 
 stats:
-    // STATISTIC, TILEMAP ADDRESS, TYPE, UNUSED (0001 = Number, 0002 = Time, 0003 = ?)
-    dw 0, {row}*139, 1, 0    // Minibosses killed
-    dw 1, {row}*141, 2, 0    // Time spent in Tourian
-    dw 2, {row}*143, 2, 0    // Time wasted charging
-    dw $0000, $0000, $0000, $0000    // end of table
+    // STAT ID, ADDRESS,    TYPE (1 = Number, 2 = Time), UNUSED
+    dw 0,       {row}*139,  1, 0    // Minibosses killed
+    dw 1,       {row}*141,  2, 0    // Time spent in Tourian
+    dw 2,       {row}*143,  2, 0    // Time wasted charging
+
+    dw 0,               0,  0, 0    // end of table
