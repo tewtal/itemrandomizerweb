@@ -86,7 +86,7 @@ org $809602
     rti
 
 // Patch soft reset to save the value of the RTA timer
-org $80ff32
+org $80fe00
 patch_reset1:
     lda {softreset} // Check if we're softresetting
     cmp #$babe
@@ -105,6 +105,7 @@ patch_reset1:
     sta {timer_backup2}
 .skipsave:
     ldx #$1ffe
+    lda #$0000
 -
     stz $0000, x
     dex
@@ -134,13 +135,22 @@ patch_reset2:
     dex        
     dex        
     bpl -
+
+    ldx #$00df          // clear temp variables
+    lda #$0000
+-
+    sta $7fff00, x
+    dex
+    dex
+    bpl -
+
     lda {timer_backup1}
     sta {timer1}
     lda {timer_backup2}
     sta {timer2}
     jml $8084af
 
-warnpc $80ffc0
+warnpc $80ff00
 
 // Patch load and save routines
 org $81ef20

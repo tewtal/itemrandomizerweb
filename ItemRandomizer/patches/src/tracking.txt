@@ -3,6 +3,11 @@ Stat tracking ID's
 2           Number of door transitions entered
 3-4         Frames spent in door transitions
 5-6         Frames spent aligning doors
-
+7-8         Time spent in Crateria
+9-10        Time spent in Brinstar
+11-12       Time spent in Norfair
+13-14       Time spent in Wrecked Ship
+15-16       Time spent in Maridia
+17-18       Time spent in Tourian
 
 

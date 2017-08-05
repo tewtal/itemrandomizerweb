@@ -12,9 +12,12 @@ define timer1 $05b8
 define timer2 $05ba
 
 // Temp variables (define here to make sure they're not reused, make sure they're 2 bytes apart)
+// These variables are cleared to 0x00 on hard and soft reset
 define door_timer_tmp $7fff00
 define door_adjust_tmp $7fff02
 define add_time_tmp $7fff04
+define region_timer_tmp $7fff06
+define region_tmp $7fff08
 
 // -------------------------------
 // HIJACKS
@@ -82,6 +85,23 @@ door_exited:
     lda {door_timer_tmp}
     ldx #$0003
     jsr add_time
+
+    // Store time spent in last room/area unless region_tmp is 0
+    lda {region_tmp}
+    beq +
+    tax
+    lda {region_timer_tmp}
+    jsr add_time
+
+    
++   // Store the current frame and the current region to temp variables
+    lda {timer1}
+    sta {region_timer_tmp}
+    lda $7e079f
+    asl
+    clc
+    adc #$0007    
+    sta {region_tmp}    // Store (region*2) + 7 to region_tmp (This uses stat id 7-18 for region timers)
 
     // Run hijacked code and return
     lda #$0008
