@@ -54,6 +54,10 @@ org $8b9a08
 org $8b9a19
     jml patch4
 
+// Hijack when samus is in the ship and ready to leave the planet
+org $a2ab13
+    jsl game_end
+
 // Patch NMI to skip resetting 05ba and instead use that as an extra time counter
 org $8095e5
 nmi:
@@ -263,6 +267,26 @@ clear_values:
     jsl $809a79
     rtl
 
+// Game has ended, save RTA timer to RAM and copy all stats to SRAM a final time
+game_end:
+    lda {timer1}    
+    sta $7ffc00
+    lda {timer2}
+    sta $7ffc02
+
+    // Subtract frames from pressing down at ship to this code running
+    lda $7ffc00
+    sec
+    sbc #$013d
+    sta $7ffc00
+    lda #$0000  // if carry clear this will subtract one from the high byte of timer
+    sbc $7ffc02
+
+    jsl save_stats
+    lda #$000a
+    jsl $90f084
+    rtl
+
 org $dfd4f0
 // Draw full time as hh:mm:ss:ff
 // Pointer to first byte of RAM in A
@@ -460,9 +484,9 @@ write_stats:
     txy
     jmp .continue
 
-.fulltime:
-    // Load statistic
-    txa
+.fulltime:    
+    lda stats, x        // Get stat id
+    asl
     clc
     adc #$fc00          // Get pointer to value instead of actual value
     pha
@@ -872,6 +896,12 @@ script:
     dw {draw}, {row}*141
     dw {draw}, {row}*142
     dw {draw}, {blank}
+    dw {draw}, {row}*143
+    dw {draw}, {row}*144
+    dw {draw}, {blank}
+    dw {draw}, {row}*145
+    dw {draw}, {row}*146
+    dw {draw}, {blank}
     
 
     // Scroll all text off and end credits
@@ -901,16 +931,22 @@ credits:
     {purple}
     dw "      GAMEPLAY STATISTICS       " // 137
     {orange}
-    dw "       ENEMIES AND BOSSES       " // 138
+    dw "        THINGS AND STUFF        " // 138
     {big}
     dw " FINAL TIME         00'00'00^00 " // 139
     dw " final time                     " // 140
-    dw " OTHER THING                    " // 141
-    dw " other thing                    " // 142    
+    dw " DOOR TRANSITIONS               " // 141
+    dw " door transitions               " // 142 
+    dw " TIME IN DOORS      00'00'00^00 " // 143
+    dw " time in doors                  " // 144 
+    dw " TIME ALIGNING DOORS   00'00^00 " // 145
+    dw " time aligning doors            " // 146 
     dw $0000                              // End of credits tilemap
 
 stats:
     // STAT ID, ADDRESS,    TYPE (1 = Number, 2 = Time, 3 = Full time), UNUSED
-    dw 0,       {row}*139,  3, 0    // Full RTA Time (Uses Stat 0 and 1)
-    dw 2,       {row}*141,  1, 0    // Some other thing
+    dw 0,       {row}*139,  3, 0    // Full RTA Time
+    dw 2,       {row}*141,  1, 0    // Door transitions
+    dw 3,       {row}*143,  3, 0    // Time in doors
+    dw 5,       {row}*145,  2, 0    // Time adjusting doors
     dw 0,               0,  0, 0    // end of table

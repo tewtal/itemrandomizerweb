@@ -44,6 +44,12 @@ module Patches =
                 FileName = "credits.ips";
             };
             {
+                Name = "Custom credits with stats (tracking code)";
+                Difficulty = Difficulty.Any;
+                Default = true;
+                FileName = "tracking.ips";
+            };
+            {
                 Name = "Max Ammo Display by personitis";
                 Difficulty = Difficulty.Any;
                 Default = true;
