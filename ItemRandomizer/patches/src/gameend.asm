@@ -1,4 +1,5 @@
 //door asm of bt/animal room during escape
+arch snes.cpu
 lorom
 
 org $8FEB8A
