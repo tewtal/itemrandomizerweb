@@ -180,7 +180,7 @@ org $8be0d1
     jsl copy
 
 // Load credits script data from bank $df instead of $8c
-org $dfd500
+org $8bf770
 patch1:
     phb; pea $df00; plb; plb
     lda $0000, y    
@@ -218,7 +218,7 @@ copy:
     phx
     ldx #$0000
 -
-    lda credits, x
+    lda.l credits, x
     cmp #$0000
     beq +
     sta $7f2000, x
@@ -226,7 +226,7 @@ copy:
     inx
     jmp -
 +  
-    jsr write_stats
+    jsl write_stats
     plx
     pla
     jsl $8b95ce
@@ -263,6 +263,36 @@ clear_values:
     jsl $809a79
     rtl
 
+org $dfd4f0
+// Draw full time as hh:mm:ss:ff
+// Pointer to first byte of RAM in A
+draw_full_time:
+    phx
+    phb
+    pea $7f7f; plb; plb
+    tax
+    lda $0000, x
+    sta $16
+    lda $0002, x
+    sta $14
+    lda #$003c
+    sta $12
+    lda #$ffff
+    sta $1a
+    jsr div32 // frames in $14, rest in $16
+    iny; iny; iny; iny; iny; iny // Increment Y three positions forward to write the last value    
+    lda $14
+    jsr draw_two
+    tya
+    sec
+    sbc #$0010
+    tay     // Skip back 8 characters to draw the top three things
+    lda $16
+    jsr draw_time
+    plb
+    plx
+    rts  
+
 // Draw time as xx:yy:zz
 draw_time:
     phx
@@ -271,6 +301,8 @@ draw_time:
     pea $7f7f; plb; plb
     sta $004204
     sep #$20
+    lda #$ff
+    sta $1a
     lda #$3c
     sta $004206
     pha; pla; pha; pla; rep #$20
@@ -282,10 +314,12 @@ draw_time:
     lda #$3c
     sta $004206
     pha; pla; pha; pla; rep #$20
+    lda $004216
+    sta $14
     lda $004214 // First group (hours or minutes)
     jsr draw_two
     iny; iny // Skip past separator
-    lda $004216 // Second group (minutes or seconds)
+    lda $14 // Second group (minutes or seconds)
     jsr draw_two
     iny; iny
     lda $12 // Last group (seconds or frames)
@@ -302,7 +336,7 @@ draw_value:
     pea $7f7f; plb; plb
     sta $004204
     lda #$0000
-    sta $16     // Leading zeroes flag
+    sta $1a     // Leading zeroes flag
     sep #$20
     lda #$64
     sta $004206
@@ -326,13 +360,13 @@ draw_three:
     lda $004214 // Hundreds
     asl
     tax
-    cmp $16
+    cmp $1a
     beq +
     lda numbers_top, x
     sta $0034, y
     lda numbers_bot, x
     sta $0074, y
-    inc $16
+    dec $1a
 +
     iny; iny // Next number
     lda $004216
@@ -346,24 +380,24 @@ draw_two:
     lda $004214
     asl
     tax
-    cmp $16
+    cmp $1a
     beq +
     lda numbers_top, x
     sta $0034, y
     lda numbers_bot, x
     sta $0074, y
-    inc $16
+    dec $1a
 +
     lda $004216
     asl
     tax
-    cmp $16
+    cmp $1a
     beq +
     lda numbers_top, x
     sta $0036, y
     lda numbers_bot, x
     sta $0076, y
-    inc $16
+    dec $1a
 +
     iny; iny; iny; iny
     rts
@@ -375,6 +409,7 @@ write_stats:
     php
     pea $dfdf; plb; plb
     rep #$30
+    jsl load_stats      // Copy stats back from SRAM
     ldx #$0000
     ldy #$0000
 
@@ -391,6 +426,8 @@ write_stats:
     beq .number
     cmp #$0002
     beq .time
+    cmp #$0003
+    beq .fulltime
     jmp .continue
 
 .number:
@@ -423,6 +460,22 @@ write_stats:
     txy
     jmp .continue
 
+.fulltime:
+    // Load statistic
+    txa
+    clc
+    adc #$fc00          // Get pointer to value instead of actual value
+    pha
+
+    // Load row address
+    lda stats+2, x
+    tyx
+    tay
+    pla
+    jsr draw_full_time
+    txy
+    jmp .continue
+
 .continue:
     iny
     jmp .loop
@@ -431,6 +484,47 @@ write_stats:
     plp
     plb
     ply
+    rtl
+
+// 32-bit by 16-bit division routine I found somewhere
+div32: 
+    phy
+    phx             
+    php
+    rep #$30
+    sep #$10
+    sec
+    lda $14
+    sbc $12
+    bcs uoflo
+    ldx #$11
+    rep #$10
+
+ushftl:
+    rol $16
+    dex
+    beq umend
+    rol $14
+    lda #$0000
+    rol
+    sta $18
+    sec
+    lda $14
+    sbc $12
+    tay
+    lda $18
+    sbc #$0000
+    bcc ushftl
+    sty $14
+    bra ushftl
+uoflo:
+    lda #$ffff
+    sta $16
+    sta $14
+umend:
+    plp
+    plx
+    ply
     rts
 
 numbers_top:
@@ -438,8 +532,6 @@ numbers_top:
 numbers_bot:
     dw $0070, $0071, $0072, $0073, $0074, $0075, $0076, $0077, $0078, $0079, $007a, $007b, $007c, $007d, $007e, $007f 
 
-warnpc $dfd750
-org $dfd750
 load_stats:
     phx
     pha
@@ -478,8 +570,6 @@ load_stats:
     plx
     rtl
 
-warnpc $dfda7a0
-org $dfd7a0
 save_stats:
     phx
     pha
@@ -782,8 +872,6 @@ script:
     dw {draw}, {row}*141
     dw {draw}, {row}*142
     dw {draw}, {blank}
-    dw {draw}, {row}*143
-    dw {draw}, {row}*144
     
 
     // Scroll all text off and end credits
@@ -815,18 +903,14 @@ credits:
     {orange}
     dw "       ENEMIES AND BOSSES       " // 138
     {big}
-    dw " MINIBOSSES KILLED              " // 139
-    dw " minibosses killed              " // 140
-    dw " TIME IN TOURIAN       00'00'00 " // 141
-    dw " time in tourian                " // 142
-    dw " TIME WASTED CHARGING  00'00^00 " // 143
-    dw " time wasted charging           " // 144    
+    dw " FINAL TIME         00'00'00^00 " // 139
+    dw " final time                     " // 140
+    dw " OTHER THING                    " // 141
+    dw " other thing                    " // 142    
     dw $0000                              // End of credits tilemap
 
 stats:
-    // STAT ID, ADDRESS,    TYPE (1 = Number, 2 = Time), UNUSED
-    dw 0,       {row}*139,  1, 0    // Minibosses killed
-    dw 1,       {row}*141,  2, 0    // Time spent in Tourian
-    dw 2,       {row}*143,  2, 0    // Time wasted charging
-
+    // STAT ID, ADDRESS,    TYPE (1 = Number, 2 = Time, 3 = Full time), UNUSED
+    dw 0,       {row}*139,  3, 0    // Full RTA Time (Uses Stat 0 and 1)
+    dw 2,       {row}*141,  1, 0    // Some other thing
     dw 0,               0,  0, 0    // end of table
