@@ -17,6 +17,25 @@ define green "table tables/green.tbl"
 define orange "table tables/orange.tbl"
 define purple "table tables/purple.tbl"
 define big "table tables/big.tbl"
+define last_saveslot $7fffe0
+define timer_backup1 $7fffe2
+define timer_backup2 $7fffe4
+define softreset $7fffe6
+define timer1 $05b8
+define timer2 $05ba
+
+// Patch soft reset to retain value of RTA counter
+org $80844B
+    jml patch_reset1
+org $808490
+    jml patch_reset2
+
+// Patch loading and saving routines
+org $81807f
+    jmp patch_save
+
+org $8180f7
+    jmp patch_load
 
 // Hijack loading new game to reset stats
 org $828063
@@ -35,10 +54,130 @@ org $8b9a08
 org $8b9a19
     jml patch4
 
+// Patch NMI to skip resetting 05ba and instead use that as an extra time counter
+org $8095e5
+nmi:
+    ldx #$00
+    stx $05b4
+    ldx $05b5
+    inx
+    stx $05b5
+    inc $05b6
+.inc:
+    rep #$30
+    inc $05b8
+    bne +
+    inc $05ba
++
+    bra .end
+
+org $809602
+    bra .inc
+.end:
+    ply
+    plx
+    pla
+    pld
+    plb
+    rti
+
+// Patch soft reset to save the value of the RTA timer
+org $80ff32
+patch_reset1:
+    lda {softreset} // Check if we're softresetting
+    cmp #$babe
+    beq .save
+    lda #$babe
+    sta {softreset}
+    lda #$0000
+    sta {timer_backup1}
+    sta {timer_backup2}
+    sta {last_saveslot}
+    bra .skipsave
+.save:   
+    lda {timer1}
+    sta {timer_backup1}
+    lda {timer2}
+    sta {timer_backup2}
+.skipsave:
+    ldx #$1ffe
+-
+    stz $0000, x
+    dex
+    dex
+    bpl - 
+    lda {timer_backup1}
+    sta {timer1}
+    lda {timer_backup2}
+    sta {timer2}
+    jml $808455
+
+patch_reset2:
+    lda {timer1}
+    sta {timer_backup1}
+    lda {timer2}
+    sta {timer_backup2}
+    ldx #$1ffe
+-
+    stz $0000,x
+    stz $2000,x
+    stz $4000,x
+    stz $6000,x
+    stz $8000,x
+    stz $a000,x
+    stz $c000,x
+    stz $e000,x
+    dex        
+    dex        
+    bpl -
+    lda {timer_backup1}
+    sta {timer1}
+    lda {timer_backup2}
+    sta {timer2}
+    jml $8084af
+
+warnpc $80ffc0
+
+// Patch load and save routines
+org $81ef20
+patch_save:
+    lda {timer1}
+    sta $7ffc00
+    lda {timer2}
+    sta $7ffc02
+    jsl save_stats
+    lda $7e0952
+    clc
+    adc #$0010
+    sta {last_saveslot}
+    ply
+    plx
+    clc
+    plb
+    plp
+    rtl
+
+patch_load:
+    lda $7e0952
+    clc
+    adc #$0010
+    cmp {last_saveslot}     // If we're loading the same save that's played last
+    beq +                   // don't restore stats from SRAM, only do this if
+    jsl load_stats          // a new save slot is loaded, or loading from hard reset
+    lda $7ffc00
+    sta {timer1}
+    lda $7ffc02
+    sta {timer2}
++
+    ply
+    plx
+    clc
+    plb
+    rtl
+
 // Hijack after decompression of regular credits tilemaps
 org $8be0d1
     jsl copy
-
 
 // Load credits script data from bank $df instead of $8c
 org $dfd500
@@ -113,6 +252,11 @@ clear_values:
     inx
     cpx #$0180
     bne -
+
+    // Clear RTA Timer
+    lda #$0000
+    sta {timer1}
+    sta {timer2}
 
 .ret:
     plp
@@ -294,54 +438,111 @@ numbers_top:
 numbers_bot:
     dw $0070, $0071, $0072, $0073, $0074, $0075, $0076, $0077, $0078, $0079, $007a, $007b, $007c, $007d, $007e, $007f 
 
-// Save file 1 = 701400
-// Save file 2 = 701700
-// Save file 3 = 701A00
+warnpc $dfd750
+org $dfd750
+load_stats:
+    phx
+    pha
+    ldx #$0000
+    lda $7e0952
+    bne +
+-
+    lda $701400, x
+    sta $7ffc00, x
+    inx
+    inx
+    cpx #$0300
+    bne -
+    jmp .end
++   
+    cmp #$0001
+    bne +
+    lda $701700, x
+    sta $7ffc00, x
+    inx
+    inx
+    cpx #$0300
+    bne -
+    jmp .end
++   
+    lda $701a00, x
+    sta $7ffc00, x
+    inx
+    inx
+    cpx #$0300
+    bne -
+    jmp .end
+
+.end:
+    pla
+    plx
+    rtl
+
+warnpc $dfda7a0
+org $dfd7a0
+save_stats:
+    phx
+    pha
+    ldx #$0000
+    lda $7e0952
+    bne +
+-
+    lda $7ffc00, x
+    sta $701400, x
+    inx
+    inx
+    cpx #$0300
+    bne -
+    jmp .end
++   
+    cmp #$0001
+    bne +
+    lda $7ffc00, x
+    sta $701700, x
+    inx
+    inx
+    cpx #$0300
+    bne -
+    jmp .end
++   
+    lda $7ffc00, x
+    sta $701a00, x
+    inx
+    inx
+    cpx #$0300
+    bne -
+    jmp .end
+
+.end:
+    pla
+    plx
+    rtl
+
+warnpc $dfd800
 // Increment Statistic (in A)
 org $dfd800
 inc_stat:
-    phx; phb
-    pea $7070; plb; plb
+    phx
     asl
     tax
-    lda $7e0952
-    bne +
-    inc $1400, x
-    jmp .end
-+
-    cmp #$0001
-    bne +
-    inc $1700, x
-    jmp .end
-+
-    inc $1a00, x
-.end:
-    plb
+    lda $7ffc00, x
+    inc
+    sta $7ffc00, x
     plx
     rtl
 
 // Decrement Statistic (in A)
 org $dfd840
 dec_stat:
-    phx; phb
-    pea $7070; plb; plb
+    phx
     asl
     tax
-    lda $7e0952
-    bne +
-    dec $1400, x
-    jmp .end
-+
-    cmp #$0001
-    bne +
-    dec $1700, x
-    jmp .end
-+
-    dec $1a00, x
-.end:
-    plb
+    lda $7ffc00, x
+    dec
+    sta $7ffc00, x
     plx
     rtl
+
 
 // Store Statistic (value in A, stat in X)
 org $dfd880
@@ -351,22 +552,8 @@ store_stat:
     txa
     asl
     tax
-    lda $7e0952
-    bne +
     pla
-    sta $701400, x
-    jmp .end
-+
-    cmp #$0001
-    bne +
-    pla
-    sta $701700, x
-    jmp .end
-+
-    pla
-    sta $701a00, x
-
-.end:
+    sta $7ffc00, x
     plx
     rtl
 
@@ -376,19 +563,7 @@ load_stat:
     phx
     asl
     tax
-    lda $7e0952
-    bne +
-    lda $701400, x
-    jmp .end
-+
-    cmp #$0001
-    bne +
-    lda $701700, x
-    jmp .end
-+
-    lda $701a00, x
-
-.end:
+    lda $7ffc00, x
     plx
     rtl
 
