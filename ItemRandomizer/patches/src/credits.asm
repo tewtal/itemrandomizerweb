@@ -257,7 +257,7 @@ patch4:
     sta $19fb
     jml $8b9a1f
 
-// Copy custom credits tilemap data from $dfe0000,x to $7f2000,x
+// Copy custom credits tilemap data from $ceb240,x to $7f2000,x
 copy:
     pha
     phx
@@ -998,8 +998,29 @@ script:
     dw {delay}, -    
     dw {end}
 
-warnpc $dfe000
-org $dfe000
+stats:
+    // STAT ID, ADDRESS,    TYPE (1 = Number, 2 = Time, 3 = Full time), UNUSED
+    dw 0,       {row}*169,  3, 0    // Full RTA Time
+    dw 2,       {row}*139,  1, 0    // Door transitions
+    dw 3,       {row}*141,  3, 0    // Time in doors
+    dw 5,       {row}*143,  2, 0    // Time adjusting doors
+    dw 7,       {row}*146,  3, 0    // Crateria
+    dw 9,       {row}*148,  3, 0    // Brinstar
+    dw 11,      {row}*150,  3, 0    // Norfair
+    dw 13,      {row}*152,  3, 0    // Wrecked Ship
+    dw 15,      {row}*154,  3, 0    // Maridia
+    dw 17,      {row}*156,  3, 0    // Tourian
+    dw 20,      {row}*159,  1, 0    // Charged Shots
+    dw 21,      {row}*161,  1, 0    // Special Beam Attacks
+    dw 22,      {row}*163,  1, 0    // Missiles
+    dw 23,      {row}*165,  1, 0    // Super Missiles
+    dw 24,      {row}*167,  1, 0    // Power Bombs
+    dw 0,               0,  0, 0    // end of table
+
+warnpc $dfffff
+
+// Relocated credits tilemap to free space in bank CE
+org $ceb240
 credits:
     // When using big text, it has to be repeated twice, first in UPPERCASE and then in lowercase since it's split into two parts
     // Numbers are mapped in a special way as described below:
@@ -1060,23 +1081,4 @@ credits:
     dw " final time                     " // 170 
     dw $0000                              // End of credits tilemap
 
-stats:
-    // STAT ID, ADDRESS,    TYPE (1 = Number, 2 = Time, 3 = Full time), UNUSED
-    dw 0,       {row}*169,  3, 0    // Full RTA Time
-    dw 2,       {row}*139,  1, 0    // Door transitions
-    dw 3,       {row}*141,  3, 0    // Time in doors
-    dw 5,       {row}*143,  2, 0    // Time adjusting doors
-    dw 7,       {row}*146,  3, 0    // Crateria
-    dw 9,       {row}*148,  3, 0    // Brinstar
-    dw 11,      {row}*150,  3, 0    // Norfair
-    dw 13,      {row}*152,  3, 0    // Wrecked Ship
-    dw 15,      {row}*154,  3, 0    // Maridia
-    dw 17,      {row}*156,  3, 0    // Tourian
-    dw 20,      {row}*159,  1, 0    // Charged Shots
-    dw 21,      {row}*161,  1, 0    // Special Beam Attacks
-    dw 22,      {row}*163,  1, 0    // Missiles
-    dw 23,      {row}*165,  1, 0    // Super Missiles
-    dw 24,      {row}*167,  1, 0    // Power Bombs
-    dw 0,               0,  0, 0    // end of table
-
-warnpc $dfffff
+warnpc $ceffff
