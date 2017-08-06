@@ -51,6 +51,10 @@ org $90ccca
 org $90beb7
     jml missiles_fired
 
+//PBs laid
+org $90c02d
+    jml pbs_laid
+
 // -------------------------------
 // CODE (using bank A1 free space)
 // -------------------------------
@@ -176,3 +180,11 @@ missiles_fired:
     jsl {inc_stat}
 .end:
     jml $90bec7
+
+//PBs laid
+pbs_laid:
+    dec A
+    sta $09ce
+    lda #$0018
+    jsl {inc_stat}
+    jml $90c031

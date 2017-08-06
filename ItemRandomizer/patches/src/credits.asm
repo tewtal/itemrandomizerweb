@@ -964,11 +964,31 @@ script:
     dw {draw}, {row}*156
     dw {draw}, {row}*157
     dw {draw}, {blank}
-    dw {draw}, {blank}
-    dw {draw}, {blank}
-    dw {draw}, {blank}
     dw {draw}, {row}*158
+    dw {draw}, {blank}
     dw {draw}, {row}*159
+    dw {draw}, {row}*160
+    dw {draw}, {blank}
+    dw {draw}, {row}*161
+    dw {draw}, {row}*162
+    dw {draw}, {blank}
+    dw {draw}, {row}*163
+    dw {draw}, {row}*164
+    dw {draw}, {blank}
+    dw {draw}, {row}*165
+    dw {draw}, {row}*166
+    dw {draw}, {blank}
+    dw {draw}, {row}*167
+    dw {draw}, {row}*168
+    dw {draw}, {blank}
+    dw {draw}, {row}*169
+    dw {draw}, {row}*170
+    dw {draw}, {blank}
+    dw {draw}, {blank}
+    dw {draw}, {blank}
+    dw {draw}, {blank}
+    dw {draw}, {row}*171
+    dw {draw}, {row}*172
     dw {draw}, {blank}
     dw {draw}, {blank}
     
@@ -992,10 +1012,10 @@ credits:
     {big}
     dw "             TOTAL              " // 129
     dw "             total              " // 130
-    dw "            FOOSDA              " // 131
-    dw "            foosda              " // 132
-    dw "            LEODOX              " // 133
-    dw "            leodox              " // 134
+    dw "             FOOSDA             " // 131
+    dw "             foosda             " // 132
+    dw "             LEODOX             " // 133
+    dw "             leodox             " // 134
     dw "           DESSYREQT            " // 135
     dw "           dessyreqt            " // 136
     {purple}
@@ -1024,8 +1044,21 @@ credits:
     dw " maridia                        " // 155
     dw " TOURIAN            00'00'00^00 " // 156
     dw " tourian                        " // 157
-    dw " FINAL TIME         00'00'00^00 " // 158
-    dw " final time                     " // 159    
+    {green}
+    dw "       SHOTS & AMMO FIRED       " // 158
+    {big}
+    dw " CHARGED SHOTS                  " // 159
+    dw " charged shots                  " // 160
+    dw " SPECIAL BEAM ATTACKS           " // 161
+    dw " special beam attacks           " // 162
+    dw " MISSILES                       " // 163
+    dw " missiles                       " // 164
+    dw " SUPER MISSILES                 " // 165
+    dw " super missiles                 " // 166
+    dw " POWER BOMBS                    " // 167
+    dw " power bombs                    " // 168
+    dw " FINAL TIME         00'00'00^00 " // 169
+    dw " final time                     " // 170 
     dw $0000                              // End of credits tilemap
 
 stats:
@@ -1040,6 +1073,11 @@ stats:
     dw 13,      {row}*152,  3, 0    // Wrecked Ship
     dw 15,      {row}*154,  3, 0    // Maridia
     dw 17,      {row}*156,  3, 0    // Tourian
+    dw 20,      {row}*159,  1, 0    // Charged Shots
+    dw 21,      {row}*161,  1, 0    // Special Beam Attacks
+    dw 22,      {row}*163,  1, 0    // Missiles
+    dw 23,      {row}*165,  1, 0    // Super Missiles
+    dw 24,      {row}*167,  1, 0    // Power Bombs
     dw 0,               0,  0, 0    // end of table
 
 warnpc $dfffff
