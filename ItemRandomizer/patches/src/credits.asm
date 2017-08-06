@@ -990,8 +990,8 @@ script:
     dw {draw}, {row}*170
     dw {draw}, {blank}
     dw {draw}, {blank}
-    
-
+   
+   
     // Scroll all text off and end credits
     dw {set}, $0023; -
     dw {draw}, {blank}
