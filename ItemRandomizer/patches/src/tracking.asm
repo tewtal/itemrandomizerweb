@@ -39,10 +39,6 @@ org $82e309
 org $82e34c
     jml door_adjust_stop
 
-// Firing uncharged beam
-org $90b887
-    jml uncharged_beam
-
 // Firing charged beam
 org $90b9a1
     jml charged_beam
@@ -50,6 +46,14 @@ org $90b9a1
 // Firing SBAs
 org $90ccca
     jml fire_sba
+
+//Missiles/supers fired
+org $90beb7
+    jml missiles_fired
+
+//PBs laid
+org $90c02d
+    jml pbs_laid
 
 // -------------------------------
 // CODE (using bank A1 free space)
@@ -140,18 +144,6 @@ door_adjust_stop:
     lda #$e353
     sta $099c
     jml $82e352
-    
-// Uncharged Beam Fire
-uncharged_beam:
-    lda #$0013
-    jsl {inc_stat}
-
-    // Run hijacked code and return
-    LDA $0A76
-    BEQ +
-    JML $90BCD1
-    +
-    JML $90B88F
 
 // Charged Beam Fire
 charged_beam:
@@ -172,3 +164,27 @@ fire_sba:
     lda $09a6
     and #$000f
     jml $90ccd0
+
+//MissilesSupers used
+missiles_fired:
+    lda $09d2
+    cmp #$0002
+    beq .super
+    dec $09c6
+    lda #$0016
+    jsl {inc_stat}
+    bra .end
+.super:
+    dec $09ca
+    lda #$0017
+    jsl {inc_stat}
+.end:
+    jml $90bec7
+
+//PBs laid
+pbs_laid:
+    dec A
+    sta $09ce
+    lda #$0018
+    jsl {inc_stat}
+    jml $90c031
