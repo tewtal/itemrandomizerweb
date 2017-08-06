@@ -47,6 +47,10 @@ org $90b9a1
 org $90ccca
     jml fire_sba
 
+//Missiles/supers fired
+org $90beb7
+    jml missiles_fired
+
 // -------------------------------
 // CODE (using bank A1 free space)
 // -------------------------------
@@ -156,3 +160,19 @@ fire_sba:
     lda $09a6
     and #$000f
     jml $90ccd0
+
+//MissilesSupers used
+missiles_fired:
+    lda $09d2
+    cmp #$0002
+    beq .super
+    dec $09c6
+    lda #$0016
+    jsl {inc_stat}
+    bra .end
+.super:
+    dec $09ca
+    lda #$0017
+    jsl {inc_stat}
+.end:
+    jml $90bec7
