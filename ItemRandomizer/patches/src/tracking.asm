@@ -183,7 +183,7 @@ missiles_fired:
 
 //PBs laid
 pbs_laid:
-    dec A
+    dec 
     sta $09ce
     lda #$0018
     jsl {inc_stat}
