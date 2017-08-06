@@ -914,9 +914,11 @@ script:
     dw {draw}, {blank}
     dw {draw}, {blank}
 
+    // Custom item randomizer credits text        
+
+    // Set scroll speed to 3 frames per pixel
     dw {speed}, $0003
 
-    // Custom item randomizer credits text        
     dw {draw}, {row}*128
     dw {draw}, {blank}
     dw {draw}, {row}*129
