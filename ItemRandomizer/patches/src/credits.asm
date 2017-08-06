@@ -3,6 +3,7 @@ arch snes.cpu
 lorom
 
 // Defines for the script and credits data
+define speed $f770
 define set $9a17
 define delay $9a0d
 define draw $0000
@@ -21,6 +22,7 @@ define last_saveslot $7fffe0
 define timer_backup1 $7fffe2
 define timer_backup2 $7fffe4
 define softreset $7fffe6
+define scroll_speed $7fffe8
 define timer1 $05b8
 define timer2 $05ba
 
@@ -42,6 +44,9 @@ org $828063
     jsl clear_values
 
 // Hijack the original credits code to read the script from bank $DF
+org $8b9976
+    jml scroll
+
 org $8b999b
     jml patch1 
 
@@ -53,6 +58,8 @@ org $8b9a08
 
 org $8b9a19
     jml patch4
+
+
 
 // Hijack when samus is in the ship and ready to leave the planet
 org $a2ab13
@@ -195,6 +202,30 @@ org $8be0d1
 
 // Load credits script data from bank $df instead of $8c
 org $8bf770
+set_scroll:
+    rep #$30
+    phb; pea $df00; plb; plb
+    lda $0000, y
+    sta {scroll_speed}
+    iny
+    iny
+    plb
+    rts
+
+scroll:
+    inc $1995
+    lda $1995
+    cmp {scroll_speed}
+    beq +
+    lda $1997
+    jml $8b9989
++
+    stz $1995
+    inc $1997
+    lda $1997
+    jml $8b9989
+
+
 patch1:
     phb; pea $df00; plb; plb
     lda $0000, y    
@@ -241,6 +272,8 @@ copy:
     jmp -
 +  
     jsl write_stats
+    lda #$0002
+    sta {scroll_speed}
     plx
     pla
     jsl $8b95ce
@@ -881,6 +914,8 @@ script:
     dw {draw}, {blank}
     dw {draw}, {blank}
 
+    dw {speed}, $0003
+
     // Custom item randomizer credits text        
     dw {draw}, {row}*128
     dw {draw}, {blank}
@@ -910,7 +945,31 @@ script:
     dw {draw}, {row}*144
     dw {draw}, {blank}
     dw {draw}, {row}*145
+    dw {draw}, {blank}
     dw {draw}, {row}*146
+    dw {draw}, {row}*147
+    dw {draw}, {blank}
+    dw {draw}, {row}*148
+    dw {draw}, {row}*149
+    dw {draw}, {blank}
+    dw {draw}, {row}*150
+    dw {draw}, {row}*151
+    dw {draw}, {blank}
+    dw {draw}, {row}*152
+    dw {draw}, {row}*153
+    dw {draw}, {blank}
+    dw {draw}, {row}*154
+    dw {draw}, {row}*155
+    dw {draw}, {blank}
+    dw {draw}, {row}*156
+    dw {draw}, {row}*157
+    dw {draw}, {blank}
+    dw {draw}, {blank}
+    dw {draw}, {blank}
+    dw {draw}, {blank}
+    dw {draw}, {row}*158
+    dw {draw}, {row}*159
+    dw {draw}, {blank}
     dw {draw}, {blank}
     
 
@@ -920,6 +979,7 @@ script:
     dw {delay}, -    
     dw {end}
 
+warnpc $dfe000
 org $dfe000
 credits:
     // When using big text, it has to be repeated twice, first in UPPERCASE and then in lowercase since it's split into two parts
@@ -941,22 +1001,45 @@ credits:
     {purple}
     dw "      GAMEPLAY STATISTICS       " // 137
     {orange}
-    dw "        THINGS AND STUFF        " // 138
+    dw "          DOOR THINGS           " // 138
     {big}
-    dw " FINAL TIME         00'00'00^00 " // 139
-    dw " final time                     " // 140
-    dw " DOOR TRANSITIONS               " // 141
-    dw " door transitions               " // 142 
-    dw " TIME IN DOORS      00'00'00^00 " // 143
-    dw " time in doors                  " // 144 
-    dw " TIME ALIGNING DOORS   00'00^00 " // 145
-    dw " time aligning doors            " // 146 
+    dw " DOOR TRANSITIONS               " // 139
+    dw " door transitions               " // 140 
+    dw " TIME IN DOORS      00'00'00^00 " // 141
+    dw " time in doors                  " // 142 
+    dw " TIME ALIGNING DOORS   00'00^00 " // 143
+    dw " time aligning doors            " // 144 
+    {blue}
+    dw "         TIME SPENT IN          " // 145
+    {big}
+    dw " CRATERIA           00'00'00^00 " // 146
+    dw " crateria                       " // 147
+    dw " BRINSTAR           00'00'00^00 " // 148
+    dw " brinstar                       " // 149
+    dw " NORFAIR            00'00'00^00 " // 150
+    dw " norfair                        " // 151
+    dw " WRECKED SHIP       00'00'00^00 " // 152
+    dw " wrecked ship                   " // 153
+    dw " MARIDIA            00'00'00^00 " // 154
+    dw " maridia                        " // 155
+    dw " TOURIAN            00'00'00^00 " // 156
+    dw " tourian                        " // 157
+    dw " FINAL TIME         00'00'00^00 " // 158
+    dw " final time                     " // 159    
     dw $0000                              // End of credits tilemap
 
 stats:
     // STAT ID, ADDRESS,    TYPE (1 = Number, 2 = Time, 3 = Full time), UNUSED
-    dw 0,       {row}*139,  3, 0    // Full RTA Time
-    dw 2,       {row}*141,  1, 0    // Door transitions
-    dw 3,       {row}*143,  3, 0    // Time in doors
-    dw 5,       {row}*145,  2, 0    // Time adjusting doors
+    dw 0,       {row}*158,  3, 0    // Full RTA Time
+    dw 2,       {row}*139,  1, 0    // Door transitions
+    dw 3,       {row}*141,  3, 0    // Time in doors
+    dw 5,       {row}*143,  2, 0    // Time adjusting doors
+    dw 7,       {row}*146,  3, 0    // Crateria
+    dw 9,       {row}*148,  3, 0    // Brinstar
+    dw 11,      {row}*150,  3, 0    // Norfair
+    dw 13,      {row}*152,  3, 0    // Wrecked Ship
+    dw 15,      {row}*154,  3, 0    // Maridia
+    dw 17,      {row}*156,  3, 0    // Tourian
     dw 0,               0,  0, 0    // end of table
+
+warnpc $dfffff
