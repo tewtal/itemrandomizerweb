@@ -981,18 +981,15 @@ script:
     dw {draw}, {row}*167
     dw {draw}, {row}*168
     dw {draw}, {blank}
+    dw {draw}, {blank}
+    dw {draw}, {blank}
+    dw {draw}, {blank}
     dw {draw}, {row}*169
     dw {draw}, {row}*170
     dw {draw}, {blank}
     dw {draw}, {blank}
-    dw {draw}, {blank}
-    dw {draw}, {blank}
-    dw {draw}, {row}*171
-    dw {draw}, {row}*172
-    dw {draw}, {blank}
-    dw {draw}, {blank}
-    
-
+   
+   
     // Scroll all text off and end credits
     dw {set}, $0023; -
     dw {draw}, {blank}
