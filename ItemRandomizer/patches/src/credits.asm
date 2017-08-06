@@ -983,14 +983,11 @@ script:
     dw {draw}, {row}*167
     dw {draw}, {row}*168
     dw {draw}, {blank}
+    dw {draw}, {blank}
+    dw {draw}, {blank}
+    dw {draw}, {blank}
     dw {draw}, {row}*169
     dw {draw}, {row}*170
-    dw {draw}, {blank}
-    dw {draw}, {blank}
-    dw {draw}, {blank}
-    dw {draw}, {blank}
-    dw {draw}, {row}*171
-    dw {draw}, {row}*172
     dw {draw}, {blank}
     dw {draw}, {blank}
     
@@ -1065,7 +1062,7 @@ credits:
 
 stats:
     // STAT ID, ADDRESS,    TYPE (1 = Number, 2 = Time, 3 = Full time), UNUSED
-    dw 0,       {row}*158,  3, 0    // Full RTA Time
+    dw 0,       {row}*169,  3, 0    // Full RTA Time
     dw 2,       {row}*139,  1, 0    // Door transitions
     dw 3,       {row}*141,  3, 0    // Time in doors
     dw 5,       {row}*143,  2, 0    // Time adjusting doors
