@@ -39,10 +39,6 @@ org $82e309
 org $82e34c
     jml door_adjust_stop
 
-// Firing uncharged beam
-org $90b89e
-    jml uncharged_beam
-
 // Firing charged beam
 org $90b9a1
     jml charged_beam
@@ -140,16 +136,6 @@ door_adjust_stop:
     lda #$e353
     sta $099c
     jml $82e352
-    
-// Uncharged Beam Fire
-uncharged_beam:
-    lda #$0013
-    jsl {inc_stat}
-
-    // Run hijacked code and return
-    stz $0dc0
-    lda #$0002
-    jml $90b8a4
 
 // Charged Beam Fire
 charged_beam:
