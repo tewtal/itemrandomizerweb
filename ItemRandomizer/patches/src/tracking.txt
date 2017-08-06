@@ -9,5 +9,7 @@ Stat tracking ID's
 13-14       Time spent in Wrecked Ship
 15-16       Time spent in Maridia
 17-18       Time spent in Tourian
-
+19          Number of uncharged shots
+20          Number of charged shots
+21          Number of SBAs
 
