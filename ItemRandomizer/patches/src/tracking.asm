@@ -55,6 +55,10 @@ org $90beb7
 org $90c02d
     jml pbs_laid
 
+//Bombs laid
+org $90c107
+    jml bombs_laid
+
 // -------------------------------
 // CODE (using bank A1 free space)
 // -------------------------------
@@ -188,3 +192,13 @@ pbs_laid:
     lda #$0018
     jsl {inc_stat}
     jml $90c031
+
+//bombs laid
+bombs_laid:
+    lda #$001a
+    jsl {inc_stat}
+
+    //run hijacked code and return
+    lda $0cd2
+    inc
+    jml $90c10b

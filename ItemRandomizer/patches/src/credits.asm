@@ -983,11 +983,14 @@ script:
     dw {draw}, {row}*167
     dw {draw}, {row}*168
     dw {draw}, {blank}
-    dw {draw}, {blank}
-    dw {draw}, {blank}
-    dw {draw}, {blank}
     dw {draw}, {row}*169
     dw {draw}, {row}*170
+    dw {draw}, {blank}
+    dw {draw}, {blank}
+    dw {draw}, {blank}
+    dw {draw}, {blank}
+    dw {draw}, {row}*171
+    dw {draw}, {row}*172
     dw {draw}, {blank}
     dw {draw}, {blank}
    
@@ -1015,6 +1018,7 @@ stats:
     dw 22,      {row}*163,  1, 0    // Missiles
     dw 23,      {row}*165,  1, 0    // Super Missiles
     dw 24,      {row}*167,  1, 0    // Power Bombs
+    dw 26,      {row}*169,  1, 0    // Bombs
     dw 0,               0,  0, 0    // end of table
 
 warnpc $dfffff
@@ -1065,7 +1069,7 @@ credits:
     dw " TOURIAN            00'00'00^00 " // 156
     dw " tourian                        " // 157
     {green}
-    dw "       SHOTS & AMMO FIRED       " // 158
+    dw "      SHOTS AND AMMO FIRED      " // 158
     {big}
     dw " CHARGED SHOTS                  " // 159
     dw " charged shots                  " // 160
@@ -1077,8 +1081,10 @@ credits:
     dw " super missiles                 " // 166
     dw " POWER BOMBS                    " // 167
     dw " power bombs                    " // 168
-    dw " FINAL TIME         00'00'00^00 " // 169
-    dw " final time                     " // 170 
+    dw " BOMBS                          " // 169
+    dw " bombs                          " // 170
+    dw " FINAL TIME         00'00'00^00 " // 171
+    dw " final time                     " // 172 
     dw $0000                              // End of credits tilemap
 
 warnpc $ceffff
