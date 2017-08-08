@@ -264,12 +264,32 @@ module Patches =
             };
         ]
 
+
     let rec patchByte (romData:byte []) address data =
         match data with
         | head :: tail ->
             romData.[address] <- byte(head)
             patchByte romData (address + 1) tail
         | [] -> romData
+
+    let convertCreditsChar c (b:byte) =
+        let ib = match char(b) with
+                    | ' ' -> 0x7f
+                    | '!' -> 0x1f
+                    | ':' -> 0x1e
+                    | '\'' -> 0x1d
+                    | '_' -> 0x1c
+                    | ',' -> 0x1b
+                    | '.' -> 0x1a
+                    | _ ->int(b - 0x41uy)
+        if ib = 0x7f then uint16(0x7f) else uint16((c<<<8) + ib)
+
+    let writeCreditsString (romData:byte []) address color (text:string) =
+        let (strArr:byte []) = System.Text.Encoding.ASCII.GetBytes(text)
+        let uintArr = Array.map (fun b -> convertCreditsChar color b) strArr
+        let byteArr = Array.create<byte> (uintArr.Length * sizeof<uint16>) 0uy
+        System.Buffer.BlockCopy(uintArr, 0, byteArr, 0, byteArr.Length)
+        patchByte romData address (Array.toList (Array.map (fun b -> int(b)) byteArr))
 
     let applyIpsRle address offset (romData:byte []) (ipsPatch:byte []) =
         let length = ((int ipsPatch.[offset]) <<< 8) + (int ipsPatch.[offset+1])

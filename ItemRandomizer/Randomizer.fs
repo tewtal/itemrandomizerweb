@@ -25,8 +25,23 @@ module Randomizer =
         if spoiler then
             use writer = File.CreateText(__SOURCE_DIRECTORY__ + (sprintf "/logs/%d.spoiler.txt" seed))
             List.map (fun itemLocation -> writer.WriteLine(String.Format("{0} -> {1}", itemLocation.Location.Name, itemLocation.Item.Name))) (List.sortBy (fun itemLocation -> itemLocation.Location.Address) itemLocations) |> ignore
-        
+
         itemLocations
+
+    let rec writeRomSpoiler (data:byte []) itemLocations address =
+        match itemLocations with
+        | [] -> 
+            Patches.patchByte data address [0; 0; 0; 0]
+        | head :: tail ->
+            let itemName = System.Text.RegularExpressions.Regex.Replace(head.Item.Name.ToUpper(), "[^A-Z0-9\.,'!: ]+", "", System.Text.RegularExpressions.RegexOptions.Compiled)
+            let locationName = System.Text.RegularExpressions.Regex.Replace(head.Location.Name.ToUpper(), "[^A-Z0-9\.,'!: ]+", "", System.Text.RegularExpressions.RegexOptions.Compiled)
+            
+            let itemName = " " + itemName.Substring(0, (if itemName.Length > 30 then 30 else itemName.Length)).ToUpper().Trim().PadRight(31, ' ')
+            let locationName = " " + locationName.Substring(0, (if locationName.Length > 30 then 30 else locationName.Length)).ToUpper().PadLeft(30, '.') + " "
+            
+            Patches.writeCreditsString data address 0x04 itemName |> ignore
+            Patches.writeCreditsString data (address + 0x40) 0x18 locationName |> ignore
+            writeRomSpoiler data tail (address + 0x80)
 
     let randomizeItems randomizer (data:byte []) seed spoiler fileName locationPool =
         let rnd = Random(seed)
@@ -42,8 +57,9 @@ module Randomizer =
         data.[0x2FF003] <- seedInfoArr2.[1]
 
         let rnd = Random(seed)
-        writeLocations data (writeSpoiler seed spoiler fileName (randomizer rnd [] [] (Items.getItemPool rnd) locationPool))
-        
+        let itemLocations = writeSpoiler seed spoiler fileName (randomizer rnd [] [] (Items.getItemPool rnd) locationPool)
+        writeRomSpoiler data (List.sortBy (fun il -> il.Item.Type) (List.filter (fun il -> il.Item.Class = Major && il.Item.Type <> ETank && il.Item.Type <> Reserve) itemLocations)) 0x2f5240 |> ignore
+        writeLocations data itemLocations        
 
     let Randomize inputSeed difficulty spoiler fileName baseRom ipsPatches patches =
         let seed = match inputSeed with

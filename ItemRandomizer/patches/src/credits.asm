@@ -270,7 +270,19 @@ copy:
     inx
     inx
     jmp -
-+  
++
+
+    ldx #$0000
+-
+    lda.l itemlocations, x
+    cmp #$0000
+    beq +
+    sta $7fa000, x
+    inx
+    inx
+    jmp -
++
+
     jsl write_stats
     lda #$0002
     sta {scroll_speed}
@@ -724,6 +736,7 @@ load_stat:
     plx
     rtl
 
+
 // New credits script in free space of bank $DF
 org $dfd91b
 script:
@@ -989,11 +1002,70 @@ script:
     dw {draw}, {blank}
     dw {draw}, {blank}
     dw {draw}, {blank}
+    dw {draw}, {blank}
     dw {draw}, {row}*171
     dw {draw}, {row}*172
     dw {draw}, {blank}
     dw {draw}, {blank}
    
+
+    // Draw item locations
+    dw {draw}, {blank}
+    dw {draw}, {blank}
+    dw {draw}, {blank}
+    dw {draw}, {row}*640
+    dw {draw}, {blank}
+    dw {draw}, {row}*641
+    dw {draw}, {row}*642
+    dw {draw}, {blank}
+    dw {draw}, {row}*643
+    dw {draw}, {row}*644
+    dw {draw}, {blank}
+    dw {draw}, {row}*645
+    dw {draw}, {row}*646
+    dw {draw}, {blank}
+    dw {draw}, {row}*647
+    dw {draw}, {row}*648
+    dw {draw}, {blank}
+    dw {draw}, {row}*649
+    dw {draw}, {row}*650
+    dw {draw}, {blank}
+    dw {draw}, {row}*651
+    dw {draw}, {row}*652
+    dw {draw}, {blank}
+    dw {draw}, {row}*653
+    dw {draw}, {row}*654
+    dw {draw}, {blank}
+    dw {draw}, {row}*655
+    dw {draw}, {row}*656
+    dw {draw}, {blank}
+    dw {draw}, {row}*657
+    dw {draw}, {row}*658
+    dw {draw}, {blank}
+    dw {draw}, {row}*659
+    dw {draw}, {row}*660
+    dw {draw}, {blank}
+    dw {draw}, {row}*661
+    dw {draw}, {row}*662
+    dw {draw}, {blank}
+    dw {draw}, {row}*663
+    dw {draw}, {row}*664
+    dw {draw}, {blank}
+    dw {draw}, {row}*665
+    dw {draw}, {row}*666
+    dw {draw}, {blank}
+    dw {draw}, {row}*667
+    dw {draw}, {row}*668
+    dw {draw}, {blank}
+    dw {draw}, {row}*669
+    dw {draw}, {row}*670
+    dw {draw}, {blank}
+    dw {draw}, {row}*671
+    dw {draw}, {row}*672
+    dw {draw}, {blank}
+    dw {draw}, {blank}
+    dw {draw}, {blank}
+    
    
     // Scroll all text off and end credits
     dw {set}, $0023; -
@@ -1003,7 +1075,7 @@ script:
 
 stats:
     // STAT ID, ADDRESS,    TYPE (1 = Number, 2 = Time, 3 = Full time), UNUSED
-    dw 0,       {row}*169,  3, 0    // Full RTA Time
+    dw 0,       {row}*171,  3, 0    // Full RTA Time
     dw 2,       {row}*139,  1, 0    // Door transitions
     dw 3,       {row}*141,  3, 0    // Time in doors
     dw 5,       {row}*143,  2, 0    // Time adjusting doors
@@ -1088,3 +1160,10 @@ credits:
     dw $0000                              // End of credits tilemap
 
 warnpc $ceffff
+
+// Placeholder label for item locations inserted by the randomizer
+org $ded200
+itemlocations:
+    {pink}
+    dw "      MAJOR ITEM LOCATIONS      " // 640
+    dw $0000
