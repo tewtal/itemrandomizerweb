@@ -925,13 +925,11 @@ script:
     dw {draw}, {blank}
     dw {draw}, {blank}
     dw {draw}, {blank}
-    dw {draw}, {blank}
 
     // Custom item randomizer credits text        
 
     // Set scroll speed to 3 frames per pixel
     dw {speed}, $0003
-
     dw {draw}, {row}*128
     dw {draw}, {blank}
     dw {draw}, {row}*129
@@ -1072,22 +1070,8 @@ script:
     dw {draw}, {blank}
     dw {draw}, {row}*215
     dw {draw}, {row}*216
-    dw {speed}, $0005
-    dw {draw}, {blank}
-    dw {draw}, {blank}
-    dw {draw}, {blank}
-    dw {draw}, {blank}
-    dw {draw}, {blank}
-    dw {draw}, {row}*217
-    dw {draw}, {row}*218
-    dw {draw}, {blank}
-    dw {draw}, {blank}
-    dw {draw}, {row}*219
-    dw {draw}, {row}*220    
-    dw {draw}, {blank}
-    dw {draw}, {blank}
-   
 
+   
     // Draw item locations
     dw {draw}, {blank}
     dw {draw}, {blank}
@@ -1144,7 +1128,12 @@ script:
     dw {draw}, {blank}
     dw {draw}, {blank}
     dw {draw}, {blank}
-    
+    dw {draw}, {row}*217
+    dw {draw}, {row}*218
+    dw {draw}, {blank}
+    dw {draw}, {blank}
+    dw {draw}, {row}*219
+    dw {draw}, {row}*220        
    
     // Scroll all text off and end credits
     dw {set}, $0023; -
@@ -1154,22 +1143,22 @@ script:
 
 stats:
     // STAT ID, ADDRESS,    TYPE (1 = Number, 2 = Time, 3 = Full time), UNUSED
-    dw 0,       {row}*171,  3, 0    // Full RTA Time
-    dw 2,       {row}*139,  1, 0    // Door transitions
-    dw 3,       {row}*141,  3, 0    // Time in doors
-    dw 5,       {row}*143,  2, 0    // Time adjusting doors
-    dw 7,       {row}*146,  3, 0    // Crateria
-    dw 9,       {row}*148,  3, 0    // Brinstar
-    dw 11,      {row}*150,  3, 0    // Norfair
-    dw 13,      {row}*152,  3, 0    // Wrecked Ship
-    dw 15,      {row}*154,  3, 0    // Maridia
-    dw 17,      {row}*156,  3, 0    // Tourian
-    dw 20,      {row}*159,  1, 0    // Charged Shots
-    dw 21,      {row}*161,  1, 0    // Special Beam Attacks
-    dw 22,      {row}*163,  1, 0    // Missiles
-    dw 23,      {row}*165,  1, 0    // Super Missiles
-    dw 24,      {row}*167,  1, 0    // Power Bombs
-    dw 26,      {row}*169,  1, 0    // Bombs
+    dw 0,       {row}*217,  3, 0    // Full RTA Time
+    dw 2,       {row}*185,  1, 0    // Door transitions
+    dw 3,       {row}*187,  3, 0    // Time in doors
+    dw 5,       {row}*189,  2, 0    // Time adjusting doors
+    dw 7,       {row}*192,  3, 0    // Crateria
+    dw 9,       {row}*194,  3, 0    // Brinstar
+    dw 11,      {row}*196,  3, 0    // Norfair
+    dw 13,      {row}*198,  3, 0    // Wrecked Ship
+    dw 15,      {row}*200,  3, 0    // Maridia
+    dw 17,      {row}*202,  3, 0    // Tourian
+    dw 20,      {row}*205,  1, 0    // Charged Shots
+    dw 21,      {row}*207,  1, 0    // Special Beam Attacks
+    dw 22,      {row}*209,  1, 0    // Missiles
+    dw 23,      {row}*211,  1, 0    // Super Missiles
+    dw 24,      {row}*213,  1, 0    // Power Bombs
+    dw 26,      {row}*215,  1, 0    // Bombs
     dw 0,               0,  0, 0    // end of table
 
 warnpc $dfffff
@@ -1187,15 +1176,15 @@ credits:
     {purple}
     dw "         RANDOMIZER CODE        " // 129
     {big}
-    dw "              TOTAL             " // 130
-    dw "              total             " // 131
+    dw "             TOTAL              " // 130
+    dw "             total              " // 131
     dw "            DESSYREQT           " // 132
     dw "            dessyreqt           " // 133
     {purple}
-    dw "           SNES CODE            " // 134
+    dw "            SNES CODE           " // 134
     {big}
-    dw "              TOTAL             " // 135
-    dw "              total             " // 136
+    dw "             TOTAL              " // 135
+    dw "             total              " // 136
     dw "             FOOSDA             " // 137
     dw "             foosda             " // 138
     dw "           PERSONITIS           " // 139
@@ -1227,24 +1216,24 @@ credits:
     dw "     TOURNAMENT ORGANIZERS      " // 157
     {big}
     dw "            FERAL5X             " // 158
-    dw "            feral5x             " // 159
+    dw "            feral%x             " // 159
     dw "           STRAEVARAS           " // 160
     dw "           straevaras           " // 161
     dw "         WILDANACONDA69         " // 162
-    dw "         wildanaconda69         " // 163
-    dw "          BELTHASAR             " // 164
-    dw "          belthasar             " // 165
-    dw "         KEKUMANSHOYU           " // 166
-    dw "         kekumanshoyu           " // 167
-    dw "            TYPWO               " // 168
-    dw "            typwo               " // 169
+    dw "         wildanaconda&)         " // 163
+    dw "           BELTHASAR            " // 164
+    dw "           belthasar            " // 165
+    dw "          KEKUMANSHOYU          " // 166
+    dw "          kekumanshoyu          " // 167
+    dw "             TYPWO              " // 168
+    dw "             typwo              " // 169
     {yellow}
     dw "        SPEEDGAMING STAFF       " // 170
     {big}
-    dw "           FEASEL               " // 171
-    dw "           feasel               " // 172
-    dw "          MITHICAL9             " // 173
-    dw "          mithical9             " // 174
+    dw "            FEASEL              " // 171
+    dw "            feasel              " // 172
+    dw "           MITHICAL9            " // 173
+    dw "           mithical)            " // 174
     {yellow}
     dw "      METROID CONSTRUCTION      " // 175
     {big}
@@ -1254,7 +1243,7 @@ credits:
     dw "  SUPER METROID SRL COMMUNITY   " // 178
     {big}
     dw "    DISCORD INVITE : RT2FWZT    " // 179
-    dw "    discord invite : rt2fwzt    " // 180
+    dw "    discord invite : rt@fwzt    " // 180
     dw "   ITEMRANDO.SUPERMETROID.RUN   " // 181
     dw "   itemrando.supermetroid.run   " // 182
     {purple}
