@@ -43,6 +43,21 @@ module Randomizer =
             Patches.writeCreditsString data (address + 0x40) 0x18 locationName |> ignore
             writeRomSpoiler data tail (address + 0x80)
 
+    let rec writeItemNames (data:byte []) items =
+        match items with
+        | [] -> data
+        | item :: tail ->
+            let name = "PLACEHOLDER ITEM"
+            let itemName = System.Text.RegularExpressions.Regex.Replace(name.ToUpper(), "[^A-Z0-9\.\?,'! ]+", "", System.Text.RegularExpressions.RegexOptions.Compiled)
+            let itemName = itemName.Substring(0, (if itemName.Length > 19 then 19 else itemName.Length))
+            let nameLen = itemName.Length
+            let padl = ((19 - nameLen)/2)
+            let itemName = itemName.PadLeft(padl+nameLen, ' ').PadRight(19, ' ')
+
+            Patches.writeMessageString data item.Message itemName |> ignore
+            writeItemNames data tail
+    
+    
     let randomizeItems randomizer (data:byte []) seed spoiler fileName locationPool =
         let rnd = Random(seed)
 
@@ -51,14 +66,15 @@ module Randomizer =
         let seedInfoArr = Items.toByteArray seedInfo
         let seedInfoArr2 = Items.toByteArray seedInfo2
         
-        data.[0x2FF000] <- seedInfoArr.[0]
-        data.[0x2FF001] <- seedInfoArr.[1]
-        data.[0x2FF002] <- seedInfoArr2.[0]
-        data.[0x2FF003] <- seedInfoArr2.[1]
+        data.[0x2FFF00] <- seedInfoArr.[0]
+        data.[0x2FFF01] <- seedInfoArr.[1]
+        data.[0x2FFF02] <- seedInfoArr2.[0]
+        data.[0x2FFF03] <- seedInfoArr2.[1]
 
         let rnd = Random(seed)
         let itemLocations = writeSpoiler seed spoiler fileName (randomizer rnd [] [] (Items.getItemPool rnd) locationPool)
         writeRomSpoiler data (List.sortBy (fun il -> il.Item.Type) (List.filter (fun il -> il.Item.Class = Major && il.Item.Type <> ETank && il.Item.Type <> Reserve) itemLocations)) 0x2f5240 |> ignore
+        //writeItemNames data Items.Items |> ignore
         writeLocations data itemLocations        
 
     let Randomize inputSeed difficulty spoiler fileName baseRom ipsPatches patches =

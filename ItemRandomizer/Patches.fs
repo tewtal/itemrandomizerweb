@@ -394,6 +394,30 @@ module Patches =
         System.Buffer.BlockCopy(uintArr, 0, byteArr, 0, byteArr.Length)
         patchByte romData address (Array.toList (Array.map (fun b -> int(b)) byteArr))
 
+    let convertMessageChar (b:byte) =
+        let ib = match char(b) with
+                    | ' ' -> 0x4e
+                    | '!' -> 0xff
+                    | '?' -> 0xfe
+                    | '`' -> 0xfd
+                    | '´' -> 0xfc                    
+                    | '\'' -> 0xfd
+                    | ',' -> 0xfb
+                    | '.' -> 0xfa
+                    | _ ->int(b + 0x9fuy)
+        uint16((0x28<<<8) + ib)
+
+    let writeMessageString (romData:byte []) address (text:string) =
+        let (strArr:byte []) = System.Text.Encoding.ASCII.GetBytes(text)
+        let uintArr = Array.map convertMessageChar strArr
+        let byteArr = Array.create<byte> (uintArr.Length * sizeof<uint16>) 0uy
+        System.Buffer.BlockCopy(uintArr, 0, byteArr, 0, byteArr.Length)
+        let padLeft = [0x0e; 0x00; 0x0e; 0x00; 0x0e; 0x00; 0x0e; 0x00; 0x0e; 0x00; 0x0e; 0x00]
+        let padRight = [0x0e; 0x00; 0x0e; 0x00; 0x0e; 0x00; 0x0e; 0x00; 0x0e; 0x00; 0x0e; 0x00; 0x0e; 0x00]
+        let intList = (Array.toList (Array.map (fun b -> int(b)) byteArr))
+        let outList = List.append (List.append padLeft intList) padRight
+        patchByte romData address outList
+
     let applyIpsRle address offset (romData:byte []) (ipsPatch:byte []) =
         let length = ((int ipsPatch.[offset]) <<< 8) + (int ipsPatch.[offset+1])
         let data = Array.create<int> length (int ipsPatch.[offset+2])

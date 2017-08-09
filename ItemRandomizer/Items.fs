@@ -9,6 +9,7 @@ module Items =
                 Class = Major;
                 Code = 0xeed7;
                 Name = "Energy Tank";
+                Message = 0x2877f;
             };
             {
                 Type = Missile;
@@ -16,6 +17,7 @@ module Items =
                 Class = Minor;
                 Code = 0xeedb;
                 Name = "Missile";
+                Message = 0x287bf;
             };
             {
                 Type = Super;
@@ -23,6 +25,7 @@ module Items =
                 Class = Minor;
                 Code = 0xeedf;
                 Name = "Super Missile";
+                Message = 0x288bf;
             };
             {
                 Type = PowerBomb;
@@ -30,6 +33,7 @@ module Items =
                 Class = Minor;
                 Code = 0xeee3;
                 Name = "Power Bomb";
+                Message = 0x289bf;
             };
             {
                 Type = Bomb;
@@ -37,6 +41,7 @@ module Items =
                 Class = Major;
                 Code = 0xeee7;
                 Name = "Bomb";
+                Message = 0x2907f;
             };
             {
                 Type = Charge;
@@ -44,6 +49,7 @@ module Items =
                 Class = Major;
                 Code = 0xeeeb;
                 Name = "Charge Beam";
+                Message = 0x28f3f;
             };
             {
                 Type = Ice;
@@ -51,6 +57,7 @@ module Items =
                 Class = Major;
                 Code = 0xeeef;
                 Name = "Ice Beam";
+                Message = 0x28f7f;
             };
             {
                 Type = HiJump;
@@ -58,6 +65,7 @@ module Items =
                 Class = Major;
                 Code = 0xeef3;
                 Name = "Hi-Jump Boots";
+                Message = 0x28dbf;
             };
             {
                 Type = SpeedBooster;
@@ -65,6 +73,7 @@ module Items =
                 Class = Major;
                 Code = 0xeef7;
                 Name = "Speed Booster";
+                Message = 0x28e3f;
             };
             {
                 Type = Wave;
@@ -72,6 +81,7 @@ module Items =
                 Class = Major;
                 Code = 0xeefb;
                 Name = "Wave Beam";
+                Message = 0x28fbf;
             };
             {
                 Type = Spazer;
@@ -79,6 +89,7 @@ module Items =
                 Class = Major;
                 Code = 0xeeff;
                 Name = "Spazer";
+                Message = 0x28fff;
             };
             {
                 Type = SpringBall;
@@ -86,6 +97,7 @@ module Items =
                 Class = Major;
                 Code = 0xef03;
                 Name = "Spring Ball";
+                Message = 0x28cff;
             };
             {
                 Type = Varia;
@@ -93,6 +105,7 @@ module Items =
                 Class = Major;
                 Code = 0xef07;
                 Name = "Varia Suit";
+                Message = 0x28cbf;
             };
             {
                 Type = Plasma;
@@ -100,6 +113,7 @@ module Items =
                 Class = Major;
                 Code = 0xef13;
                 Name = "Plasma Beam";
+                Message = 0x2903f;
             };
             {
                 Type = Grapple;
@@ -107,6 +121,7 @@ module Items =
                 Class = Major;
                 Code = 0xef17;
                 Name = "Grappling Beam";
+                Message = 0x28abf;
             };
             {
                 Type = Morph;
@@ -114,6 +129,7 @@ module Items =
                 Class = Major;
                 Code = 0xef23;
                 Name = "Morph Ball";
+                Message = 0x28d3f;
             };
             {
                 Type = Reserve;
@@ -121,6 +137,7 @@ module Items =
                 Class = Major;
                 Code = 0xef27;
                 Name = "Reserve Tank";
+                Message = 0x294ff;
             };
             {
                 Type = Gravity;
@@ -128,6 +145,7 @@ module Items =
                 Class = Major;
                 Code = 0xef0b;
                 Name = "Gravity Suit";
+                Message = 0x2953f;
             };
             {
                 Type = XRay;
@@ -135,6 +153,7 @@ module Items =
                 Class = Major;
                 Code = 0xef0f;
                 Name = "X-Ray Scope";
+                Message = 0x28bbf;
             };
             {
                 Type = SpaceJump;
@@ -142,6 +161,7 @@ module Items =
                 Class = Major;
                 Code = 0xef1b;
                 Name = "Space Jump";
+                Message = 0x28dff;
             };
             {
                 Type = ScrewAttack;
@@ -149,6 +169,7 @@ module Items =
                 Class = Major;
                 Code = 0xef1f;
                 Name = "Screw Attack";
+                Message = 0x28d7f;
             };
         ];
     
