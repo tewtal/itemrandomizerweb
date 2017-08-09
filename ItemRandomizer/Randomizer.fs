@@ -79,7 +79,12 @@ module Randomizer =
                              | Difficulty.Open -> OpenRandomizer.generateItems
                              | _ -> DefaultRandomizer.generateItems
         
-        (seed, randomizeItems generateItems (Patches.ApplyPatches ipsPatches patches baseRom) seed spoiler fileName locationPool)
+        // Get a random animal patch
+        let rnd = Random(seed)
+        let animalsPatches = (List.filter (fun ip -> ip.PatchType = Animals) Patches.IpsPatches)
+        let animalsPatch = List.item (rnd.Next animalsPatches.Length) animalsPatches
+
+        (seed, randomizeItems generateItems (Patches.ApplyPatches (animalsPatch :: ipsPatches) patches baseRom) seed spoiler fileName locationPool)
 
     let TestRandomize =
         let mutable itemLocations:(ItemLocation list) = []

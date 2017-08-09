@@ -12,55 +12,64 @@ module Patches =
                 Difficulty = Difficulty.Any;
                 Default = true;
                 FileName = "introskip_doorflags.ips";
+                PatchType = Standard;
             };
             {
                 Name = "Instantly open G4 passage when all bosses are killed";
                 Difficulty = Difficulty.Any;
                 Default = true;
                 FileName = "g4_skip.ips";
+                PatchType = Standard;
             };
             {
                 Name = "Wake up zebes when going right from morph";
                 Difficulty = Difficulty.Any;
                 Default = true;
                 FileName = "wake_zebes.ips";
+                PatchType = Standard;
             };
             {
                 Name = "Seed display";
                 Difficulty = Difficulty.Any;
                 Default = true;
                 FileName = "seed_display.ips";
-            };
-            {
-                Name = "Animals";
-                Difficulty = Difficulty.Any;
-                Default = true;
-                FileName = "animals.ips";
+                PatchType = Standard;
             };
             {
                 Name = "Custom credits with stats";
                 Difficulty = Difficulty.Any;
                 Default = true;
                 FileName = "credits.ips";
+                PatchType = Standard;
             };
             {
                 Name = "Custom credits with stats (tracking code)";
                 Difficulty = Difficulty.Any;
                 Default = true;
                 FileName = "tracking.ips";
+                PatchType = Standard;
             };
             {
                 Name = "Max Ammo Display by personitis";
                 Difficulty = Difficulty.Any;
                 Default = true;
                 FileName = "max_ammo_display.ips";
+                PatchType = Standard;
             };
+            {
+                Name = "Decompression Optimization by Kejardon";
+                Difficulty = Difficulty.Any;
+                Default = true;
+                FileName = "decompression.ips";
+                PatchType = Standard;
+            };            
             // Optional Patches
             {
                 Name = "Foosda's Colorblind patch";
                 Difficulty = Difficulty.Any;
                 Default = false;
                 FileName = "colorblind_v1.1.ips";
+                PatchType = Optional;
             };
 
             // Casual Patches
@@ -69,48 +78,56 @@ module Patches =
                 Difficulty = Difficulty.Casual;
                 Default = true;
                 FileName = "dachora.ips";
+                PatchType = Specific;
             };
             {
                 Name = "Make it possible to escape from below early super bridge without bombs";
                 Difficulty = Difficulty.Casual;
                 Default = true;
                 FileName = "early_super_bridge.ips";
+                PatchType = Specific;
             };
             {
                 Name = "Swap construction zone e-tank with missiles and open up path to missiles";
                 Difficulty = Difficulty.Casual;
                 Default = true;
                 FileName = "retro_brin_etank_missile_swap.ips";
+                PatchType = Specific;
             };
             {
                 Name = "Replace bomb blocks with shot blocks before Hi-Jump";
                 Difficulty = Difficulty.Casual;
                 Default = true;
                 FileName = "high_jump.ips";
+                PatchType = Specific;
             };
             {
                 Name = "Replace bomb blocks with shot blocks at Moat";
                 Difficulty = Difficulty.Casual;
                 Default = true;
                 FileName = "moat.ips";
+                PatchType = Specific;
             };
             {
                 Name = "Raise platform in first heated norfair room to not require hi-jump";
                 Difficulty = Difficulty.Casual;
                 Default = true;
                 FileName = "nova_boost_platform.ips";
+                PatchType = Specific;
             };
             {
                 Name = "Raise platforms in red tower bottom to always be able to get back up";
                 Difficulty = Difficulty.Casual;
                 Default = true;
                 FileName = "red_tower.ips";
+                PatchType = Specific;
             };
             {
                 Name = "Replace bomb blocks with shot blocks before Spazer";
                 Difficulty = Difficulty.Casual;
                 Default = true;
                 FileName = "spazer.ips";
+                PatchType = Specific;
             };
             // Tournament Patches
             {
@@ -118,56 +135,142 @@ module Patches =
                 Difficulty = Difficulty.Tournament;
                 Default = true;
                 FileName = "dachora.ips";
+                PatchType = Specific;
             };
             {
                 Name = "Make it possible to escape from below early super bridge without bombs";
                 Difficulty = Difficulty.Tournament;
                 Default = true;
                 FileName = "early_super_bridge.ips";
+                PatchType = Specific;
             };
             {
                 Name = "Replace bomb blocks with shot blocks before Hi-Jump";
                 Difficulty = Difficulty.Tournament;
                 Default = true;
                 FileName = "high_jump.ips";
+                PatchType = Specific;
             };
             {
                 Name = "Replace bomb blocks with shot blocks at Moat";
                 Difficulty = Difficulty.Tournament;
                 Default = true;
                 FileName = "moat.ips";
+                PatchType = Specific;
             };
             {
                 Name = "Raise platform in first heated norfair room to not require hi-jump";
                 Difficulty = Difficulty.Tournament;
                 Default = true;
                 FileName = "nova_boost_platform.ips";
+                PatchType = Specific;
             };
             {
                 Name = "Change platforms in red tower bottom to always be able to get back up";
                 Difficulty = Difficulty.Tournament;
                 Default = true;
                 FileName = "red_tower.ips";
+                PatchType = Specific;
             };
             {
                 Name = "Replace bomb blocks with shot blocks before Spazer";
                 Difficulty = Difficulty.Tournament;
                 Default = true;
                 FileName = "spazer.ips";
+                PatchType = Specific;
             };
-
             // Open Mode Patches
             {
                 Name = "Open Mode Room Edits";
                 Difficulty = Difficulty.Open;
                 Default = true;
                 FileName = "open_mode.ips";
+                PatchType = Specific;
             };
             {
                 Name = "Open Mode Event ASM";
                 Difficulty = Difficulty.Open;
                 Default = true;
                 FileName = "introskip_doorflags_open.ips";
+                PatchType = Specific;
+            };
+            // Animal patches
+            {
+                Name = "Animals as Enemies";
+                Difficulty = Difficulty.Any;
+                Default = false;
+                FileName = "animals_enemies.ips";
+                PatchType = Animals;
+            };
+            {
+                Name = "Animals have to be killed";
+                Difficulty = Difficulty.Any;
+                Default = false;
+                FileName = "animals.ips";
+                PatchType = Animals;
+            };
+            {
+                Name = "Animals is Draygon";
+                Difficulty = Difficulty.Any;
+                Default = false;
+                FileName = "draygonimals.ips";
+                PatchType = Animals;
+            };
+            {
+                Name = "Animals leads back to escape";
+                Difficulty = Difficulty.Any;
+                Default = false;
+                FileName = "escapimals.ips";
+                PatchType = Animals;
+            };
+            {
+                Name = "Animals just ends game";
+                Difficulty = Difficulty.Any;
+                Default = false;
+                FileName = "gameend.ips";
+                PatchType = Animals;
+            };
+            {
+                Name = "Animals has grey door";
+                Difficulty = Difficulty.Any;
+                Default = false;
+                FileName = "grey_door_animals.ips";
+                PatchType = Animals;
+            };
+            {
+                Name = "Animals sets the timer low";
+                Difficulty = Difficulty.Any;
+                Default = false;
+                FileName = "low_timer.ips";
+                PatchType = Animals;
+            };
+            {
+                Name = "Animals is Metal Pirates";
+                Difficulty = Difficulty.Any;
+                Default = false;
+                FileName = "metalimals.ips";
+                PatchType = Animals;
+            };
+            {
+                Name = "Animals isn't there";
+                Difficulty = Difficulty.Any;
+                Default = false;
+                FileName = "no_animals.ips";
+                PatchType = Animals;
+            };
+            {
+                Name = "Animals is Phantoon";
+                Difficulty = Difficulty.Any;
+                Default = false;
+                FileName = "phantoonimals.ips";
+                PatchType = Animals;
+            };
+            {
+                Name = "Animals is Ridley";
+                Difficulty = Difficulty.Any;
+                Default = false;
+                FileName = "ridleyimals.ips";
+                PatchType = Animals;
             };
         ]
 

@@ -56,6 +56,12 @@ module Types =
         | Open = 4
         | Any = 5
 
+    type PatchType =
+        | Standard
+        | Optional
+        | Animals
+        | Specific
+
     type Item =
         {
             Type: ItemType;
@@ -100,6 +106,7 @@ module Types =
             Name: string;
             FileName: string;
             Difficulty: Difficulty;
+            PatchType: PatchType;
             Default: bool;
         }
             
