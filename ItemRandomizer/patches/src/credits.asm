@@ -925,13 +925,11 @@ script:
     dw {draw}, {blank}
     dw {draw}, {blank}
     dw {draw}, {blank}
-    dw {draw}, {blank}
 
     // Custom item randomizer credits text        
 
     // Set scroll speed to 3 frames per pixel
     dw {speed}, $0003
-
     dw {draw}, {row}*128
     dw {draw}, {blank}
     dw {draw}, {row}*129
@@ -940,14 +938,73 @@ script:
     dw {draw}, {row}*131
     dw {draw}, {blank}
     dw {draw}, {row}*132
+    dw {draw}, {row}*133
+    dw {draw}, {blank}
     dw {draw}, {row}*134
     dw {draw}, {blank}
     dw {draw}, {row}*135
-    dw {draw}, {blank}
     dw {draw}, {row}*136
-    dw {draw}, {row}*173
     dw {draw}, {blank}
+    dw {draw}, {row}*137
+    dw {draw}, {row}*138
+    dw {draw}, {blank}
+    dw {draw}, {row}*139
+    dw {draw}, {row}*140
+    dw {draw}, {blank}
+    dw {draw}, {row}*141
+    dw {draw}, {blank}
+    dw {draw}, {row}*142
+    dw {draw}, {row}*143
+    dw {draw}, {blank}
+    dw {draw}, {row}*144
+    dw {draw}, {row}*145
+    dw {draw}, {blank}
+    dw {draw}, {row}*146
+    dw {draw}, {row}*147
+    dw {draw}, {blank}
+    dw {draw}, {row}*148
+    dw {draw}, {blank}
+    dw {draw}, {row}*149
+    dw {draw}, {blank}
+    dw {draw}, {row}*150
+    dw {draw}, {row}*151
+    dw {draw}, {blank}
+    dw {draw}, {row}*152
+    dw {draw}, {row}*153
+    dw {draw}, {blank}
+    dw {draw}, {row}*154
+    dw {draw}, {blank}
+    dw {draw}, {row}*155
+    dw {draw}, {row}*156
+    dw {draw}, {blank}
+    dw {draw}, {row}*157
+    dw {draw}, {blank}
+    dw {draw}, {row}*158
+    dw {draw}, {row}*159
+    dw {draw}, {blank}
+    dw {draw}, {row}*160
+    dw {draw}, {row}*161
+    dw {draw}, {blank}
+    dw {draw}, {row}*162
+    dw {draw}, {row}*163
+    dw {draw}, {blank}
+    dw {draw}, {row}*164
+    dw {draw}, {row}*165
+    dw {draw}, {blank}
+    dw {draw}, {row}*166
+    dw {draw}, {row}*167
+    dw {draw}, {blank}
+    dw {draw}, {row}*168
+    dw {draw}, {row}*169
+    dw {draw}, {blank}
+    dw {draw}, {row}*170
+    dw {draw}, {blank}
+    dw {draw}, {row}*171
+    dw {draw}, {row}*172
+    dw {draw}, {blank}
+    dw {draw}, {row}*173
     dw {draw}, {row}*174
+    dw {draw}, {blank}
     dw {draw}, {row}*175
     dw {draw}, {blank}
     dw {draw}, {row}*176
@@ -962,10 +1019,10 @@ script:
     dw {draw}, {row}*182
     dw {draw}, {blank}
     dw {draw}, {row}*183
+    dw {draw}, {blank}
     dw {draw}, {row}*184
     dw {draw}, {blank}
     dw {draw}, {row}*185
-    dw {draw}, {blank}
     dw {draw}, {row}*186
     dw {draw}, {blank}
     dw {draw}, {row}*187
@@ -980,114 +1037,41 @@ script:
     dw {draw}, {row}*193
     dw {draw}, {blank}
     dw {draw}, {row}*194
-    dw {draw}, {blank}
     dw {draw}, {row}*195
+    dw {draw}, {blank}
     dw {draw}, {row}*196
-    dw {draw}, {blank}
     dw {draw}, {row}*197
+    dw {draw}, {blank}
     dw {draw}, {row}*198
-    dw {draw}, {blank}
     dw {draw}, {row}*199
+    dw {draw}, {blank}
     dw {draw}, {row}*200
-    dw {draw}, {blank}
     dw {draw}, {row}*201
-    dw {draw}, {row}*202
     dw {draw}, {blank}
+    dw {draw}, {row}*202
     dw {draw}, {row}*203
+    dw {draw}, {blank}
     dw {draw}, {row}*204
     dw {draw}, {blank}
     dw {draw}, {row}*205
     dw {draw}, {row}*206
     dw {draw}, {blank}
     dw {draw}, {row}*207
-    dw {draw}, {blank}
     dw {draw}, {row}*208
-    dw {draw}, {row}*209
     dw {draw}, {blank}
+    dw {draw}, {row}*209
     dw {draw}, {row}*210
+    dw {draw}, {blank}
     dw {draw}, {row}*211
+    dw {draw}, {row}*212
     dw {draw}, {blank}
     dw {draw}, {row}*213
-    dw {draw}, {blank}
     dw {draw}, {row}*214
+    dw {draw}, {blank}
     dw {draw}, {row}*215
-    dw {draw}, {blank}
     dw {draw}, {row}*216
-    dw {draw}, {blank}
-    dw {draw}, {row}*217
-    dw {draw}, {row}*218
-    dw {draw}, {blank}
-    dw {draw}, {row}*219
-    dw {draw}, {row}*220
-    dw {draw}, {blank}
-    dw {draw}, {row}*137
-    dw {draw}, {blank}
-    dw {draw}, {row}*138
-    dw {draw}, {blank}
-    dw {draw}, {row}*139
-    dw {draw}, {row}*140
-    dw {draw}, {blank}
-    dw {draw}, {row}*141
-    dw {draw}, {row}*142
-    dw {draw}, {blank}
-    dw {draw}, {row}*143
-    dw {draw}, {row}*144
-    dw {draw}, {blank}
-    dw {draw}, {row}*145
-    dw {draw}, {blank}
-    dw {draw}, {row}*146
-    dw {draw}, {row}*147
-    dw {draw}, {blank}
-    dw {draw}, {row}*148
-    dw {draw}, {row}*149
-    dw {draw}, {blank}
-    dw {draw}, {row}*150
-    dw {draw}, {row}*151
-    dw {draw}, {blank}
-    dw {draw}, {row}*152
-    dw {draw}, {row}*153
-    dw {draw}, {blank}
-    dw {draw}, {row}*154
-    dw {draw}, {row}*155
-    dw {draw}, {blank}
-    dw {draw}, {row}*156
-    dw {draw}, {row}*157
-    dw {draw}, {blank}
-    dw {draw}, {row}*158
-    dw {draw}, {blank}
-    dw {draw}, {row}*159
-    dw {draw}, {row}*160
-    dw {draw}, {blank}
-    dw {draw}, {row}*161
-    dw {draw}, {row}*162
-    dw {draw}, {blank}
-    dw {draw}, {row}*163
-    dw {draw}, {row}*164
-    dw {draw}, {blank}
-    dw {draw}, {row}*165
-    dw {draw}, {row}*166
-    dw {draw}, {blank}
-    dw {draw}, {row}*167
-    dw {draw}, {row}*168
-    dw {draw}, {blank}
-    dw {draw}, {row}*169
-    dw {draw}, {row}*170
-    dw {speed}, $0005
-    dw {draw}, {blank}
-    dw {draw}, {blank}
-    dw {draw}, {blank}
-    dw {draw}, {blank}
-    dw {draw}, {blank}
-    dw {draw}, {row}*171
-    dw {draw}, {row}*172
-    dw {draw}, {blank}
-    dw {draw}, {blank}
-    dw {draw}, {row}*221
-    dw {draw}, {row}*222    
-    dw {draw}, {blank}
-    dw {draw}, {blank}
-   
 
+   
     // Draw item locations
     dw {draw}, {blank}
     dw {draw}, {blank}
@@ -1144,7 +1128,12 @@ script:
     dw {draw}, {blank}
     dw {draw}, {blank}
     dw {draw}, {blank}
-    
+    dw {draw}, {row}*217
+    dw {draw}, {row}*218
+    dw {draw}, {blank}
+    dw {draw}, {blank}
+    dw {draw}, {row}*219
+    dw {draw}, {row}*220        
    
     // Scroll all text off and end credits
     dw {set}, $0023; -
@@ -1154,22 +1143,22 @@ script:
 
 stats:
     // STAT ID, ADDRESS,    TYPE (1 = Number, 2 = Time, 3 = Full time), UNUSED
-    dw 0,       {row}*171,  3, 0    // Full RTA Time
-    dw 2,       {row}*139,  1, 0    // Door transitions
-    dw 3,       {row}*141,  3, 0    // Time in doors
-    dw 5,       {row}*143,  2, 0    // Time adjusting doors
-    dw 7,       {row}*146,  3, 0    // Crateria
-    dw 9,       {row}*148,  3, 0    // Brinstar
-    dw 11,      {row}*150,  3, 0    // Norfair
-    dw 13,      {row}*152,  3, 0    // Wrecked Ship
-    dw 15,      {row}*154,  3, 0    // Maridia
-    dw 17,      {row}*156,  3, 0    // Tourian
-    dw 20,      {row}*159,  1, 0    // Charged Shots
-    dw 21,      {row}*161,  1, 0    // Special Beam Attacks
-    dw 22,      {row}*163,  1, 0    // Missiles
-    dw 23,      {row}*165,  1, 0    // Super Missiles
-    dw 24,      {row}*167,  1, 0    // Power Bombs
-    dw 26,      {row}*169,  1, 0    // Bombs
+    dw 0,       {row}*217,  3, 0    // Full RTA Time
+    dw 2,       {row}*185,  1, 0    // Door transitions
+    dw 3,       {row}*187,  3, 0    // Time in doors
+    dw 5,       {row}*189,  2, 0    // Time adjusting doors
+    dw 7,       {row}*192,  3, 0    // Crateria
+    dw 9,       {row}*194,  3, 0    // Brinstar
+    dw 11,      {row}*196,  3, 0    // Norfair
+    dw 13,      {row}*198,  3, 0    // Wrecked Ship
+    dw 15,      {row}*200,  3, 0    // Maridia
+    dw 17,      {row}*202,  3, 0    // Tourian
+    dw 20,      {row}*205,  1, 0    // Charged Shots
+    dw 21,      {row}*207,  1, 0    // Special Beam Attacks
+    dw 22,      {row}*209,  1, 0    // Missiles
+    dw 23,      {row}*211,  1, 0    // Super Missiles
+    dw 24,      {row}*213,  1, 0    // Power Bombs
+    dw 26,      {row}*215,  1, 0    // Bombs
     dw 0,               0,  0, 0    // end of table
 
 warnpc $dfffff
@@ -1187,121 +1176,121 @@ credits:
     {purple}
     dw "         RANDOMIZER CODE        " // 129
     {big}
-    dw "              TOTAL             " // 130
-    dw "              total             " // 131
+    dw "             TOTAL              " // 130
+    dw "             total              " // 131
     dw "            DESSYREQT           " // 132
-    dw "            dessyreqt           " // 134
+    dw "            dessyreqt           " // 133
     {purple}
-    dw "           SNES CODE            " // 135
+    dw "            SNES CODE           " // 134
     {big}
-    dw "              TOTAL             " // 136
-    dw "              total             " // 173
-    dw "             FOOSDA             " // 174
-    dw "             foosda             " // 175
-    dw "           PERSONITIS           " // 176
-    dw "           personitis           " // 177
+    dw "             TOTAL              " // 135
+    dw "             total              " // 136
+    dw "             FOOSDA             " // 137
+    dw "             foosda             " // 138
+    dw "           PERSONITIS           " // 139
+    dw "           personitis           " // 140
     {purple}
-    dw "           ROM PATCHES          " // 178
+    dw "           ROM PATCHES          " // 141
     {big}
-    dw "             TOTAL              " // 179
-    dw "             total              " // 180
-    dw "             FOOSDA             " // 181
-    dw "             foosda             " // 182
-    dw "             LEODOX             " // 183
-    dw "             leodox             " // 184
+    dw "             TOTAL              " // 142
+    dw "             total              " // 143
+    dw "             FOOSDA             " // 144
+    dw "             foosda             " // 145
+    dw "             LEODOX             " // 146
+    dw "             leodox             " // 147
     {cyan}
-    dw "        SPECIAL THANKS TO       " // 185
+    dw "        SPECIAL THANKS TO       " // 148
     {yellow}
-    dw "   SUPER METROID DISASSEMBLY    " // 186
+    dw "   SUPER METROID DISASSEMBLY    " // 149
     {big}
-    dw "             PJBOY              " // 187
-    dw "             pjboy              " // 188
-    dw "            KEJARDON            " // 189
-    dw "            kejardon            " // 190
+    dw "             PJBOY              " // 150
+    dw "             pjboy              " // 151
+    dw "            KEJARDON            " // 152
+    dw "            kejardon            " // 153
     {yellow}
-    dw "            TRACKER             " // 191
+    dw "            TRACKER             " // 154
     {big}
-    dw "          CROSSPRODUCT          " // 192
-    dw "          crossproduct          " // 193
+    dw "          CROSSPRODUCT          " // 155
+    dw "          crossproduct          " // 156
     {yellow}
-    dw "     TOURNAMENT ORGANIZERS      " // 194
+    dw "     TOURNAMENT ORGANIZERS      " // 157
     {big}
-    dw "            FERAL5X             " // 195
-    dw "            feral5x             " // 196
-    dw "           STRAEVARAS           " // 197
-    dw "           straevaras           " // 198
-    dw "         WILDANACONDA69         " // 199
-    dw "         wildanaconda69         " // 200
-    dw "          BELTHASAR             " // 201
-    dw "          belthasar             " // 202
-    dw "         KEKUMANSHOYU           " // 203
-    dw "         kekumanshoyu           " // 204
-    dw "            TYPWO               " // 205
-    dw "            typwo               " // 206  
-    {yellow}  
-    dw "        SPEEDGAMING STAFF       " // 207
-    {big}
-    dw "           FEASEL               " // 208
-    dw "           feasel               " // 209
-    dw "          MITHICAL9             " // 210
-    dw "          mithical9             " // 211
+    dw "            FERAL5X             " // 158
+    dw "            feral%x             " // 159
+    dw "           STRAEVARAS           " // 160
+    dw "           straevaras           " // 161
+    dw "         WILDANACONDA69         " // 162
+    dw "         wildanaconda&)         " // 163
+    dw "           BELTHASAR            " // 164
+    dw "           belthasar            " // 165
+    dw "          KEKUMANSHOYU          " // 166
+    dw "          kekumanshoyu          " // 167
+    dw "             TYPWO              " // 168
+    dw "             typwo              " // 169
     {yellow}
-    dw "      METROID CONSTRUCTION      " // 213
+    dw "        SPEEDGAMING STAFF       " // 170
     {big}
-    dw "     METROIDCONSTRUCTION.COM    " // 214
-    dw "     metroidconstruction.com    " // 215
+    dw "            FEASEL              " // 171
+    dw "            feasel              " // 172
+    dw "           MITHICAL9            " // 173
+    dw "           mithical)            " // 174
     {yellow}
-    dw "  SUPER METROID SRL COMMUNITY   " // 216
+    dw "      METROID CONSTRUCTION      " // 175
     {big}
-    dw "    DISCORD INVITE : RT2FWZT    " // 217
-    dw "    discord invite : rt2fwzt    " // 218
-    dw "   ITEMRANDO.SUPERMETROID.RUN   " // 219
-    dw "   itemrando.supermetroid.run   " // 220
+    dw "     METROIDCONSTRUCTION.COM    " // 176
+    dw "     metroidconstruction.com    " // 177
+    {yellow}
+    dw "  SUPER METROID SRL COMMUNITY   " // 178
+    {big}
+    dw "    DISCORD INVITE : RT2FWZT    " // 179
+    dw "    discord invite : rt@fwzt    " // 180
+    dw "   ITEMRANDO.SUPERMETROID.RUN   " // 181
+    dw "   itemrando.supermetroid.run   " // 182
     {purple}
-    dw "      GAMEPLAY STATISTICS       " // 137
+    dw "      GAMEPLAY STATISTICS       " // 183
     {orange}
-    dw "          DOOR THINGS           " // 138
+    dw "          DOOR THINGS           " // 184
     {big}
-    dw " DOOR TRANSITIONS               " // 139
-    dw " door transitions               " // 140 
-    dw " TIME IN DOORS      00'00'00^00 " // 141
-    dw " time in doors                  " // 142 
-    dw " TIME ALIGNING DOORS   00'00^00 " // 143
-    dw " time aligning doors            " // 144 
+    dw " DOOR TRANSITIONS               " // 185
+    dw " door transitions               " // 186 
+    dw " TIME IN DOORS      00'00'00^00 " // 187
+    dw " time in doors                  " // 188 
+    dw " TIME ALIGNING DOORS   00'00^00 " // 189
+    dw " time aligning doors            " // 190 
     {blue}
-    dw "         TIME SPENT IN          " // 145
+    dw "         TIME SPENT IN          " // 191
     {big}
-    dw " CRATERIA           00'00'00^00 " // 146
-    dw " crateria                       " // 147
-    dw " BRINSTAR           00'00'00^00 " // 148
-    dw " brinstar                       " // 149
-    dw " NORFAIR            00'00'00^00 " // 150
-    dw " norfair                        " // 151
-    dw " WRECKED SHIP       00'00'00^00 " // 152
-    dw " wrecked ship                   " // 153
-    dw " MARIDIA            00'00'00^00 " // 154
-    dw " maridia                        " // 155
-    dw " TOURIAN            00'00'00^00 " // 156
-    dw " tourian                        " // 157
+    dw " CRATERIA           00'00'00^00 " // 192
+    dw " crateria                       " // 193
+    dw " BRINSTAR           00'00'00^00 " // 194
+    dw " brinstar                       " // 195
+    dw " NORFAIR            00'00'00^00 " // 196
+    dw " norfair                        " // 197
+    dw " WRECKED SHIP       00'00'00^00 " // 198
+    dw " wrecked ship                   " // 199
+    dw " MARIDIA            00'00'00^00 " // 200
+    dw " maridia                        " // 201
+    dw " TOURIAN            00'00'00^00 " // 202
+    dw " tourian                        " // 203
     {green}
-    dw "      SHOTS AND AMMO FIRED      " // 158
+    dw "      SHOTS AND AMMO FIRED      " // 204
     {big}
-    dw " CHARGED SHOTS                  " // 159
-    dw " charged shots                  " // 160
-    dw " SPECIAL BEAM ATTACKS           " // 161
-    dw " special beam attacks           " // 162
-    dw " MISSILES                       " // 163
-    dw " missiles                       " // 164
-    dw " SUPER MISSILES                 " // 165
-    dw " super missiles                 " // 166
-    dw " POWER BOMBS                    " // 167
-    dw " power bombs                    " // 168
-    dw " BOMBS                          " // 169
-    dw " bombs                          " // 170
-    dw " FINAL TIME         00'00'00^00 " // 171
-    dw " final time                     " // 172
-    dw "       THANKS FOR PLAYING       " // 221
-    dw "       thanks for playing       " // 222
+    dw " CHARGED SHOTS                  " // 205
+    dw " charged shots                  " // 206
+    dw " SPECIAL BEAM ATTACKS           " // 207
+    dw " special beam attacks           " // 208
+    dw " MISSILES                       " // 209
+    dw " missiles                       " // 210
+    dw " SUPER MISSILES                 " // 211
+    dw " super missiles                 " // 212
+    dw " POWER BOMBS                    " // 213
+    dw " power bombs                    " // 214
+    dw " BOMBS                          " // 215
+    dw " bombs                          " // 216
+    dw " FINAL TIME         00'00'00^00 " // 217
+    dw " final time                     " // 218
+    dw "       THANKS FOR PLAYING       " // 219
+    dw "       thanks for playing       " // 220
     dw $0000                              // End of credits tilemap
 
 warnpc $ceffff
