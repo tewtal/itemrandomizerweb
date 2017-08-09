@@ -135,7 +135,7 @@ module OpenLocations =
             };
             {
                 Area = Crateria;
-                Name = "Energy Tank (Crateria gauntlet)";
+                Name = "Energy Tank, Gauntlet";
                 Class = Major;
                 Address = 0x78264;
                 Visibility = Visible;
@@ -159,7 +159,7 @@ module OpenLocations =
             };
             {
                 Area = Crateria;
-                Name = "Energy Tank (Crateria tunnel to Brinstar)";
+                Name = "Energy Tank, Terminator";
                 Class = Major;
                 Address = 0x78432;
                 Visibility = Visible;
@@ -233,7 +233,7 @@ module OpenLocations =
             };
             {
                 Area = Brinstar;
-                Name = "Reserve Tank (Brinstar)";
+                Name = "Reserve Tank, Brinstar";
                 Class = Major;
                 Address = 0x7852C;
                 Visibility = Chozo;
@@ -321,7 +321,7 @@ module OpenLocations =
             };
             {
                 Area = Brinstar;
-                Name = "Energy Tank (blue Brinstar)";
+                Name = "Energy Tank, Brinstar Ceiling";
                 Class = Major;
                 Address = 0x7879E;
                 Visibility = Hidden;
@@ -329,7 +329,7 @@ module OpenLocations =
             };
             {
                 Area = Brinstar;
-                Name = "Energy Tank (green Brinstar bottom)";
+                Name = "Energy Tank, Etecoons";
                 Class = Major;
                 Address = 0x787C2;
                 Visibility = Visible;
@@ -345,7 +345,7 @@ module OpenLocations =
             };
             {
                 Area = Brinstar;
-                Name = "Energy Tank (pink Brinstar bottom)";
+                Name = "Energy Tank, Waterway";
                 Class = Major;
                 Address = 0x787FA;
                 Visibility = Visible;
@@ -361,7 +361,7 @@ module OpenLocations =
             };
             {
                 Area = Brinstar;
-                Name = "Energy Tank (pink Brinstar top)";
+                Name = "Energy Tank, Brinstar Gate";
                 Class = Major;
                 Address = 0x78824;
                 Visibility = Visible;
@@ -385,7 +385,7 @@ module OpenLocations =
             };
             {
                 Area = Brinstar;
-                Name = "X-Ray Visor";
+                Name = "X-Ray Scope";
                 Class = Major;
                 Address = 0x78876;
                 Visibility = Chozo;
@@ -430,7 +430,7 @@ module OpenLocations =
             };
             {
                 Area = Brinstar;
-                Name = "Energy Tank (Kraid)";
+                Name = "Energy Tank, Kraid";
                 Class = Major;
                 Address = 0x7899C;
                 Visibility = Hidden;
@@ -479,7 +479,7 @@ module OpenLocations =
             };
             {
                 Area = Norfair;
-                Name = "Energy Tank (Crocomire)";
+                Name = "Energy Tank, Crocomire";
                 Class = Major;
                 Address = 0x78BA4;
                 Visibility = Visible;
@@ -559,7 +559,7 @@ module OpenLocations =
             };
             {
                 Area = Norfair;
-                Name = "Reserve Tank (Norfair)";
+                Name = "Reserve Tank, Norfair";
                 Class = Major;
                 Address = 0x78C3E;
                 Visibility = Chozo;
@@ -683,7 +683,7 @@ module OpenLocations =
             };
             {
                 Area = LowerNorfair;
-                Name = "Energy Tank (Ridley)";
+                Name = "Energy Tank, Ridley";
                 Class = Major;
                 Address = 0x79108;
                 Visibility = Hidden;
@@ -701,7 +701,7 @@ module OpenLocations =
             };
             {
                 Area = LowerNorfair;
-                Name = "Energy Tank (lower Norfair fire flea room)";
+                Name = "Energy Tank, Firefleas";
                 Class = Major;
                 Address = 0x79184;
                 Visibility = Visible;
@@ -717,7 +717,7 @@ module OpenLocations =
             };
             {
                 Area = WreckedShip;
-                Name = "Reserve Tank (Wrecked Ship)";
+                Name = "Reserve Tank, Wrecked Ship";
                 Class = Major;
                 Address = 0x7C2E9;
                 Visibility = Chozo;
@@ -744,7 +744,7 @@ module OpenLocations =
             };
             {
                 Area = WreckedShip;
-                Name = "Energy Tank (Wrecked Ship)";
+                Name = "Energy Tank, Wrecked Ship";
                 Class = Major;
                 Address = 0x7C337;
                 Visibility = Visible;
@@ -796,7 +796,7 @@ module OpenLocations =
             };
             {
                 Area = Maridia;
-                Name = "Energy Tank (green Maridia)";
+                Name = "Energy Tank, Mama turtle";
                 Class = Major;
                 Address = 0x7C47D;
                 Visibility = Visible;
@@ -860,7 +860,7 @@ module OpenLocations =
             };
             {
                 Area = Maridia;
-                Name = "Reserve Tank (Maridia)";
+                Name = "Reserve Tank, Maridia";
                 Class = Major;
                 Address = 0x7C5E3;
                 Visibility = Chozo;
@@ -923,7 +923,7 @@ module OpenLocations =
             };
             {
                 Area = Maridia;
-                Name = "Energy Tank (Botwoon)";
+                Name = "Energy Tank, Botwoon";
                 Class = Major;
                 Address = 0x7C755;
                 Visibility = Visible;

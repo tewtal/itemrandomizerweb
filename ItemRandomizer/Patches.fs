@@ -56,13 +56,13 @@ module Patches =
                 FileName = "max_ammo_display.ips";
                 PatchType = Standard;
             };
-            {
-                Name = "Decompression Optimization by Kejardon";
-                Difficulty = Difficulty.Any;
-                Default = true;
-                FileName = "decompression.ips";
-                PatchType = Standard;
-            };            
+            //{
+            //    Name = "Decompression Optimization by Kejardon";
+            //    Difficulty = Difficulty.Any;
+            //    Default = true;
+            //    FileName = "decompression.ips";
+            //    PatchType = Standard;
+            //};            
             // Optional Patches
             {
                 Name = "Foosda's Colorblind patch";

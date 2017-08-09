@@ -928,9 +928,8 @@ script:
 
     // Custom item randomizer credits text        
 
-    // Set scroll speed to 3 frames per pixel
-    dw {speed}, $0003
     dw {draw}, {row}*128
+    dw {draw}, {blank}
     dw {draw}, {blank}
     dw {draw}, {row}*129
     dw {draw}, {blank}
@@ -939,6 +938,7 @@ script:
     dw {draw}, {blank}
     dw {draw}, {row}*132
     dw {draw}, {row}*133
+    dw {draw}, {blank}
     dw {draw}, {blank}
     dw {draw}, {row}*134
     dw {draw}, {blank}
@@ -951,6 +951,7 @@ script:
     dw {draw}, {row}*139
     dw {draw}, {row}*140
     dw {draw}, {blank}
+    dw {draw}, {blank}
     dw {draw}, {row}*141
     dw {draw}, {blank}
     dw {draw}, {row}*142
@@ -962,6 +963,7 @@ script:
     dw {draw}, {row}*146
     dw {draw}, {row}*147
     dw {draw}, {blank}
+    dw {draw}, {blank}
     dw {draw}, {row}*148
     dw {draw}, {blank}
     dw {draw}, {row}*149
@@ -972,10 +974,12 @@ script:
     dw {draw}, {row}*152
     dw {draw}, {row}*153
     dw {draw}, {blank}
+    dw {draw}, {blank}
     dw {draw}, {row}*154
     dw {draw}, {blank}
     dw {draw}, {row}*155
     dw {draw}, {row}*156
+    dw {draw}, {blank}
     dw {draw}, {blank}
     dw {draw}, {row}*157
     dw {draw}, {blank}
@@ -997,6 +1001,7 @@ script:
     dw {draw}, {row}*168
     dw {draw}, {row}*169
     dw {draw}, {blank}
+    dw {draw}, {blank}
     dw {draw}, {row}*170
     dw {draw}, {blank}
     dw {draw}, {row}*171
@@ -1005,23 +1010,36 @@ script:
     dw {draw}, {row}*173
     dw {draw}, {row}*174
     dw {draw}, {blank}
+    dw {draw}, {blank}
     dw {draw}, {row}*175
     dw {draw}, {blank}
     dw {draw}, {row}*176
     dw {draw}, {row}*177
+    dw {draw}, {blank}
     dw {draw}, {blank}
     dw {draw}, {row}*178
     dw {draw}, {blank}
     dw {draw}, {row}*179
     dw {draw}, {row}*180
     dw {draw}, {blank}
+    dw {draw}, {blank}
+    dw {draw}, {row}*221
+    dw {draw}, {blank}
     dw {draw}, {row}*181
     dw {draw}, {row}*182
     dw {draw}, {blank}
+    dw {draw}, {blank}
+    dw {draw}, {blank}
+    
+    dw {draw}, {blank}
     dw {draw}, {row}*183
+    dw {draw}, {blank}
     dw {draw}, {blank}
     dw {draw}, {row}*184
     dw {draw}, {blank}
+
+    // Set scroll speed to 3 frames per pixel
+    dw {speed}, $0003
     dw {draw}, {row}*185
     dw {draw}, {row}*186
     dw {draw}, {blank}
@@ -1030,6 +1048,7 @@ script:
     dw {draw}, {blank}
     dw {draw}, {row}*189
     dw {draw}, {row}*190
+    dw {draw}, {blank}
     dw {draw}, {blank}
     dw {draw}, {row}*191
     dw {draw}, {blank}
@@ -1050,6 +1069,7 @@ script:
     dw {draw}, {blank}
     dw {draw}, {row}*202
     dw {draw}, {row}*203
+    dw {draw}, {blank}
     dw {draw}, {blank}
     dw {draw}, {row}*204
     dw {draw}, {blank}
@@ -1075,8 +1095,8 @@ script:
     // Draw item locations
     dw {draw}, {blank}
     dw {draw}, {blank}
-    dw {draw}, {blank}
     dw {draw}, {row}*640
+    dw {draw}, {blank}
     dw {draw}, {blank}
     dw {draw}, {row}*641
     dw {draw}, {row}*642
@@ -1125,6 +1145,10 @@ script:
     dw {draw}, {blank}
     dw {draw}, {row}*671
     dw {draw}, {row}*672
+
+    dw {draw}, {blank}
+    dw {draw}, {blank}
+    dw {draw}, {blank}
     dw {draw}, {blank}
     dw {draw}, {blank}
     dw {draw}, {blank}
@@ -1134,9 +1158,21 @@ script:
     dw {draw}, {blank}
     dw {draw}, {row}*219
     dw {draw}, {row}*220        
+    dw {draw}, {blank}
+    dw {draw}, {blank}
+    dw {draw}, {blank}
+    dw {draw}, {blank}
+    dw {draw}, {blank}
+    dw {draw}, {blank}
+    dw {draw}, {blank}
+    dw {draw}, {blank}
+    dw {draw}, {blank}
+
+    // Set scroll speed to 4 frames per pixel
+    dw {speed}, $0004
    
     // Scroll all text off and end credits
-    dw {set}, $0023; -
+    dw {set}, $0017; -
     dw {draw}, {blank}
     dw {delay}, -    
     dw {end}
@@ -1178,10 +1214,10 @@ credits:
     {big}
     dw "             TOTAL              " // 130
     dw "             total              " // 131
-    dw "            DESSYREQT           " // 132
-    dw "            dessyreqt           " // 133
+    dw "           DESSYREQT            " // 132
+    dw "           dessyreqt            " // 133
     {purple}
-    dw "            SNES CODE           " // 134
+    dw "           SNES CODE            " // 134
     {big}
     dw "             TOTAL              " // 135
     dw "             total              " // 136
@@ -1190,7 +1226,7 @@ credits:
     dw "           PERSONITIS           " // 139
     dw "           personitis           " // 140
     {purple}
-    dw "           ROM PATCHES          " // 141
+    dw "          ROM PATCHES           " // 141
     {big}
     dw "             TOTAL              " // 142
     dw "             total              " // 143
@@ -1199,7 +1235,7 @@ credits:
     dw "             LEODOX             " // 146
     dw "             leodox             " // 147
     {cyan}
-    dw "        SPECIAL THANKS TO       " // 148
+    dw "       SPECIAL THANKS TO        " // 148
     {yellow}
     dw "   SUPER METROID DISASSEMBLY    " // 149
     {big}
@@ -1228,7 +1264,7 @@ credits:
     dw "             TYPWO              " // 168
     dw "             typwo              " // 169
     {yellow}
-    dw "        SPEEDGAMING STAFF       " // 170
+    dw "       SPEEDGAMING STAFF        " // 170
     {big}
     dw "            FEASEL              " // 171
     dw "            feasel              " // 172
@@ -1237,19 +1273,19 @@ credits:
     {yellow}
     dw "      METROID CONSTRUCTION      " // 175
     {big}
-    dw "     METROIDCONSTRUCTION.COM    " // 176
+    dw "     METROIDCONSTRUCTION COM    " // 176
     dw "     metroidconstruction.com    " // 177
     {yellow}
     dw "  SUPER METROID SRL COMMUNITY   " // 178
     {big}
-    dw "    DISCORD INVITE : RT2FWZT    " // 179
-    dw "    discord invite : rt@fwzt    " // 180
-    dw "   ITEMRANDO.SUPERMETROID.RUN   " // 181
+    dw "    DISCORD INVITE . RT2FWZT    " // 179
+    dw "    discord invite . rt@fwzt    " // 180
+    dw "   ITEMRANDO SUPERMETROID RUN   " // 181
     dw "   itemrando.supermetroid.run   " // 182
     {purple}
     dw "      GAMEPLAY STATISTICS       " // 183
     {orange}
-    dw "          DOOR THINGS           " // 184
+    dw "             DOORS              " // 184
     {big}
     dw " DOOR TRANSITIONS               " // 185
     dw " door transitions               " // 186 
@@ -1291,6 +1327,8 @@ credits:
     dw " final time                     " // 218
     dw "       THANKS FOR PLAYING       " // 219
     dw "       thanks for playing       " // 220
+    {cyan}
+    dw "     PLAY THIS RANDOMIZER AT    " // 221
     dw $0000                              // End of credits tilemap
 
 warnpc $ceffff
@@ -1300,4 +1338,3 @@ org $ded200
 itemlocations:
     {pink}
     dw "      MAJOR ITEM LOCATIONS      " // 640
-    dw $0000
