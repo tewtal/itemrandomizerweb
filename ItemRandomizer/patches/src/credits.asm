@@ -935,16 +935,90 @@ script:
     dw {draw}, {row}*128
     dw {draw}, {blank}
     dw {draw}, {row}*129
+    dw {draw}, {blank}
     dw {draw}, {row}*130
-    dw {draw}, {blank}
     dw {draw}, {row}*131
-    dw {draw}, {row}*132
     dw {draw}, {blank}
-    dw {draw}, {row}*133
+    dw {draw}, {row}*132
     dw {draw}, {row}*134
     dw {draw}, {blank}
     dw {draw}, {row}*135
+    dw {draw}, {blank}
     dw {draw}, {row}*136
+    dw {draw}, {row}*173
+    dw {draw}, {blank}
+    dw {draw}, {row}*174
+    dw {draw}, {row}*175
+    dw {draw}, {blank}
+    dw {draw}, {row}*176
+    dw {draw}, {row}*177
+    dw {draw}, {blank}
+    dw {draw}, {row}*178
+    dw {draw}, {blank}
+    dw {draw}, {row}*179
+    dw {draw}, {row}*180
+    dw {draw}, {blank}
+    dw {draw}, {row}*181
+    dw {draw}, {row}*182
+    dw {draw}, {blank}
+    dw {draw}, {row}*183
+    dw {draw}, {row}*184
+    dw {draw}, {blank}
+    dw {draw}, {row}*185
+    dw {draw}, {blank}
+    dw {draw}, {row}*186
+    dw {draw}, {blank}
+    dw {draw}, {row}*187
+    dw {draw}, {row}*188
+    dw {draw}, {blank}
+    dw {draw}, {row}*189
+    dw {draw}, {row}*190
+    dw {draw}, {blank}
+    dw {draw}, {row}*191
+    dw {draw}, {blank}
+    dw {draw}, {row}*192
+    dw {draw}, {row}*193
+    dw {draw}, {blank}
+    dw {draw}, {row}*194
+    dw {draw}, {blank}
+    dw {draw}, {row}*195
+    dw {draw}, {row}*196
+    dw {draw}, {blank}
+    dw {draw}, {row}*197
+    dw {draw}, {row}*198
+    dw {draw}, {blank}
+    dw {draw}, {row}*199
+    dw {draw}, {row}*200
+    dw {draw}, {blank}
+    dw {draw}, {row}*201
+    dw {draw}, {row}*202
+    dw {draw}, {blank}
+    dw {draw}, {row}*203
+    dw {draw}, {row}*204
+    dw {draw}, {blank}
+    dw {draw}, {row}*205
+    dw {draw}, {row}*206
+    dw {draw}, {blank}
+    dw {draw}, {row}*207
+    dw {draw}, {blank}
+    dw {draw}, {row}*208
+    dw {draw}, {row}*209
+    dw {draw}, {blank}
+    dw {draw}, {row}*210
+    dw {draw}, {row}*211
+    dw {draw}, {blank}
+    dw {draw}, {row}*213
+    dw {draw}, {blank}
+    dw {draw}, {row}*214
+    dw {draw}, {row}*215
+    dw {draw}, {blank}
+    dw {draw}, {row}*216
+    dw {draw}, {blank}
+    dw {draw}, {row}*217
+    dw {draw}, {row}*218
+    dw {draw}, {blank}
+    dw {draw}, {row}*219
+    dw {draw}, {row}*220
     dw {draw}, {blank}
     dw {draw}, {row}*137
     dw {draw}, {blank}
@@ -998,6 +1072,7 @@ script:
     dw {draw}, {blank}
     dw {draw}, {row}*169
     dw {draw}, {row}*170
+    dw {speed}, $0005
     dw {draw}, {blank}
     dw {draw}, {blank}
     dw {draw}, {blank}
@@ -1005,6 +1080,10 @@ script:
     dw {draw}, {blank}
     dw {draw}, {row}*171
     dw {draw}, {row}*172
+    dw {draw}, {blank}
+    dw {draw}, {blank}
+    dw {draw}, {row}*221
+    dw {draw}, {row}*222    
     dw {draw}, {blank}
     dw {draw}, {blank}
    
@@ -1105,15 +1184,79 @@ credits:
     
     {pink}
     dw "     ITEM RANDOMIZER STAFF      " // 128
+    {purple}
+    dw "         RANDOMIZER CODE        " // 129
     {big}
-    dw "             TOTAL              " // 129
-    dw "             total              " // 130
-    dw "             FOOSDA             " // 131
-    dw "             foosda             " // 132
-    dw "             LEODOX             " // 133
-    dw "             leodox             " // 134
-    dw "           DESSYREQT            " // 135
-    dw "           dessyreqt            " // 136
+    dw "              TOTAL             " // 130
+    dw "              total             " // 131
+    dw "            DESSYREQT           " // 132
+    dw "            dessyreqt           " // 134
+    {purple}
+    dw "           SNES CODE            " // 135
+    {big}
+    dw "              TOTAL             " // 136
+    dw "              total             " // 173
+    dw "             FOOSDA             " // 174
+    dw "             foosda             " // 175
+    dw "           PERSONITIS           " // 176
+    dw "           personitis           " // 177
+    {purple}
+    dw "           ROM PATCHES          " // 178
+    {big}
+    dw "             TOTAL              " // 179
+    dw "             total              " // 180
+    dw "             FOOSDA             " // 181
+    dw "             foosda             " // 182
+    dw "             LEODOX             " // 183
+    dw "             leodox             " // 184
+    {cyan}
+    dw "        SPECIAL THANKS TO       " // 185
+    {yellow}
+    dw "   SUPER METROID DISASSEMBLY    " // 186
+    {big}
+    dw "             PJBOY              " // 187
+    dw "             pjboy              " // 188
+    dw "            KEJARDON            " // 189
+    dw "            kejardon            " // 190
+    {yellow}
+    dw "            TRACKER             " // 191
+    {big}
+    dw "          CROSSPRODUCT          " // 192
+    dw "          crossproduct          " // 193
+    {yellow}
+    dw "     TOURNAMENT ORGANIZERS      " // 194
+    {big}
+    dw "            FERAL5X             " // 195
+    dw "            feral5x             " // 196
+    dw "           STRAEVARAS           " // 197
+    dw "           straevaras           " // 198
+    dw "         WILDANACONDA69         " // 199
+    dw "         wildanaconda69         " // 200
+    dw "          BELTHASAR             " // 201
+    dw "          belthasar             " // 202
+    dw "         KEKUMANSHOYU           " // 203
+    dw "         kekumanshoyu           " // 204
+    dw "            TYPWO               " // 205
+    dw "            typwo               " // 206  
+    {yellow}  
+    dw "        SPEEDGAMING STAFF       " // 207
+    {big}
+    dw "           FEASEL               " // 208
+    dw "           feasel               " // 209
+    dw "          MITHICAL9             " // 210
+    dw "          mithical9             " // 211
+    {yellow}
+    dw "      METROID CONSTRUCTION      " // 213
+    {big}
+    dw "     METROIDCONSTRUCTION.COM    " // 214
+    dw "     metroidconstruction.com    " // 215
+    {yellow}
+    dw "  SUPER METROID SRL COMMUNITY   " // 216
+    {big}
+    dw "    DISCORD INVITE : RT2FWZT    " // 217
+    dw "    discord invite : rt2fwzt    " // 218
+    dw "   ITEMRANDO.SUPERMETROID.RUN   " // 219
+    dw "   itemrando.supermetroid.run   " // 220
     {purple}
     dw "      GAMEPLAY STATISTICS       " // 137
     {orange}
@@ -1156,7 +1299,9 @@ credits:
     dw " BOMBS                          " // 169
     dw " bombs                          " // 170
     dw " FINAL TIME         00'00'00^00 " // 171
-    dw " final time                     " // 172 
+    dw " final time                     " // 172
+    dw "       THANKS FOR PLAYING       " // 221
+    dw "       thanks for playing       " // 222
     dw $0000                              // End of credits tilemap
 
 warnpc $ceffff
