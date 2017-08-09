@@ -13,10 +13,10 @@ module DefaultRandomizer =
     let canPlaceAtLocation (item:Item) (location:Location) =
         location.Class = item.Class &&
         (match item.Type with
-        | Gravity -> (not (location.Area = Crateria || location.Area = Brinstar)) || location.Name = "X-Ray Visor" || location.Name = "Energy Tank (pink Brinstar bottom)"
-        | Varia -> (not (location.Area = LowerNorfair || location.Area = Crateria || location.Name = "Morphing Ball" || location.Name = "Missile (blue Brinstar middle)" || location.Name = "Energy Tank (blue Brinstar)"))
-        | SpeedBooster -> not (location.Name = "Morphing Ball" || location.Name = "Missile (blue Brinstar middle)" || location.Name = "Energy Tank (blue Brinstar)")
-        | ScrewAttack -> not (location.Name = "Morphing Ball" || location.Name = "Missile (blue Brinstar middle)" || location.Name = "Energy Tank (blue Brinstar)")
+        | Gravity -> (not (location.Area = Crateria || location.Area = Brinstar)) || location.Name = "X-Ray Scope" || location.Name = "Energy Tank, Waterway"
+        | Varia -> (not (location.Area = LowerNorfair || location.Area = Crateria || location.Name = "Morphing Ball" || location.Name = "Missile (blue Brinstar middle)" || location.Name = "Energy Tank, Brinstar Ceiling"))
+        | SpeedBooster -> not (location.Name = "Morphing Ball" || location.Name = "Missile (blue Brinstar middle)" || location.Name = "Energy Tank, Brinstar Ceiling")
+        | ScrewAttack -> not (location.Name = "Morphing Ball" || location.Name = "Missile (blue Brinstar middle)" || location.Name = "Energy Tank, Brinstar Ceiling")
         | _ -> true)
 
     let canPlaceItem (item:Item) itemLocations =
@@ -65,7 +65,7 @@ module SparseRandomizer =
     let canPlaceAtLocation (item:Item) (location:Location) =
         location.Class = item.Class &&
         (match item.Type with
-        | Gravity -> (not (location.Area = Crateria || location.Area = Brinstar)) || location.Name = "X-Ray Visor" || location.Name = "Energy Tank (pink Brinstar bottom)"
+        | Gravity -> (not (location.Area = Crateria || location.Area = Brinstar)) || location.Name = "X-Ray Scope" || location.Name = "Energy Tank, Waterway"
         | Varia -> (not (location.Area = Crateria))
         | _ -> true)
 
@@ -157,9 +157,9 @@ module OpenRandomizer =
     let canPlaceAtLocation (item:Item) (location:Location) =
         location.Class = item.Class &&
         (match item.Type with
-        | Gravity -> (not (location.Name = "Morphing Ball" || location.Name = "Energy Tank (blue Brinstar)" || location.Name = "Bomb" || location.Name = "Energy Tank (Crateria tunnel to Brinstar)" || location.Name = "Reserve Tank (Brinstar)" || location.Name = "Charge Beam" || location.Name = "Energy Tank (pink Brinstar top)"))
-        | Varia -> (not (location.Area = LowerNorfair || location.Name = "Morphing Ball" || location.Name = "Energy Tank (blue Brinstar)" || location.Name = "Bomb" || location.Name = "Energy Tank (Crateria tunnel to Brinstar)" || location.Name = "Reserve Tank (Brinstar)" || location.Name = "Charge Beam" || location.Name = "Energy Tank (pink Brinstar top)"))
-        | Morph -> (not (location.Name = "Morphing Ball" || location.Name = "Energy Tank (blue Brinstar)" || location.Name = "Bomb" || location.Name = "Energy Tank (Crateria tunnel to Brinstar)" || location.Name = "Reserve Tank (Brinstar)" || location.Name = "Charge Beam" || location.Name = "Energy Tank (pink Brinstar top)"))
+        | Gravity -> (not (location.Name = "Morphing Ball" || location.Name = "Energy Tank, Brinstar Ceiling" || location.Name = "Bomb" || location.Name = "Energy Tank, Terminator" || location.Name = "Reserve Tank, Brinstar" || location.Name = "Charge Beam" || location.Name = "Energy Tank, Brinstar Gate"))
+        | Varia -> (not (location.Area = LowerNorfair || location.Name = "Morphing Ball" || location.Name = "Energy Tank, Brinstar Ceiling" || location.Name = "Bomb" || location.Name = "Energy Tank, Terminator" || location.Name = "Reserve Tank, Brinstar" || location.Name = "Charge Beam" || location.Name = "Energy Tank, Brinstar Gate"))
+        | Morph -> (not (location.Name = "Morphing Ball" || location.Name = "Energy Tank, Brinstar Ceiling" || location.Name = "Bomb" || location.Name = "Energy Tank, Terminator" || location.Name = "Reserve Tank, Brinstar" || location.Name = "Charge Beam" || location.Name = "Energy Tank, Brinstar Gate"))
         | _ -> true)
 
     let canPlaceItem (item:Item) itemLocations =
