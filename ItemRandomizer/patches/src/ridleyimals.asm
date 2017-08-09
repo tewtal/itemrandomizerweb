@@ -29,6 +29,8 @@ org $8FF018
 	LDA $7ED820 													//loads event flags
 	BIT #$4000  													//checks for escape flag set
 	BEQ quit
+	LDA #$0000
+	STA $7ED8BB
 	LDA #$EFF0														//load door pointer
 	STA $7E07B5														//change door out pointer
 	LDA #$AAAA
