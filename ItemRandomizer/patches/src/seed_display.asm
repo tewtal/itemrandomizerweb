@@ -11,7 +11,7 @@ org $82f900
     php
     rep #$30
 
-    lda $dff000
+    lda $dfff00
     and #$001f
     asl
     asl
@@ -33,7 +33,7 @@ org $82f900
     cpx #$000E
     bne -
 
-    lda $dff001
+    lda $dfff01
     and #$001f
     asl
     asl
@@ -55,7 +55,7 @@ org $82f900
     cpx #$000E
     bne -
 
-    lda $dff002
+    lda $dfff02
     and #$001f
     asl
     asl
@@ -77,7 +77,7 @@ org $82f900
     cpx #$000E
     bne -
 
-    lda $dff003
+    lda $dfff03
     and #$001f
     asl
     asl

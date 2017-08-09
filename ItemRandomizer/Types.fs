@@ -69,6 +69,7 @@ module Types =
             Category: ItemCategory;
             Code: int;
             Name: string;
+            Message: int;
         }
 
     type Location =
