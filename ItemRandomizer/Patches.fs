@@ -251,13 +251,13 @@ module Patches =
                 FileName = "metalimals.ips";
                 PatchType = Animals;
             };
-            {
-                Name = "Animals isn't there";
-                Difficulty = Difficulty.Any;
-                Default = false;
-                FileName = "no_animals.ips";
-                PatchType = Animals;
-            };
+            // {
+            //     Name = "Animals isn't there";
+            //     Difficulty = Difficulty.Any;
+            //     Default = false;
+            //     FileName = "no_animals.ips";
+            //     PatchType = Animals;
+            // };            
             {
                 Name = "Animals is Phantoon";
                 Difficulty = Difficulty.Any;
