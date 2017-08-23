@@ -341,7 +341,10 @@ module NewRandomizer =
 
     let placeItem (rnd:Random) (items:Item list) (itemPool:Item list) locations =
         let item = match List.length items with
-                   | 0 -> List.item (rnd.Next (List.length itemPool)) itemPool
+                   | 0 -> 
+                          if (List.exists (fun i -> i.Type = ScrewAttack) itemPool) then (List.find (fun i -> i.Type = ScrewAttack) itemPool)
+                          elif (List.exists (fun i -> i.Type = SpeedBooster) itemPool) then (List.find (fun i -> i.Type = SpeedBooster) itemPool)
+                          else List.item (rnd.Next (List.length itemPool)) itemPool
                    | _ -> List.item (rnd.Next (List.length items)) items
         
         let availableLocations = List.filter (fun location -> canPlaceAtLocation item location) locations
