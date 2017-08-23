@@ -93,7 +93,8 @@ module Randomizer =
         let generateItems = match difficulty with
                              | Difficulty.Hard -> SparseRandomizer.generateItems
                              | Difficulty.Open -> OpenRandomizer.generateItems
-                             | _ -> NewRandomizer.generateItems
+                             | Difficulty.Tournament -> NewRandomizer.generateItems
+                             | _ -> DefaultRandomizer.generateItems
         
         // Get a random animal patch
         let rnd = Random(seed)
