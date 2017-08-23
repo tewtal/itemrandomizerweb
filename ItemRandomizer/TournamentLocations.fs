@@ -419,7 +419,6 @@ module TournamentLocations =
                                         (haveItem items Grapple ||
                                          haveItem items SpaceJump ||
                                          (haveItem items Varia && energyReserveCount items >= 4) ||
-                                         (haveItem items Gravity && energyReserveCount items >= 3) ||
                                          (energyReserveCount items >= 6))
                             
             };
