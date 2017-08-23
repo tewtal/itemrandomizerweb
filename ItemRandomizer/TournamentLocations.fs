@@ -757,7 +757,7 @@ module TournamentLocations =
                 Visibility = Chozo;
                 Available = fun items -> canAccessWs items &&
                                          haveItem items SpeedBooster &&
-                                         (haveItem items Varia || haveItem items Gravity || energyReserveCount items >= 1);
+                                         (haveItem items Varia || energyReserveCount items >= 1);
             };
             {
                 Area = WreckedShip;
@@ -766,7 +766,7 @@ module TournamentLocations =
                 Address = 0x7C2EF;
                 Visibility = Visible;
                 Available = fun items -> canAccessWs items &&
-                                         (haveItem items Varia || haveItem items Gravity || energyReserveCount items >= 1);
+                                         (haveItem items Varia || energyReserveCount items >= 1);
             };
             {
                 Area = WreckedShip;
@@ -813,7 +813,7 @@ module TournamentLocations =
                 Address = 0x7C36D;
                 Visibility = Chozo;
                 Available = fun items -> canAccessWs items &&
-                                         (haveItem items Varia || haveItem items Gravity || energyReserveCount items >= 1);
+                                         (haveItem items Varia || energyReserveCount items >= 1);
             };
             {
                 Area = Maridia;
