@@ -18,7 +18,7 @@ module TournamentLocations =
 
     // Combined checks to see if we can perform an action needed to access locations
     let canHellRun items = 
-        energyReserveCount items >= 4 ||
+        energyReserveCount items >= 3 ||
         heatProof items
 
     let canFly items = (haveItem items Morph && haveItem items Bomb) || haveItem items SpaceJump
@@ -903,7 +903,7 @@ module TournamentLocations =
                 Class = Major;
                 Address = 0x7C5E3;
                 Visibility = Chozo;
-                Available = fun items -> (canAccessOuterMaridia items && canDoSuitlessMaridia items);
+                Available = fun items -> (canAccessOuterMaridia items && (canDoSuitlessMaridia items || haveItem items Gravity));
             };
             {
                 Area = Maridia;

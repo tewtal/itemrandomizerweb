@@ -56,6 +56,13 @@ module Patches =
                 FileName = "max_ammo_display.ips";
                 PatchType = Standard;
             };
+            // {
+            //     Name = "SPC Credits Song";
+            //     Difficulty = Difficulty.Any;
+            //     Default = true;
+            //     FileName = "spc_play.ips";
+            //     PatchType = Standard;
+            // };
             //{
             //    Name = "Decompression Optimization by Kejardon";
             //    Difficulty = Difficulty.Any;

@@ -93,12 +93,15 @@ module Randomizer =
         let generateItems = match difficulty with
                              | Difficulty.Hard -> SparseRandomizer.generateItems
                              | Difficulty.Open -> OpenRandomizer.generateItems
-                             | _ -> DefaultRandomizer.generateItems
+                             | _ -> NewRandomizer.generateItems
         
         // Get a random animal patch
         let rnd = Random(seed)
         let animalsPatches = (List.filter (fun ip -> ip.PatchType = Animals) Patches.IpsPatches)
         let animalsPatch = List.item (rnd.Next animalsPatches.Length) animalsPatches
+
+        //let expandedRom = Array.create<byte> ((Array.length baseRom) + 0xF8000) 0xFFuy
+        //System.Buffer.BlockCopy(baseRom, 0, expandedRom, 0, baseRom.Length)
 
         (seed, randomizeItems generateItems (Patches.ApplyPatches (animalsPatch :: ipsPatches) patches baseRom) seed spoiler fileName locationPool)
 
@@ -109,7 +112,7 @@ module Randomizer =
             let rnd = Random(seed)
             let newLocations = 
                 try 
-                    DefaultRandomizer.generateItems rnd [] [] (Items.getItemPool rnd) TournamentLocations.AllLocations
+                    NewRandomizer.generateItems rnd [] [] (Items.getItemPool rnd) TournamentLocations.AllLocations
                 with
                 | _ -> []
 
