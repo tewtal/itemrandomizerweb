@@ -454,11 +454,6 @@ module NewRandomizer =
         if not (List.exists (fun i -> i.Type = Super) newItems) then
             prefill rnd Super &newItems &newItemLocations &newItemPool locationPool
         
-        // Place three e-tanks so that hellruns will always be possible
-        prefill rnd ETank &newItems &newItemLocations &newItemPool locationPool
-        prefill rnd ETank &newItems &newItemLocations &newItemPool locationPool
-        prefill rnd ETank &newItems &newItemLocations &newItemPool locationPool
-
         // Save the prefilled items into a new list to be used later
         let prefilledItems = newItems
 
