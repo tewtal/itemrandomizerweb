@@ -206,7 +206,7 @@ module Patches =
                 Name = "Animals as Enemies";
                 Difficulty = Difficulty.Any;
                 Default = false;
-                FileName = "animals_enemies.ips";
+                FileName = "animal_enemies.ips";
                 PatchType = Animals;
             };
             {

@@ -107,7 +107,7 @@ module Randomizer =
 
     let TestRandomize =
         let mutable itemLocations:(ItemLocation list) = []
-        for i in 1 .. 1000 do
+        for i in 1 .. 10000 do
             let seed = Random().Next(1000000, 9999999)
             let rnd = Random(seed)
             let newLocations = 

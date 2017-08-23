@@ -93,7 +93,7 @@ module Items =
             };
             {
                 Type = SpringBall;
-                Category = Progression;
+                Category = Misc;
                 Class = Major;
                 Code = 0xef03;
                 Name = "Spring Ball";
@@ -157,7 +157,7 @@ module Items =
             };
             {
                 Type = SpaceJump;
-                Category = Progression;
+                Category = Misc;
                 Class = Major;
                 Code = 0xef1b;
                 Name = "Space Jump";
@@ -165,7 +165,7 @@ module Items =
             };
             {
                 Type = ScrewAttack;
-                Category = Progression;
+                Category = Misc;
                 Class = Major;
                 Code = 0xef1f;
                 Name = "Screw Attack";

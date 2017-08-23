@@ -427,45 +427,61 @@ module NewRandomizer =
         let mutable newItemLocations = itemLocations
         let mutable newItemPool = itemPool
 
-        // Prefill Items
+        // Place Morph at one of the earliest locations so that it's always accessible
         prefill rnd Morph &newItems &newItemLocations &newItemPool locationPool
         
+        // Place either a super or a missile to open up BT's location 
         match rnd.Next(2) with
         | 0 -> prefill rnd Missile &newItems &newItemLocations &newItemPool locationPool
         | _ -> prefill rnd Super &newItems &newItemLocations &newItemPool locationPool
 
-        match rnd.Next(10) with
-        | 0 | 1 | 2 | 3 | 4 | 5 | 6 ->  prefill rnd PowerBomb &newItems &newItemLocations &newItemPool locationPool
-        | 7 ->                          prefill rnd ScrewAttack &newItems &newItemLocations &newItemPool locationPool
+        // Next step is to place items that opens up access to breaking bomb blocks
+        // by placing either Screw/Speed/Bomb or just a PB pack early.
+        // One PB pack will be placed after filling with other items so that there's at least on accessible
+        match rnd.Next(13) with
+        | 0 ->                          prefill rnd Missile &newItems &newItemLocations &newItemPool locationPool
+                                        prefill rnd ScrewAttack &newItems &newItemLocations &newItemPool locationPool
                                         prefill rnd PowerBomb &newItems &newItemLocations &newItemPool locationPool
-        | 8 ->                          prefill rnd SpeedBooster &newItems &newItemLocations &newItemPool locationPool
+        | 1 ->                          prefill rnd Missile &newItems &newItemLocations &newItemPool locationPool
+                                        prefill rnd SpeedBooster &newItems &newItemLocations &newItemPool locationPool
                                         prefill rnd PowerBomb &newItems &newItemLocations &newItemPool locationPool
-        | _ ->                          prefill rnd Bomb &newItems &newItemLocations &newItemPool locationPool
+        | 2 ->                          prefill rnd Missile &newItems &newItemLocations &newItemPool locationPool
+                                        prefill rnd Bomb &newItems &newItemLocations &newItemPool locationPool
                                         prefill rnd PowerBomb &newItems &newItemLocations &newItemPool locationPool
+        | _ ->                          prefill rnd PowerBomb &newItems &newItemLocations &newItemPool locationPool
         
-        prefill rnd Super &newItems &newItemLocations &newItemPool locationPool
+        // Place a super if it's not already placed
+        if not (List.exists (fun i -> i.Type = Super) newItems) then
+            prefill rnd Super &newItems &newItemLocations &newItemPool locationPool
+        
+        // Place three e-tanks so that hellruns will always be possible
         prefill rnd ETank &newItems &newItemLocations &newItemPool locationPool
         prefill rnd ETank &newItems &newItemLocations &newItemPool locationPool
         prefill rnd ETank &newItems &newItemLocations &newItemPool locationPool
 
+        // Save the prefilled items into a new list to be used later
         let prefilledItems = newItems
 
+        // Shuffle the locations randomly, then adjust the order slightly based on weighting per area
         let mutable shuffledLocations = List.toArray (List.filter (fun l -> l.Class = Major) locationPool)
         shuffle rnd shuffledLocations
         let weightedLocations = getWeightedLocations (Array.toList shuffledLocations) 100 Map.empty
 
+        // Shuffle the item pool
         let mutable shuffledItemsArr = List.toArray newItemPool
         shuffle rnd shuffledItemsArr
         let shuffledItems = Array.toList shuffledItemsArr
 
+        // Always start with placing a suit (this helps getting maximum spread of suit locations)
         let firstItem = match rnd.Next(2) with
                         | 0 -> List.find (fun i -> i.Type = Varia) shuffledItems
                         | _ -> List.find (fun i -> i.Type = Gravity) shuffledItems
 
         let shuffledItems = firstItem :: List.filter (fun i -> i.Type <> firstItem.Type) shuffledItems
 
-        // Place progression items 
+        // Place the rest of progression items randomly
         let (progressItems, progressItemLocations, progressItemPool) = generateAssumedItems prefilledItems newItems newItemLocations shuffledItems weightedLocations
         
-        // Fill the rest
+        // All progression items are placed and every other location in the game should now be accessible
+        // so place the rest of the items randomly using the regular placement method
         generateMoreItems rnd progressItems progressItemLocations progressItemPool locationPool
