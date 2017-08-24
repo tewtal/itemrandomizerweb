@@ -721,8 +721,7 @@ module TournamentLocations =
                 Class = Major;
                 Address = 0x79108;
                 Visibility = Hidden;
-                Available = fun items -> canPassWorstRoom items &&
-                                         energyReserveCount items >= 2;
+                Available = fun items -> canPassWorstRoom items;
             };
             {
                 Area = LowerNorfair;
