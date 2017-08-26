@@ -1278,8 +1278,8 @@ credits:
     {yellow}
     dw "  SUPER METROID SRL COMMUNITY   " // 178
     {big}
-    dw "    DISCORD INVITE . RT2FWZT    " // 179
-    dw "    discord invite . rt@fwzt    " // 180
+    dw "    DISCORD INVITE . 6RYJM4M    " // 179
+    dw "    discord invite . &ryjm$m    " // 180
     dw "   ITEMRANDO SUPERMETROID RUN   " // 181
     dw "   itemrando.supermetroid.run   " // 182
     {purple}
