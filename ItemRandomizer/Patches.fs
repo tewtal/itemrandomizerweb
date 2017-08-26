@@ -372,6 +372,12 @@ module Patches =
                     { Address = 0x026e02; Data = [0x04]; };
                 ]
             };
+            {
+                Name = "Fix Screw Attack selection in menu";
+                Difficulty = Difficulty.Any;
+                Default = true;
+                Patches = [ { Address = 0x0134c5; Data = [0x0c]; } ]
+            };
         ]
 
 
