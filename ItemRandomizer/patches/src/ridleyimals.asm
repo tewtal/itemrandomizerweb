@@ -42,4 +42,4 @@ org $8FF018
 	JML $8F91F7														//run original code for ridley
 	
 quit:
-RTS
+	JML $8F91F7														//run original code for ridley

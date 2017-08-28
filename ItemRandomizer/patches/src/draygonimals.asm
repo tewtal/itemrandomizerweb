@@ -47,4 +47,4 @@ org $8FF018
 	JML $8FC8DD														//run original code for draygon
 	
 quit:
-RTS
+	JML $8FC8DD

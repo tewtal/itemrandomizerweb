@@ -36,4 +36,4 @@ org $8FF018
 	JML $8FC8D0														//run original code
 	
 quit:
-RTS
+	JML $8FC8D0														//run original code
