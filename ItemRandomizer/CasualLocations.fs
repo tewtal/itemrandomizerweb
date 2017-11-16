@@ -20,7 +20,7 @@ module CasualLocations =
     let canHellRun items = 
         heatProof items
 
-    let canFly items = (haveItem items Morph && haveItem items Bomb) || haveItem items SpaceJump
+    let canFly items = haveItem items SpaceJump
     let canUseBombs items = haveItem items Morph && haveItem items Bomb
 
     let canOpenRedDoors items = haveItem items Missile || haveItem items Super
@@ -78,10 +78,7 @@ module CasualLocations =
         haveItem items Gravity
     
     let canPassWorstRoom items =
-        canAccessLowerNorfair items &&
-            (canFly items ||
-             haveItem items Ice ||
-             haveItem items SpeedBooster)
+        canAccessLowerNorfair items && (canFly items || haveItem items HiJump)
 
     let canAccessOuterMaridia items = 
         canAccessRedBrinstar items &&
@@ -170,7 +167,7 @@ module CasualLocations =
                 Address = 0x78404;
                 Class = Major;
                 Visibility = Chozo;
-                Available = fun items -> haveItem items Morph && canOpenRedDoors items;
+                Available = fun items -> canPassBombPassages items && canOpenRedDoors items;
             };
             {
                 Area = Crateria;
@@ -178,7 +175,7 @@ module CasualLocations =
                 Class = Major;
                 Address = 0x78432;
                 Visibility = Visible;
-                Available = fun items -> canDestroyBombWalls items || haveItem items SpeedBooster
+                Available = fun items -> canDestroyBombWalls items;
             };
             {
                 Area = Crateria;
@@ -411,10 +408,7 @@ module CasualLocations =
                 Available = fun items ->canAccessRedBrinstar items && 
                                         canUsePowerBombs items &&
                                         (haveItem items Grapple ||
-                                         haveItem items SpaceJump ||
-                                         (haveItem items Varia && energyReserveCount items >= 5) ||
-                                         (haveItem items Gravity && energyReserveCount items >= 5) ||
-                                         (energyReserveCount items >= 9))
+                                         haveItem items SpaceJump);
                             
             };
             {
@@ -487,8 +481,7 @@ module CasualLocations =
                 Class = Major;
                 Address = 0x78B24;
                 Visibility = Chozo;
-                Available = fun items -> canAccessKraid items &&
-                                         (heatProof items || energyReserveCount items >= 2);
+                Available = fun items -> canAccessKraid items && heatProof items && haveItem items SpeedBooster;
             };
             {
                 Area = Norfair;
@@ -589,8 +582,8 @@ module CasualLocations =
                 Visibility = Chozo;
                 Available = fun items -> canAccessHeatedNorfair items &&
                                             (canFly items ||
-                                             haveItem items Grapple ||
-                                             haveItem items HiJump);
+                                             (haveItem items Grapple &&
+                                              haveItem items HiJump));
             };
             {
                 Area = Norfair;
@@ -600,8 +593,8 @@ module CasualLocations =
                 Visibility = Hidden;
                 Available = fun items -> canAccessHeatedNorfair items &&
                                             (canFly items ||
-                                             haveItem items Grapple ||
-                                             haveItem items HiJump);
+                                             (haveItem items Grapple &&
+                                              haveItem items HiJump));
             };
             {
                 Area = Norfair;
@@ -611,8 +604,8 @@ module CasualLocations =
                 Visibility = Visible;
                 Available = fun items -> canAccessHeatedNorfair items &&
                                             (canFly items ||
-                                             haveItem items Grapple ||
-                                             haveItem items HiJump);
+                                             (haveItem items Grapple &&
+                                              haveItem items HiJump));
             };
             {
                 Area = Norfair;
@@ -636,7 +629,7 @@ module CasualLocations =
                 Class = Major;
                 Address = 0x78C82;
                 Visibility = Chozo;
-                Available = fun items -> canAccessHeatedNorfair items;
+                Available = fun items -> canAccessHeatedNorfair items && haveItem items HiJump;
             };
             {
                 Area = Norfair;
@@ -652,7 +645,7 @@ module CasualLocations =
                 Class = Major;
                 Address = 0x78CCA;
                 Visibility = Chozo;
-                Available = fun items -> canAccessHeatedNorfair items;
+                Available = fun items -> canAccessHeatedNorfair items && haveItem items HiJump;
             };
             {
                 Area = LowerNorfair;
@@ -717,7 +710,7 @@ module CasualLocations =
                 Address = 0x79108;
                 Visibility = Hidden;
                 Available = fun items -> canPassWorstRoom items &&
-                                         energyReserveCount items >= 2;
+                                         energyReserveCount items >= 5;
             };
             {
                 Area = LowerNorfair;
@@ -751,7 +744,7 @@ module CasualLocations =
                 Visibility = Chozo;
                 Available = fun items -> canAccessWs items &&
                                          haveItem items SpeedBooster &&
-                                         (haveItem items Varia || haveItem items Gravity || energyReserveCount items >= 1);
+                                         ((haveItem items Varia && energyReserveCount items >= 1) || energyReserveCount items >= 2);
             };
             {
                 Area = WreckedShip;
@@ -760,7 +753,7 @@ module CasualLocations =
                 Address = 0x7C2EF;
                 Visibility = Visible;
                 Available = fun items -> canAccessWs items &&
-                                         (haveItem items Varia || haveItem items Gravity || energyReserveCount items >= 1);
+                                         ((haveItem items Varia && energyReserveCount items >= 1) || energyReserveCount items >= 2);
             };
             {
                 Area = WreckedShip;
@@ -777,12 +770,10 @@ module CasualLocations =
                 Address = 0x7C337;
                 Visibility = Visible;
                 Available = fun items -> canAccessWs items &&
-                                            (haveItem items Bomb ||
-                                             haveItem items PowerBomb ||
+                                            (haveItem items Gravity ||
                                              haveItem items HiJump ||
                                              haveItem items SpaceJump ||
-                                             haveItem items SpeedBooster ||
-                                             haveItem items SpringBall);
+                                             haveItem items SpeedBooster);
             };
             {
                 Area = WreckedShip;
@@ -807,7 +798,7 @@ module CasualLocations =
                 Address = 0x7C36D;
                 Visibility = Chozo;
                 Available = fun items -> canAccessWs items &&
-                                         (haveItem items Varia || haveItem items Gravity || energyReserveCount items >= 1);
+                                         ((haveItem items Varia && energyReserveCount items >= 1) || energyReserveCount items >= 2);
             };
             {
                 Area = Maridia;
@@ -877,11 +868,9 @@ module CasualLocations =
                 Class = Major;
                 Address = 0x7C559;
                 Visibility = Chozo;
-                Available = fun items -> canDefeatDraygon items &&
-                                         (haveItem items SpeedBooster ||
-                                            (haveItem items Charge ||
-                                             haveItem items ScrewAttack) &&
-                                            (canFly items || haveItem items HiJump));
+                Available = fun items -> (canDefeatDraygon items &&
+                                          (haveItem items Plasma || haveItem items ScrewAttack) &&
+                                          haveItem items SpaceJump);
             };
             {
                 Area = Maridia;
@@ -940,9 +929,7 @@ module CasualLocations =
                 Class = Major;
                 Address = 0x7C6E5;
                 Visibility = Chozo;
-                Available = fun items -> canAccessOuterMaridia items &&
-                                         (haveItem items Gravity || (haveItem items SpringBall && haveItem items HiJump && haveItem items Ice)) &&
-                                         (haveItem items Ice || haveItem items Grapple);
+                Available = fun items -> (canAccessOuterMaridia items && haveItem items Grapple && haveItem items SpaceJump);            
             };
             {
                 Area = Maridia;

@@ -54,7 +54,8 @@ module Types =
         | Hard = 2
         | Tournament = 3
         | Open = 4
-        | Any = 5
+        | Full = 5
+        | Any = 6
 
     type PatchType =
         | Standard

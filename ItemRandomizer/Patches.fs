@@ -186,6 +186,56 @@ module Patches =
                 FileName = "spazer.ips";
                 PatchType = Specific;
             };
+            // Full mode Patches
+            {
+                Name = "Disable respawning blocks at dachora pit";
+                Difficulty = Difficulty.Full;
+                Default = true;
+                FileName = "dachora.ips";
+                PatchType = Specific;
+            };
+            {
+                Name = "Make it possible to escape from below early super bridge without bombs";
+                Difficulty = Difficulty.Full;
+                Default = true;
+                FileName = "early_super_bridge.ips";
+                PatchType = Specific;
+            };
+            {
+                Name = "Replace bomb blocks with shot blocks before Hi-Jump";
+                Difficulty = Difficulty.Full;
+                Default = true;
+                FileName = "high_jump.ips";
+                PatchType = Specific;
+            };
+            {
+                Name = "Replace bomb blocks with shot blocks at Moat";
+                Difficulty = Difficulty.Full;
+                Default = true;
+                FileName = "moat.ips";
+                PatchType = Specific;
+            };
+            {
+                Name = "Raise platform in first heated norfair room to not require hi-jump";
+                Difficulty = Difficulty.Full;
+                Default = true;
+                FileName = "nova_boost_platform.ips";
+                PatchType = Specific;
+            };
+            {
+                Name = "Change platforms in red tower bottom to always be able to get back up";
+                Difficulty = Difficulty.Full;
+                Default = true;
+                FileName = "red_tower.ips";
+                PatchType = Specific;
+            };
+            {
+                Name = "Replace bomb blocks with shot blocks before Spazer";
+                Difficulty = Difficulty.Full;
+                Default = true;
+                FileName = "spazer.ips";
+                PatchType = Specific;
+            };
             // Open Mode Patches
             {
                 Name = "Open Mode Room Edits";

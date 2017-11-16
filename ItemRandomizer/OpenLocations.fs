@@ -466,7 +466,7 @@ module OpenLocations =
                 Class = Major;
                 Address = 0x78B24;
                 Visibility = Chozo;
-                Available = fun items -> (heatProof items || energyReserveCount items >= 2 && canMorph items);
+                Available = fun items -> ((heatProof items || energyReserveCount items >= 2) && canMorph items);
             };
             {
                 Area = Norfair;
