@@ -23,7 +23,7 @@ Changes from the vanilla game and other notes:
 
 ### How to use
 
-* Install .NET Core 1.1
+* Install .NET Core 2
 * Clone this repo
 * Run: dotnet restore
 * Run: dotnet run
