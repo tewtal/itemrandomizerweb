@@ -44,20 +44,20 @@ org $90b9a1
     jml charged_beam
 
 // Firing SBAs
-org $90ccca
-    jml fire_sba
+org $90ccde
+    jmp fire_sba_local	
 
 //Missiles/supers fired
 org $90beb7
     jml missiles_fired
 
-//PBs laid
-org $90c02d
-    jml pbs_laid
-
-//Bombs laid
+//Bombs/PBs laid
 org $90c107
     jml bombs_laid
+
+org $90f800
+fire_sba_local:
+    jml fire_sba
 
 // -------------------------------
 // CODE (using bank A1 free space)
@@ -159,15 +159,19 @@ charged_beam:
     LDA $0c2c, x
     JML $90b9a7
 
-// Firing SBAs
+// Firing SBAs : hijack the point where new qty of PBs is stored
 fire_sba:
+    // check if SBA routine actually changed PB count: means valid beam combo selected
+    cmp $09ce
+    beq .end
+    pha
     lda #$0015
     jsl {inc_stat}
-
+    pla
     // Run hijacked code and return
-    lda $09a6
-    and #$000f
-    jml $90ccd0
+.end:
+    sta $09ce
+    jml $90cce1
 
 //MissilesSupers used
 missiles_fired:
@@ -185,19 +189,17 @@ missiles_fired:
 .end:
     jml $90bec7
 
-//PBs laid
-pbs_laid:
-    dec 
-    sta $09ce
-    lda #$0018
-    jsl {inc_stat}
-    jml $90c031
-
-//bombs laid
+//bombs/PBs laid
 bombs_laid:
+    lda $09d2			// HUD sleection index
+    cmp #$0003
+    beq .power_bomb
     lda #$001a
+    bra .end
+.power_bomb:
+    lda #$0018
+.end:
     jsl {inc_stat}
-
     //run hijacked code and return
     lda $0cd2
     inc
