@@ -439,21 +439,22 @@ module NewRandomizer =
         // by placing either Screw/Speed/Bomb or just a PB pack early.
         // One PB pack will be placed after filling with other items so that there's at least on accessible
         match rnd.Next(13) with
-        | 0 ->                          prefill rnd Missile &newItems &newItemLocations &newItemPool locationPool
-                                        prefill rnd ScrewAttack &newItems &newItemLocations &newItemPool locationPool
-                                        prefill rnd PowerBomb &newItems &newItemLocations &newItemPool locationPool
-        | 1 ->                          prefill rnd Missile &newItems &newItemLocations &newItemPool locationPool
-                                        prefill rnd SpeedBooster &newItems &newItemLocations &newItemPool locationPool
-                                        prefill rnd PowerBomb &newItems &newItemLocations &newItemPool locationPool
-        | 2 ->                          prefill rnd Missile &newItems &newItemLocations &newItemPool locationPool
-                                        prefill rnd Bomb &newItems &newItemLocations &newItemPool locationPool
-                                        prefill rnd PowerBomb &newItems &newItemLocations &newItemPool locationPool
+        | 0 ->                          prefill rnd ScrewAttack &newItems &newItemLocations &newItemPool locationPool
+        | 1 ->                          prefill rnd SpeedBooster &newItems &newItemLocations &newItemPool locationPool
+        | 2 ->                          prefill rnd Bomb &newItems &newItemLocations &newItemPool locationPool
         | _ ->                          prefill rnd PowerBomb &newItems &newItemLocations &newItemPool locationPool
         
         // Place a super if it's not already placed
         if not (List.exists (fun i -> i.Type = Super) newItems) then
             prefill rnd Super &newItems &newItemLocations &newItemPool locationPool
-        
+
+        // Place two power bombs if it's not already placed, otherwise one
+        if not (List.exists (fun i -> i.Type = PowerBomb) newItems) then
+            prefill rnd PowerBomb &newItems &newItemLocations &newItemPool locationPool
+            prefill rnd PowerBomb &newItems &newItemLocations &newItemPool locationPool
+        else
+            prefill rnd PowerBomb &newItems &newItemLocations &newItemPool locationPool
+
         // Save the prefilled items into a new list to be used later
         let prefilledItems = newItems
 

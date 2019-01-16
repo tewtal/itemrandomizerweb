@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
     <Name>ItemRandomizerWeb</Name>
   </PropertyGroup>
 
@@ -12,9 +12,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="DotLiquid" Version="2.0.145" />
-    <PackageReference Include="Suave" Version="2.0.1" />
-    <PackageReference Include="Suave.DotLiquid" Version="2.1.0" />
+    <PackageReference Include="DotLiquid" Version="2.0.298" />
+    <PackageReference Include="Suave" Version="2.5.3" />
+    <PackageReference Include="Suave.DotLiquid" Version="2.5.3" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="ItemRandomizer/ItemRandomizer.fsproj">

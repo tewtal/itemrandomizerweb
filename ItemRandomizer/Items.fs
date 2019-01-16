@@ -77,7 +77,7 @@ module Items =
             };
             {
                 Type = Wave;
-                Category = Beam;
+                Category = Progression;
                 Class = Major;
                 Code = 0xeefb;
                 Name = "Wave Beam";
@@ -93,7 +93,7 @@ module Items =
             };
             {
                 Type = SpringBall;
-                Category = Misc;
+                Category = Progression;
                 Class = Major;
                 Code = 0xef03;
                 Name = "Spring Ball";
@@ -109,7 +109,7 @@ module Items =
             };
             {
                 Type = Plasma;
-                Category = Beam;
+                Category = Progression;
                 Class = Major;
                 Code = 0xef13;
                 Name = "Plasma Beam";
@@ -133,7 +133,7 @@ module Items =
             };
             {
                 Type = Reserve;
-                Category = Misc;
+                Category = Progression;
                 Class = Major;
                 Code = 0xef27;
                 Name = "Reserve Tank";
@@ -157,7 +157,7 @@ module Items =
             };
             {
                 Type = SpaceJump;
-                Category = Misc;
+                Category = Progression;
                 Class = Major;
                 Code = 0xef1b;
                 Name = "Space Jump";
@@ -165,7 +165,7 @@ module Items =
             };
             {
                 Type = ScrewAttack;
-                Category = Misc;
+                Category = Progression;
                 Class = Major;
                 Code = 0xef1f;
                 Name = "Screw Attack";

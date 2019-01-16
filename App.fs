@@ -76,7 +76,7 @@ let randomizerPost (r:HttpRequest) =
                 let parsedSeed = if inputSeed.StartsWith("0x") then Convert.ToInt32(inputSeed, 16) else Convert.ToInt32(inputSeed)
                 let ipsPatches = List.filter (fun (p:Types.IpsPatch) -> ((p.Difficulty = difficulty || p.Difficulty = Types.Difficulty.Any) && p.Default)) Patches.IpsPatches
                 let patches = List.filter (fun (p:Types.Patch) -> ((p.Difficulty = difficulty || p.Difficulty = Types.Difficulty.Any) && p.Default)) Patches.RomPatches
-                let (seed, binaryData) = Randomizer.Randomize parsedSeed difficulty false "" bytes ipsPatches patches
+                let (seed, binaryData) = Randomizer.Randomize parsedSeed difficulty true "" bytes ipsPatches patches
                 let newFileName = sprintf "Item Randomizer %s%d.sfc" (match difficulty with
                                                                         | Types.Difficulty.Casual -> "CX"
                                                                         | Types.Difficulty.Normal -> "X"

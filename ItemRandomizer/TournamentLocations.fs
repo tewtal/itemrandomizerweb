@@ -41,7 +41,6 @@ module TournamentLocations =
         itemCount items PowerBomb >= 3
     
     let canEnterAndLeaveGauntlet items =
-        (canFly items || haveItem items HiJump || haveItem items SpeedBooster) &&
         (canUseBombs items || 
          (canUsePowerBombs items && itemCount items PowerBomb >= 2) || 
          haveItem items ScrewAttack ||
@@ -85,14 +84,15 @@ module TournamentLocations =
     let canPassWorstRoom items =
         canAccessLowerNorfair items &&
             (canFly items ||
-             haveItem items Ice ||
-             haveItem items HiJump)
+             (haveItem items Ice && haveItem items Charge) ||
+             haveItem items HiJump ||
+             haveItem items SpringBall)
 
     let canAccessOuterMaridia items = 
         canAccessRedBrinstar items &&
         canUsePowerBombs items &&
             (haveItem items Gravity ||
-             (haveItem items HiJump && haveItem items Ice))
+             (haveItem items HiJump && (haveItem items Ice || haveItem items SpringBall)))
     
     let canAccessInnerMaridia items = 
         canAccessRedBrinstar items &&
@@ -100,7 +100,7 @@ module TournamentLocations =
         haveItem items Gravity
     
     let canDoSuitlessMaridia items = 
-         (haveItem items HiJump && haveItem items Ice && haveItem items Grapple)    
+         (haveItem items HiJump && (haveItem items Ice || haveItem items SpringBall) && haveItem items Grapple)
 
     let canDefeatBotwoon items = 
         canAccessInnerMaridia items &&
@@ -210,7 +210,9 @@ module TournamentLocations =
                 Visibility = Visible;
                 Available = fun items -> canUsePowerBombs items && 
                                          haveItem items SpeedBooster && 
-                                         (haveItem items ETank || haveItem items Varia || haveItem items Gravity)
+                                         itemCount items ETank >= 2 &&
+                                         energyReserveCount items >= 3
+
             };
             {
                 Area = Crateria;
@@ -242,7 +244,7 @@ module TournamentLocations =
                 Class = Minor;
                 Address = 0x78518;
                 Visibility = Visible;
-                Available = fun items -> canPassBombPassages items && canOpenRedDoors items;
+                Available = fun items -> (haveItem items SpeedBooster || canDestroyBombWalls items) && canOpenRedDoors items;
             };
             {
                 Area = Brinstar;
@@ -282,7 +284,7 @@ module TournamentLocations =
                 Class = Minor;
                 Address = 0x78608;
                 Visibility = Visible;
-                Available = fun items -> (canDestroyBombWalls items && canOpenRedDoors items) ||
+                Available = fun items -> ((haveItem items SpeedBooster || canDestroyBombWalls items) && canOpenRedDoors items) ||
                                          canUsePowerBombs items;
             };
             {
@@ -291,7 +293,7 @@ module TournamentLocations =
                 Class = Minor;
                 Address = 0x7860E;
                 Visibility = Visible;
-                Available = fun items -> (canDestroyBombWalls items && canOpenRedDoors items) ||
+                Available = fun items -> ((haveItem items SpeedBooster || canDestroyBombWalls items) && canOpenRedDoors items) ||
                                          canUsePowerBombs items;
             };
             {
@@ -390,7 +392,7 @@ module TournamentLocations =
                 Address = 0x78824;
                 Visibility = Visible;
                 Available = fun items -> canUsePowerBombs items &&
-                                         (haveItem items Wave || (haveItem items Super && haveItem items HiJump));
+                                         (haveItem items Wave || haveItem items Super);
             };
             {
                 Area = Brinstar;
@@ -530,6 +532,7 @@ module TournamentLocations =
                 Available = fun items -> canAccessCrocomire items &&
                                             (canFly items || 
                                              haveItem items Grapple ||
+                                             haveItem items Ice ||
                                              (haveItem items HiJump && haveItem items SpeedBooster))
             };
             {
@@ -581,10 +584,7 @@ module TournamentLocations =
                 Class = Major;
                 Address = 0x78C36;
                 Visibility = Chozo;
-                Available = fun items -> canAccessCrocomire items &&
-                                            (canFly items ||
-                                             haveItem items Ice ||
-                                             haveItem items SpeedBooster);
+                Available = fun items -> canAccessCrocomire items
             };
             {
                 Area = Norfair;
@@ -595,6 +595,8 @@ module TournamentLocations =
                 Available = fun items -> canAccessHeatedNorfair items &&
                                             (canFly items ||
                                              haveItem items Grapple ||
+                                             haveItem items Ice ||
+                                             haveItem items SpringBall ||
                                              haveItem items HiJump);
             };
             {
@@ -606,6 +608,8 @@ module TournamentLocations =
                 Available = fun items -> canAccessHeatedNorfair items &&
                                             (canFly items ||
                                              haveItem items Grapple ||
+                                             haveItem items Ice ||
+                                             haveItem items SpringBall ||
                                              haveItem items HiJump);
             };
             {
@@ -617,6 +621,8 @@ module TournamentLocations =
                 Available = fun items -> canAccessHeatedNorfair items &&
                                             (canFly items ||
                                              haveItem items Grapple ||
+                                             haveItem items Ice ||
+                                             haveItem items SpringBall ||
                                              haveItem items HiJump);
             };
             {
@@ -729,7 +735,11 @@ module TournamentLocations =
                 Class = Major;
                 Address = 0x79110;
                 Visibility = Chozo;
-                Available = fun items -> canAccessLowerNorfair items;
+                Available = fun items -> canAccessLowerNorfair items &&
+                                         (canFly items ||
+                                          haveItem items SpringBall ||
+                                          haveItem items SpeedBooster ||
+                                          haveItem items HiJump);
             };
             {
                 Area = LowerNorfair;
@@ -755,7 +765,7 @@ module TournamentLocations =
                 Visibility = Chozo;
                 Available = fun items -> canAccessWs items &&
                                          haveItem items SpeedBooster &&
-                                         (haveItem items Varia || energyReserveCount items >= 1);
+                                         ((haveItem items Varia && energyReserveCount items >= 1) || energyReserveCount items >= 2);
             };
             {
                 Area = WreckedShip;
@@ -882,10 +892,8 @@ module TournamentLocations =
                 Address = 0x7C559;
                 Visibility = Chozo;
                 Available = fun items -> canDefeatDraygon items &&
-                                         (haveItem items SpeedBooster ||
-                                            (haveItem items Charge ||
-                                             haveItem items ScrewAttack) &&
-                                            (canFly items || haveItem items HiJump));
+                                         ((haveItem items Charge && energyReserveCount items >= 3) || haveItem items ScrewAttack || haveItem items Plasma) &&
+                                         (haveItem items HiJump || haveItem items SpringBall || canFly items || haveItem items SpeedBooster);
             };
             {
                 Area = Maridia;
@@ -893,7 +901,7 @@ module TournamentLocations =
                 Class = Minor;
                 Address = 0x7C5DD;
                 Visibility = Visible;
-                Available = fun items -> canAccessInnerMaridia items;
+                Available = fun items -> (canAccessOuterMaridia items && (canDoSuitlessMaridia items || haveItem items Gravity));
             };
             {
                 Area = Maridia;
