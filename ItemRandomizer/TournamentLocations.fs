@@ -970,7 +970,7 @@ module TournamentLocations =
                 Address = 0x7C755;
                 Visibility = Visible;
                 Available = fun items -> canDefeatBotwoon items ||
-                                         (canAccessOuterMaridia items && canDoSuitlessMaridia items);
+                                         (canAccessOuterMaridia items && canDoSuitlessMaridia items && haveItem items Ice);
             };
             {
                 Area = Maridia;
